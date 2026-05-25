@@ -178,12 +178,13 @@ section{padding:80px 0}
 .service-card .btn-link:hover{gap:10px}
 
 /* ─── PROCESS ─── */
-.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;counter-reset:step}
-.process-card{text-align:center;padding:32px 20px;position:relative}
-.process-card::before{counter-increment:step;content:counter(step);position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:36px;height:36px;background:#1a5c3a;color:#fff;border-radius:50%;font-size:.85rem;font-weight:700;display:flex;align-items:center;justify-content:center}
-.process-card .icon{font-size:2rem;margin-bottom:14px;margin-top:20px}
-.process-card h4{font-size:.95rem;font-weight:700;margin-bottom:6px}
-.process-card p{font-size:.82rem;color:#666;line-height:1.6}
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;counter-reset:step}
+.process-card{text-align:center;padding:36px 20px 28px;position:relative;background:#fff;border-radius:14px;border:1px solid #eee;transition:all .3s}
+.process-card:hover{box-shadow:0 8px 30px rgba(0,0,0,.06);border-color:#ddd;transform:translateY(-4px)}
+.process-card::before{counter-increment:step;content:counter(step);position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:34px;height:34px;background:#1a5c3a;color:#fff;border-radius:50%;font-size:.82rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(26,92,58,.25)}
+.process-card .icon{font-size:1.6rem;margin-bottom:10px;margin-top:16px;display:flex;align-items:center;justify-content:center;height:44px}
+.process-card h4{font-size:.95rem;font-weight:700;margin-bottom:6px;color:#1a1a2e}
+.process-card p{font-size:.82rem;color:#666;line-height:1.6;max-width:200px;margin:0 auto}
 
 /* ─── PORTFOLIO ─── */
 .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
@@ -229,6 +230,12 @@ section{padding:80px 0}
 .faq-q.open svg{transform:rotate(180deg)}
 .faq-a{padding:0 20px 16px;font-size:.88rem;color:#555;line-height:1.7;display:none}
 .faq-a.open{display:block}
+.faq-form{background:#f0f5f0;border-radius:10px;padding:14px;margin-top:10px}
+.faq-form-row{display:flex;gap:8px;flex-wrap:wrap}
+.faq-form-row input{flex:1;min-width:130px;padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-family:inherit;font-size:.85rem;background:#fff}
+.faq-form-row input:focus{outline:none;border-color:#1a5c3a}
+.faq-form-row button{background:#1a5c3a;color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.faq-form-row button:hover{background:#146b3a}
 
 /* ─── CTA BANNER ─── */
 .cta-banner{background:linear-gradient(135deg,#0f2b1e,#1a5c3a);color:#fff;text-align:center;padding:64px 24px}
@@ -434,27 +441,27 @@ footer ul a:hover{color:#f0b34b}
     <div class="process-grid">
       <div class="process-card">
         <div class="icon">📞</div>
-        <h4>1. Aanvraag</h4>
+        <h4>Aanvraag</h4>
         <p>U neemt contact op voor een vrijblijvende offerte. Bel, WhatsApp of mail — wat u het beste uitkomt.</p>
       </div>
       <div class="process-card">
         <div class="icon">🔍</div>
-        <h4>2. Inspectie</h4>
+        <h4>Inspectie</h4>
         <p>Wij komen langs voor een grondige inspectie van uw dak. Geen verplichtingen.</p>
       </div>
       <div class="process-card">
         <div class="icon">📋</div>
-        <h4>3. Offerte</h4>
+        <h4>Offerte</h4>
         <p>U ontvangt een duidelijke offerte met prijs, materialen en planning.</p>
       </div>
       <div class="process-card">
         <div class="icon">🔨</div>
-        <h4>4. Uitvoering</h4>
+        <h4>Uitvoering</h4>
         <p>Wij gaan aan de slag. Netjes, vakkundig en binnen de afgesproken tijd.</p>
       </div>
       <div class="process-card">
         <div class="icon">✅</div>
-        <h4>5. Oplevering</h4>
+        <h4>Oplevering</h4>
         <p>Uw dak is klaar. Wij ruimen op en lopen alles met u na. Tevredenheidsgarantie.</p>
       </div>
     </div>
@@ -631,7 +638,19 @@ footer ul a:hover{color:#f0b34b}
           <span>Krijg ik subsidie voor dakisolatie?</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </button>
-        <div class="faq-a">Ja! De overheid geeft subsidie voor dakisolatie via de ISDE-regeling. Wij helpen u met de aanvraag. U kunt tot 30% van de kosten terugkrijgen.</div>
+        <div class="faq-a">Ja! De overheid geeft subsidie voor dakisolatie via de ISDE-regeling. Wij helpen u met de aanvraag. U kunt tot 30% van de kosten terugkrijgen.
+          <div class="subsidie-form">
+            <p style="margin-top:14px;font-weight:600;color:#1a5c3a">✅ Check gratis of u in aanmerking komt:</p>
+            <form class="faq-form" onsubmit="submitFaqForm(event, this)">
+              <input type="hidden" name="type" value="Subsidiecheck">
+              <div class="faq-form-row">
+                <input type="text" name="naam" placeholder="Uw naam" required>
+                <input type="tel" name="telefoon" placeholder="Telefoonnummer" required>
+                <button type="submit">Checken →</button>
+              </div>
+              <div class="faq-form-msg" style="display:none;font-size:.82rem;color:#1a5c3a;font-weight:500;margin-top:8px">✅ Ontvangen! We nemen binnen 24 uur contact op.</div>
+            </form>
+          </div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)">
@@ -851,6 +870,31 @@ const observer = new IntersectionObserver((entries)=>{
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') })
 }, {threshold:.1})
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el))
+
+// FAQ mini-form submit (Formspree)
+async function submitFaqForm(e, form) {
+  e.preventDefault();
+  const btn = form.querySelector('button');
+  const msg = form.querySelector('.faq-form-msg');
+  btn.disabled = true;
+  btn.textContent = 'Versturen...';
+  try {
+    const res = await fetch('https://formspree.io/f/xgoqnzqn', {
+      method: 'POST', headers: {'Accept':'application/json'},
+      body: new FormData(form)
+    });
+    if (res.ok) {
+      form.querySelector('.faq-form-row').style.display = 'none';
+      msg.style.display = 'block';
+    } else {
+      btn.textContent = 'Probeer opnieuw';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Probeer opnieuw';
+    btn.disabled = false;
+  }
+}
 </script>
 </body>
 </html>
