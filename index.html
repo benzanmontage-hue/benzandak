@@ -148,6 +148,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
   .hero-btns{flex-direction:column;width:100%}
   .hero-btns .btn{width:100%;justify-content:center}
 }
+@media(max-width:768px){.services-grid{grid-template-columns:1fr}}
 
 /* ─── TRUST BAR ─── */
 .trust-bar{background:#f8f9fa;border-top:1px solid #eee;border-bottom:1px solid #eee;padding:20px 0}
@@ -166,7 +167,7 @@ section{padding:80px 0}
 .bg-light{background:#f8f9fa}
 
 /* ─── SERVICES ─── */
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 .service-card{background:#fff;border-radius:16px;padding:36px 28px;transition:all .25s;border:1px solid #eee;position:relative;overflow:hidden}
 .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#d4832b;opacity:.25;transition:opacity .3s}
 .service-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.06);border-color:#e0e0e0;transform:translateY(-4px)}
