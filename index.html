@@ -222,6 +222,23 @@ section{padding:80px 0}
 .review-google-badge{display:inline-flex;align-items:center;gap:6px;background:#fff;padding:8px 14px;border-radius:8px;border:1px solid #ddd;font-size:.82rem;text-decoration:none;color:#333;margin-top:20px;font-weight:500;transition:all .2s}
 .review-google-badge:hover{background:#f5f5f5}
 
+/* ─── REVIEW WRITE ─── */
+.review-write{text-align:center;margin-top:40px}
+.btn-review-write{background:#1a5c3a;color:#fff;border:none;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .25s}
+.btn-review-write:hover{background:#146b3a;transform:translateY(-2px)}
+.review-form-wrap{max-width:480px;margin:16px auto 0;background:#fff;border:1px solid #eee;border-radius:14px;padding:24px;display:none;text-align:left}
+.review-form-wrap.open{display:block}
+.review-star-input{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.star-rating{display:flex;flex-direction:row-reverse;gap:2px}
+.star-rating input{display:none}
+.star-rating label{font-size:1.5rem;color:#ddd;cursor:pointer;transition:color .15s}
+.star-rating label:hover,.star-rating label:hover~label,.star-rating input:checked~label{color:#f0b34b}
+.review-form-wrap input,.review-form-wrap textarea{width:100%;padding:10px 14px;border:1.5px solid #ddd;border-radius:8px;font-family:inherit;font-size:.88rem;margin-bottom:10px;box-sizing:border-box}
+.review-form-wrap input:focus,.review-form-wrap textarea:focus{outline:none;border-color:#1a5c3a}
+.review-form-wrap .btn-submit{background:#d4832b;margin-top:4px}
+.review-form-wrap .btn-submit:hover{background:#c0731f}
+.review-success{text-align:center;padding:20px}
+
 /* ─── FAQ ─── */
 .faq-list{max-width:700px;margin:0 auto}
 .faq-item{border:1px solid #eee;border-radius:10px;margin-bottom:10px;overflow:hidden}
@@ -610,6 +627,34 @@ footer ul a:hover{color:#f0b34b}
         <div class="review-author">Fatima El Amrani <span>· Arnhem</span></div>
       </div>
     </div>
+    <div class="review-write">
+      <button class="btn-review-write" onclick="document.getElementById('reviewForm').classList.toggle('open')">✍️ Laat een review achter</button>
+      <div id="reviewForm" class="review-form-wrap">
+        <form onsubmit="submitReview(event,this)">
+          <input type="hidden" name="type" value="Nieuwe review">
+          <div class="review-star-input">
+            <span>Uw beoordeling:</span>
+            <div class="star-rating">
+              <input type="radio" name="sterren" value="5" id="s5" checked><label for="s5">★</label>
+              <input type="radio" name="sterren" value="4" id="s4"><label for="s4">★</label>
+              <input type="radio" name="sterren" value="3" id="s3"><label for="s3">★</label>
+              <input type="radio" name="sterren" value="2" id="s2"><label for="s2">★</label>
+              <input type="radio" name="sterren" value="1" id="s1"><label for="s1">★</label>
+            </div>
+          </div>
+          <input type="text" name="naam" placeholder="Uw naam" required>
+          <input type="text" name="woonplaats" placeholder="Woonplaats (bijv. Arnhem)">
+          <textarea name="bericht" placeholder="Uw ervaring met Benzan Dak..." required rows="3"></textarea>
+          <button type="submit" class="btn-submit">Verstuur review</button>
+          <p class="form-note">Uw review wordt na controle geplaatst. Wij delen nooit uw e-mail.</p>
+        </form>
+        <div class="review-success" style="display:none">
+          <div style="font-size:2.5rem;margin-bottom:8px">⭐</div>
+          <strong style="color:#1a5c3a">Bedankt voor uw review!</strong>
+          <p style="color:#555;font-size:.85rem;margin-top:4px">Na goedkeuring plaatsen wij hem op deze pagina.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -887,6 +932,33 @@ async function submitFaqForm(e, form) {
     if (res.ok) {
       form.querySelector('.faq-form-row').style.display = 'none';
       msg.style.display = 'block';
+    } else {
+    } else {
+      btn.textContent = 'Probeer opnieuw';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Probeer opnieuw';
+    btn.disabled = false;
+  }
+}
+
+// Review submit (Formspree)
+async function submitReview(e, form) {
+  e.preventDefault();
+  const btn = form.querySelector('button[type=submit]');
+  const wrap = form.closest('.review-form-wrap');
+  const success = wrap.querySelector('.review-success');
+  btn.disabled = true;
+  btn.textContent = 'Versturen...';
+  try {
+    const res = await fetch('https://formspree.io/f/xgoqnzqn', {
+      method: 'POST', headers: {'Accept':'application/json'},
+      body: new FormData(form)
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      success.style.display = 'block';
     } else {
       btn.textContent = 'Probeer opnieuw';
       btn.disabled = false;
