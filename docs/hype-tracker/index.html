@@ -40,6 +40,7 @@
   .score { font-size: 1.1rem; }
   .green { color: #00ff88; }
   .red { color: #ff4444; }
+  .yellow { color: #ffaa00; }
   .reason { font-size: 0.75rem; color: #aaa; padding: 2px 0; }
   .reason::before { content: "▸ "; color: #444; }
   table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
@@ -49,7 +50,8 @@
   .stat .num { font-size: 1.4rem; font-weight: 700; }
   .stat .lbl { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
   .updated { font-size: 0.7rem; color: #444; text-align: center; margin-top: 20px; }
-  #chart { height: 250px; }
+  .pulse { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:0.6 } }
   .loading { color: #666; text-align: center; padding: 40px; }
 </style>
 </head>
@@ -57,6 +59,20 @@
 <h1>⚡ HYPE Tracker</h1>
 <div class="subtitle">Live swing trading — HYPE/USD on Hyperliquid</div>
 
+<!-- OPEN TRADE -->
+<div class="card" id="open-card" style="display:none">
+  <div style="font-size:0.75rem;color:#666;margin-bottom:8px">OPEN TRADE <span class="pulse" style="color:#ffaa00">● LIVE</span></div>
+  <div class="row"><span class="label">Direction</span><span class="value" id="open-dir">--</span></div>
+  <div class="row"><span class="label">Entry</span><span class="value" id="open-entry">--</span></div>
+  <div class="row"><span class="label">Current</span><span class="value" id="open-current">--</span></div>
+  <div class="row"><span class="label">Unrealized P&L</span><span class="value" id="open-pnl">--</span></div>
+  <div class="row"><span class="label">SL</span><span class="value red" id="open-sl">--</span></div>
+  <div class="row"><span class="label">TP</span><span class="value green" id="open-tp">--</span></div>
+  <div class="row"><span class="label">Size</span><span class="value" id="open-size">--</span></div>
+  <div class="row"><span class="label">Opened</span><span class="value" id="open-date">--</span></div>
+</div>
+
+<!-- SIGNAL -->
 <div class="card" id="signal-card">
   <div class="loading" id="loading">Loading...</div>
   <div id="signal-content" style="display:none">
@@ -90,21 +106,24 @@
 </div>
 
 <div class="card" id="chart-card">
-  <div id="chart"></div>
+  <div id="chart" style="height:250px"></div>
 </div>
 
+<!-- STATS -->
 <div class="card">
   <div style="display:flex;gap:20px;justify-content:space-around">
     <div class="stat"><div class="num green" id="stat-trades">0</div><div class="lbl">Trades</div></div>
     <div class="stat"><div class="num" id="stat-winrate">--</div><div class="lbl">Win Rate</div></div>
     <div class="stat"><div class="num" id="stat-pnl">--</div><div class="lbl">Total P&L</div></div>
+    <div class="stat"><div class="num" id="stat-wins">0</div><div class="lbl">W/L</div></div>
   </div>
 </div>
 
+<!-- TRADE HISTORY -->
 <div class="card" id="history-card" style="display:none">
   <div style="font-size:0.75rem;color:#666;margin-bottom:8px">TRADE HISTORY</div>
   <table>
-    <thead><tr><th>Date</th><th>Dir</th><th>Entry</th><th>Exit</th><th>P&L</th></tr></thead>
+    <thead><tr><th>Date</th><th>Dir</th><th>Entry</th><th>Exit</th><th>Reason</th><th>P&L</th></tr></thead>
     <tbody id="history-body"></tbody>
   </table>
 </div>
@@ -112,72 +131,114 @@
 <div class="updated" id="updated">Last update: --</div>
 
 <script>
+function fmt(n, d) { d = d || 3; return n != null ? '$' + n.toFixed(d) : '--'; }
+function pnlClass(n) { return n > 0 ? 'green' : n < 0 ? 'red' : ''; }
+function pnlStr(n) { return n != null ? (n > 0 ? '+' : '') + '$' + n.toLocaleString() : '--'; }
+
 function loadData() {
   var ts = new Date().getTime();
   fetch('data.json?t=' + ts)
-  .then(r => r.json())
-  .then(d => {
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
     document.getElementById('loading').style.display = 'none';
-    
-    const c = d.current;
+
+    // Open trade
+    var ot = d.open_trade;
+    var oc = document.getElementById('open-card');
+    if (ot) {
+      oc.style.display = 'block';
+      document.getElementById('open-dir').textContent = ot.direction;
+      document.getElementById('open-dir').className = 'value ' + ot.direction;
+      document.getElementById('open-entry').textContent = fmt(ot.entry);
+      document.getElementById('open-sl').textContent = fmt(ot.sl);
+      document.getElementById('open-tp').textContent = fmt(ot.tp);
+      document.getElementById('open-size').textContent = (ot.size||0).toFixed(1) + ' HYPE';
+      document.getElementById('open-date').textContent = ot.date || '--';
+
+      // Calculate unrealized P&L using current price
+      var curPrice = (d.current && d.current.price) || ot.entry;
+      var unrealized;
+      if (ot.direction === 'LONG') {
+        unrealized = (curPrice - ot.entry) * ot.size;
+      } else {
+        unrealized = (ot.entry - curPrice) * ot.size;
+      }
+      document.getElementById('open-current').textContent = fmt(curPrice);
+      var pnlEl = document.getElementById('open-pnl');
+      pnlEl.textContent = pnlStr(Math.round(unrealized));
+      pnlEl.className = 'value ' + pnlClass(unrealized);
+    } else {
+      oc.style.display = 'none';
+    }
+
+    // Signal
+    var c = d.current;
     document.getElementById('signal-content').style.display = 'block';
-    document.getElementById('price').textContent = '$' + c.price.toFixed(3);
+    document.getElementById('price').textContent = fmt(c.price);
     document.getElementById('timestamp').textContent = d.last_updated || '';
     document.getElementById('score').textContent = (c.score > 0 ? '+' : '') + c.score + '/10';
     document.getElementById('score').className = 'value score ' + (c.score >= 5 ? 'green' : c.score <= -5 ? 'red' : '');
     document.getElementById('rsi').textContent = c.rsi;
-    document.getElementById('atr').textContent = '$' + c.atr.toFixed(2) + ' (' + c.atr_pct.toFixed(1) + '%)';
-    
-    const chg = c.change_24h;
-    const chgEl = document.getElementById('change24');
+    document.getElementById('atr').textContent = '$' + (c.atr||0).toFixed(2) + ' (' + (c.atr_pct||0).toFixed(1) + '%)';
+
+    var chg = c.change_24h;
+    var chgEl = document.getElementById('change24');
     chgEl.textContent = (chg > 0 ? '+' : '') + chg.toFixed(1) + '%';
     chgEl.className = 'value ' + (chg > 0 ? 'green' : 'red');
 
-    const badge = document.getElementById('badge');
+    var badge = document.getElementById('badge');
     if (c.signal) {
       badge.textContent = '⚡ ' + c.signal;
       badge.className = 'signal-badge ' + c.signal;
       document.getElementById('setup-card').style.display = 'block';
-      document.getElementById('entry').textContent = '$' + c.entry.toFixed(3);
-      document.getElementById('sl').textContent = '$' + c.sl.toFixed(3);
-      document.getElementById('tp').textContent = '$' + c.tp.toFixed(3);
-      document.getElementById('size').textContent = c.size.toFixed(1) + ' HYPE ($' + (c.size_usd/1000).toFixed(0) + 'K)';
-      document.getElementById('risk').textContent = '$' + c.risk.toLocaleString();
-      
+      document.getElementById('entry').textContent = fmt(c.entry);
+      document.getElementById('sl').textContent = fmt(c.sl);
+      document.getElementById('tp').textContent = fmt(c.tp);
+      document.getElementById('size').textContent = (c.size||0).toFixed(1) + ' HYPE ($' + ((c.size_usd||0)/1000).toFixed(0) + 'K)';
+      document.getElementById('risk').textContent = '$' + (c.risk||0).toLocaleString();
+
       if (c.reasons && c.reasons.length) {
         document.getElementById('reasons-card').style.display = 'block';
-        document.getElementById('reasons').innerHTML = c.reasons.map(r => 
-          '<div class="reason">' + r + '</div>'
-        ).join('');
+        document.getElementById('reasons').innerHTML = c.reasons.map(function(r) {
+          return '<div class="reason">' + r + '</div>';
+        }).join('');
+      } else {
+        document.getElementById('reasons-card').style.display = 'none';
       }
     } else {
       badge.textContent = 'NEUTRAL';
       badge.className = 'signal-badge NEUTRAL';
+      document.getElementById('setup-card').style.display = 'none';
+      document.getElementById('reasons-card').style.display = 'none';
     }
 
     // Stats
-    if (d.stats) {
-      document.getElementById('stat-trades').textContent = d.stats.total || 0;
-      document.getElementById('stat-winrate').textContent = d.stats.total ? (d.stats.wins/d.stats.total*100).toFixed(0) + '%' : '--';
-      const pnl = d.stats.total_pnl || 0;
-      const pnlEl = document.getElementById('stat-pnl');
-      pnlEl.textContent = (pnl > 0 ? '+' : '') + '$' + pnl.toLocaleString();
-      pnlEl.className = 'num ' + (pnl > 0 ? 'green' : pnl < 0 ? 'red' : '');
-    }
+    var s = d.stats || {};
+    document.getElementById('stat-trades').textContent = s.total || 0;
+    document.getElementById('stat-winrate').textContent = s.total ? (s.wins/s.total*100).toFixed(0) + '%' : '--';
+    var pnlEl2 = document.getElementById('stat-pnl');
+    pnlEl2.textContent = pnlStr(s.total_pnl || 0);
+    pnlEl2.className = 'num ' + pnlClass(s.total_pnl);
+    document.getElementById('stat-wins').textContent = (s.wins||0) + '/' + (s.losses||0);
 
     // Trade history
+    var history = document.getElementById('history-card');
+    var body = document.getElementById('history-body');
     if (d.trades && d.trades.length) {
-      document.getElementById('history-card').style.display = 'block';
-      document.getElementById('history-body').innerHTML = d.trades.slice(-20).reverse().map(t =>
-        '<tr>' +
-        '<td>' + t.date + '</td>' +
-        '<td class="' + t.direction + '">' + t.direction + '</td>' +
-        '<td>$' + t.entry.toFixed(3) + '</td>' +
-        '<td>' + (t.exit ? '$' + t.exit.toFixed(3) : '—') + '</td>' +
-        '<td class="' + (t.pnl > 0 ? 'green' : t.pnl < 0 ? 'red' : '') + '">' + 
-          (t.pnl != null ? (t.pnl > 0 ? '+' : '') + '$' + t.pnl.toLocaleString() : '—') + '</td>' +
-        '</tr>'
-      ).join('');
+      history.style.display = 'block';
+      body.innerHTML = d.trades.slice(-30).reverse().map(function(t) {
+        var cls = pnlClass(t.pnl);
+        return '<tr>' +
+          '<td>' + (t.closed_at || t.date) + '</td>' +
+          '<td class="' + t.direction + '">' + t.direction + '</td>' +
+          '<td>' + fmt(t.entry) + '</td>' +
+          '<td>' + (t.exit ? fmt(t.exit) : '—') + '</td>' +
+          '<td style="color:#888;font-size:0.7rem">' + (t.exit_reason || '—') + '</td>' +
+          '<td class="' + cls + '">' + pnlStr(t.pnl) + '</td>' +
+          '</tr>';
+      }).join('');
+    } else {
+      history.style.display = 'none';
     }
 
     document.getElementById('updated').textContent = 'Last update: ' + d.last_updated;
@@ -192,7 +253,6 @@ setInterval(loadData, 60000);
 </script>
 
 <script>
-// TradingView widget
 new TradingView.widget({
   "container_id": "chart",
   "autosize": true,
