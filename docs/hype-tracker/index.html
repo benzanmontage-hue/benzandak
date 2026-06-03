@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYPE Tracker — Live Swing Trading</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #e0e0e0;
+    font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+    padding: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 1.4rem; color: #00ff88; margin-bottom: 4px; }
+  .subtitle { font-size: 0.75rem; color: #666; margin-bottom: 20px; }
+  .card {
+    background: #12121a;
+    border: 1px solid #1e1e2e;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .signal-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .LONG { background: #00ff881a; color: #00ff88; border: 1px solid #00ff8833; }
+  .SHORT { background: #ff44441a; color: #ff4444; border: 1px solid #ff444433; }
+  .NEUTRAL { background: #6666661a; color: #888; border: 1px solid #66666633; }
+  .row { display: flex; justify-content: space-between; padding: 5px 0; }
+  .label { color: #888; font-size: 0.8rem; }
+  .value { font-weight: 600; font-size: 0.85rem; }
+  .price { font-size: 1.6rem; font-weight: 700; color: #fff; }
+  .score { font-size: 1.1rem; }
+  .green { color: #00ff88; }
+  .red { color: #ff4444; }
+  .reason { font-size: 0.75rem; color: #aaa; padding: 2px 0; }
+  .reason::before { content: "▸ "; color: #444; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  th { text-align: left; color: #666; font-weight: 400; padding: 6px 8px; border-bottom: 1px solid #1e1e2e; }
+  td { padding: 6px 8px; border-bottom: 1px solid #0e0e15; }
+  .stat { text-align: center; }
+  .stat .num { font-size: 1.4rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+  .updated { font-size: 0.7rem; color: #444; text-align: center; margin-top: 20px; }
+  #chart { height: 250px; }
+  .loading { color: #666; text-align: center; padding: 40px; }
+</style>
+</head>
+<body>
+<h1>⚡ HYPE Tracker</h1>
+<div class="subtitle">Live swing trading — HYPE/USD on Hyperliquid</div>
+
+<div class="card" id="signal-card">
+  <div class="loading" id="loading">Loading...</div>
+  <div id="signal-content" style="display:none">
+    <div class="row">
+      <span class="label">HYPE/USD</span>
+      <span class="label" id="timestamp">--</span>
+    </div>
+    <div class="row">
+      <span class="price" id="price">--</span>
+      <span class="signal-badge" id="badge">--</span>
+    </div>
+    <div class="row"><span class="label">Score</span><span class="value score" id="score">--</span></div>
+    <div class="row"><span class="label">RSI</span><span class="value" id="rsi">--</span></div>
+    <div class="row"><span class="label">ATR</span><span class="value" id="atr">--</span></div>
+    <div class="row"><span class="label">24h Change</span><span class="value" id="change24">--</span></div>
+  </div>
+</div>
+
+<div class="card" id="setup-card" style="display:none">
+  <div style="font-size:0.75rem;color:#666;margin-bottom:8px">TRADE SETUP</div>
+  <div class="row"><span class="label">Entry</span><span class="value" id="entry">--</span></div>
+  <div class="row"><span class="label">Stop Loss</span><span class="value red" id="sl">--</span></div>
+  <div class="row"><span class="label">Take Profit</span><span class="value green" id="tp">--</span></div>
+  <div class="row"><span class="label">Position Size</span><span class="value" id="size">--</span></div>
+  <div class="row"><span class="label">Risk</span><span class="value" id="risk">--</span></div>
+</div>
+
+<div class="card" id="reasons-card" style="display:none">
+  <div style="font-size:0.75rem;color:#666;margin-bottom:8px">SIGNAL REASONS</div>
+  <div id="reasons"></div>
+</div>
+
+<div class="card" id="chart-card">
+  <div id="chart"></div>
+</div>
+
+<div class="card">
+  <div style="display:flex;gap:20px;justify-content:space-around">
+    <div class="stat"><div class="num green" id="stat-trades">0</div><div class="lbl">Trades</div></div>
+    <div class="stat"><div class="num" id="stat-winrate">--</div><div class="lbl">Win Rate</div></div>
+    <div class="stat"><div class="num" id="stat-pnl">--</div><div class="lbl">Total P&L</div></div>
+  </div>
+</div>
+
+<div class="card" id="history-card" style="display:none">
+  <div style="font-size:0.75rem;color:#666;margin-bottom:8px">TRADE HISTORY</div>
+  <table>
+    <thead><tr><th>Date</th><th>Dir</th><th>Entry</th><th>Exit</th><th>P&L</th></tr></thead>
+    <tbody id="history-body"></tbody>
+  </table>
+</div>
+
+<div class="updated" id="updated">Last update: --</div>
+
+<script>
+fetch('data.json?' + Date.now())
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById('loading').style.display = 'none';
+    
+    const c = d.current;
+    document.getElementById('signal-content').style.display = 'block';
+    document.getElementById('price').textContent = '$' + c.price.toFixed(3);
+    document.getElementById('timestamp').textContent = d.last_updated || '';
+    document.getElementById('score').textContent = (c.score > 0 ? '+' : '') + c.score + '/10';
+    document.getElementById('score').className = 'value score ' + (c.score >= 5 ? 'green' : c.score <= -5 ? 'red' : '');
+    document.getElementById('rsi').textContent = c.rsi;
+    document.getElementById('atr').textContent = '$' + c.atr.toFixed(2) + ' (' + c.atr_pct.toFixed(1) + '%)';
+    
+    const chg = c.change_24h;
+    const chgEl = document.getElementById('change24');
+    chgEl.textContent = (chg > 0 ? '+' : '') + chg.toFixed(1) + '%';
+    chgEl.className = 'value ' + (chg > 0 ? 'green' : 'red');
+
+    const badge = document.getElementById('badge');
+    if (c.signal) {
+      badge.textContent = '⚡ ' + c.signal;
+      badge.className = 'signal-badge ' + c.signal;
+      document.getElementById('setup-card').style.display = 'block';
+      document.getElementById('entry').textContent = '$' + c.entry.toFixed(3);
+      document.getElementById('sl').textContent = '$' + c.sl.toFixed(3);
+      document.getElementById('tp').textContent = '$' + c.tp.toFixed(3);
+      document.getElementById('size').textContent = c.size.toFixed(1) + ' HYPE ($' + (c.size_usd/1000).toFixed(0) + 'K)';
+      document.getElementById('risk').textContent = '$' + c.risk.toLocaleString();
+      
+      if (c.reasons && c.reasons.length) {
+        document.getElementById('reasons-card').style.display = 'block';
+        document.getElementById('reasons').innerHTML = c.reasons.map(r => 
+          '<div class="reason">' + r + '</div>'
+        ).join('');
+      }
+    } else {
+      badge.textContent = 'NEUTRAL';
+      badge.className = 'signal-badge NEUTRAL';
+    }
+
+    // Stats
+    if (d.stats) {
+      document.getElementById('stat-trades').textContent = d.stats.total || 0;
+      document.getElementById('stat-winrate').textContent = d.stats.total ? (d.stats.wins/d.stats.total*100).toFixed(0) + '%' : '--';
+      const pnl = d.stats.total_pnl || 0;
+      const pnlEl = document.getElementById('stat-pnl');
+      pnlEl.textContent = (pnl > 0 ? '+' : '') + '$' + pnl.toLocaleString();
+      pnlEl.className = 'num ' + (pnl > 0 ? 'green' : pnl < 0 ? 'red' : '');
+    }
+
+    // Trade history
+    if (d.trades && d.trades.length) {
+      document.getElementById('history-card').style.display = 'block';
+      document.getElementById('history-body').innerHTML = d.trades.slice(-20).reverse().map(t =>
+        '<tr>' +
+        '<td>' + t.date + '</td>' +
+        '<td class="' + t.direction + '">' + t.direction + '</td>' +
+        '<td>$' + t.entry.toFixed(3) + '</td>' +
+        '<td>' + (t.exit ? '$' + t.exit.toFixed(3) : '—') + '</td>' +
+        '<td class="' + (t.pnl > 0 ? 'green' : t.pnl < 0 ? 'red' : '') + '">' + 
+          (t.pnl != null ? (t.pnl > 0 ? '+' : '') + '$' + t.pnl.toLocaleString() : '—') + '</td>' +
+        '</tr>'
+      ).join('');
+    }
+
+    document.getElementById('updated').textContent = 'Last update: ' + d.last_updated;
+  })
+  .catch(e => {
+    document.getElementById('loading').textContent = 'No data yet — waiting for first scan';
+  });
+
+// TradingView widget
+new TradingView.widget({
+  "container_id": "chart",
+  "autosize": true,
+  "symbol": "HYPERLIQUID:HYPEUSD",
+  "interval": "15",
+  "timezone": "Europe/Amsterdam",
+  "theme": "dark",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#0a0a0f",
+  "enable_publishing": false,
+  "hide_side_toolbar": false,
+  "allow_symbol_change": false,
+  "studies": ["MASimple@tv-basicstudies"],
+  "show_popup_button": false,
+  "popup_width": "1000",
+  "popup_height": "650"
+});
+</script>
+<script src="https://s3.tradingview.com/tv.js"></script>
+</body>
+</html>
