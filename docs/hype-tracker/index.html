@@ -112,7 +112,9 @@
 <div class="updated" id="updated">Last update: --</div>
 
 <script>
-fetch('data.json?' + Date.now())
+function loadData() {
+  var ts = new Date().getTime();
+  fetch('data.json?t=' + ts)
   .then(r => r.json())
   .then(d => {
     document.getElementById('loading').style.display = 'none';
@@ -180,10 +182,16 @@ fetch('data.json?' + Date.now())
 
     document.getElementById('updated').textContent = 'Last update: ' + d.last_updated;
   })
-  .catch(e => {
+  .catch(function(e) {
     document.getElementById('loading').textContent = 'No data yet — waiting for first scan';
   });
+}
 
+loadData();
+setInterval(loadData, 60000);
+</script>
+
+<script>
 // TradingView widget
 new TradingView.widget({
   "container_id": "chart",
