@@ -1,22 +1,21 @@
 {
-  "last_updated": "04 Jun 05:30 NL",
+  "last_updated": "04 Jun 05:45 NL",
   "current": {
-    "price": 73.054,
+    "price": 73.559,
     "signal": "LONG",
-    "score": 6,
-    "entry": 73.054,
-    "sl": 69.976,
-    "tp": 75.619,
-    "size": 487.4,
-    "size_usd": 35604.0,
+    "score": 5,
+    "entry": 73.559,
+    "sl": 70.469,
+    "tp": 76.134,
+    "size": 485.4,
+    "size_usd": 35708.0,
     "risk": 1500.0,
-    "rsi": 36.0,
+    "rsi": 43.0,
     "atr": 1.03,
     "atr_pct": 1.4,
-    "change_24h": 3.5,
+    "change_24h": 1.8,
     "reasons": [
       "2/3 TF uptrend \u2192 weak LONG",
-      "RSI=36 near oversold",
       "Price below BB mid \u2192 weak",
       "News confirms: sentiment +3"
     ]
@@ -33,22 +32,34 @@
       "exit_reason": "SL",
       "pnl": -1500.05,
       "closed_at": "04 Jun 04:15"
+    },
+    {
+      "date": "04 Jun 04:15",
+      "direction": "LONG",
+      "entry": 71.299,
+      "size": 553.7,
+      "sl": 68.589,
+      "tp": 73.556,
+      "exit": 73.559,
+      "exit_reason": "TP",
+      "pnl": 1249.7,
+      "closed_at": "04 Jun 05:45"
     }
   ],
   "stats": {
-    "total": 1,
-    "wins": 0,
+    "total": 2,
+    "wins": 1,
     "losses": 1,
-    "total_pnl": -1500.05
+    "total_pnl": -250.35
   },
   "_prev_signal": "LONG",
   "open_trade": {
-    "date": "04 Jun 04:15",
+    "date": "04 Jun 05:45",
     "direction": "LONG",
-    "entry": 71.299,
-    "size": 553.7,
-    "sl": 68.589,
-    "tp": 73.556,
+    "entry": 73.559,
+    "size": 485.4,
+    "sl": 70.469,
+    "tp": 76.134,
     "exit": null,
     "exit_reason": null,
     "pnl": null,
