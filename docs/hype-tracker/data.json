@@ -1,22 +1,22 @@
 {
-  "last_updated": "04 Jun 04:30 NL",
+  "last_updated": "04 Jun 04:45 NL",
   "current": {
-    "price": 72.886,
+    "price": 73.254,
     "signal": "LONG",
     "score": 6,
-    "entry": 72.886,
-    "sl": 69.882,
-    "tp": 75.389,
-    "size": 499.4,
-    "size_usd": 36396.0,
+    "entry": 73.254,
+    "sl": 70.15,
+    "tp": 75.839,
+    "size": 483.4,
+    "size_usd": 35410.0,
     "risk": 1500.0,
-    "rsi": 37.0,
-    "atr": 1.0,
+    "rsi": 38.0,
+    "atr": 1.03,
     "atr_pct": 1.4,
     "change_24h": 3.9,
     "reasons": [
       "2/3 TF uptrend \u2192 weak LONG",
-      "RSI=37 near oversold",
+      "RSI=38 near oversold",
       "Price below BB mid \u2192 weak",
       "News confirms: sentiment +3"
     ]
