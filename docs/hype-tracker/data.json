@@ -1,7 +1,7 @@
 {
-  "last_updated": "04 Jun 11:00 NL",
+  "last_updated": "04 Jun 19:48 NL",
   "current": {
-    "price": 68.608,
+    "price": 66.4525,
     "signal": "LONG",
     "score": 6,
     "entry": 68.608,
@@ -57,25 +57,26 @@
       "exit_reason": "SL",
       "pnl": -1499.89,
       "closed_at": "04 Jun 09:00"
+    },
+    {
+      "date": "04 Jun 09:00",
+      "direction": "LONG",
+      "entry": 69.793,
+      "size": 583.2,
+      "sl": 67.222,
+      "tp": 71.937,
+      "exit": 66.4525,
+      "exit_reason": "SL",
+      "pnl": -1499.41,
+      "closed_at": "04 Jun 19:48"
     }
   ],
   "stats": {
-    "total": 3,
+    "total": 4,
     "wins": 1,
-    "losses": 2,
-    "total_pnl": -1750.24
+    "losses": 3,
+    "total_pnl": -3249.65
   },
   "_prev_signal": "LONG",
-  "open_trade": {
-    "date": "04 Jun 09:00",
-    "direction": "LONG",
-    "entry": 69.793,
-    "size": 583.2,
-    "sl": 67.222,
-    "tp": 71.937,
-    "exit": null,
-    "exit_reason": null,
-    "pnl": null,
-    "closed_at": null
-  }
+  "open_trade": null
 }
