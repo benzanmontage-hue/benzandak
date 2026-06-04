@@ -5,26 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BLACKWELL — SIGNAL TEE</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
 
   :root {
-    --bone: #d4cfc4;
-    --earth: #8a7e6b;
-    --sand: #c4b9a6;
-    --mud: #3d3428;
-    --void: #1a1714;
-    --obsidian: #0d0b09;
-    --strike: #c84040;
-    --hz: #9c968b;
+    --bone: #f5f0e8;
+    --cream: #ede4d4;
+    --sand: #d4c5a9;
+    --gold: #b8963c;
+    --rose: #c47a6b;
+    --rose-pale: #e8c4bc;
+    --saffron: #d4953a;
+    --lapis: #3a5c8c;
+    --emerald: #2d5a3f;
+    --ink: #1a1714;
+    --charcoal: #2a2622;
+    --void: #0d0b09;
+    --lvory: #faf7f2;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background: var(--bone);
-    color: var(--void);
-    font-family: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
-    cursor: default;
+    color: var(--ink);
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    overflow-x: hidden;
   }
 
   /* ── NAV ── */
@@ -32,31 +37,34 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
+    padding: 18px 36px;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    background: var(--lvory);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
   nav .brand {
+    font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 0.85rem;
-    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
   }
-  nav .links { display: flex; gap: 32px; color: var(--mud); }
-  nav .cart { color: var(--void); font-weight: 600; }
+  nav .links { display: flex; gap: 28px; color: var(--charcoal); }
+  nav .cart { font-weight: 700; }
 
   /* ── HERO ── */
   .hero {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 1fr;
     min-height: 100vh;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
   }
 
-  /* Left — product image area */
-  .hero-left {
-    background: #e8e3dc;
+  /* Left: Product showcase */
+  .hero-image {
+    background: linear-gradient(135deg, #e8dfd2 0%, #f0e8db 40%, #e2d5c0 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,407 +72,541 @@
     overflow: hidden;
   }
 
-  /* Tee container */
-  .tee-canvas {
-    width: 420px;
-    height: 520px;
-    position: relative;
+  /* Pharrell diamond pattern overlay */
+  .diamond-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    background-image:
+      linear-gradient(45deg, var(--ink) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--ink) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--ink) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--ink) 75%);
+    background-size: 40px 40px;
+    background-position: 0 0, 0 20px, 20px -20px, -20px 0;
   }
 
-  /* Backdrop texture */
-  .backdrop {
+  /* Oscar floral motif */
+  .floral {
     position: absolute;
-    inset: -40px;
-    opacity: 0.04;
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 12rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    letter-spacing: 0.2em;
-    user-select: none;
+    bottom: 40px;
+    right: 60px;
+    opacity: 0.08;
+    font-size: 16rem;
+    line-height: 0.7;
     pointer-events: none;
-    transform: rotate(-5deg);
+    user-select: none;
   }
 
-  /* T-shirt */
-  .tee {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tee-body {
-    width: 280px;
-    height: 360px;
-    background: #2a2722;
+  /* Tee */
+  .tee-container {
+    width: 460px;
+    height: 580px;
     position: relative;
-  }
-
-  .tee-collar {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 20px;
-    border: 2px solid #3a3732;
-    border-bottom: none;
-    border-radius: 14px 14px 0 0;
-    background: #2a2722;
-  }
-
-  .tee-sleeve-l {
-    position: absolute;
-    top: 10px;
-    left: -55px;
-    width: 70px;
-    height: 120px;
-    background: #2a2722;
-    transform: rotate(15deg);
-    transform-origin: top right;
-    border: 2px solid #3a3732;
-    border-right: none;
-  }
-  .tee-sleeve-r {
-    position: absolute;
-    top: 10px;
-    right: -55px;
-    width: 70px;
-    height: 120px;
-    background: #2a2722;
-    transform: rotate(-15deg);
-    transform-origin: top left;
-    border: 2px solid #3a3732;
-    border-left: none;
-  }
-  .tee-hem {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 280px;
-    height: 8px;
-    background: #1f1d1a;
-  }
-
-  /* Design on tee */
-  .tee-design {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     z-index: 2;
   }
 
-  /* Diagonal strike-through — Off-White industrial */
-  .diagonal {
+  .tee-body-main {
     position: absolute;
-    width: 120%;
-    height: 3px;
-    background: rgba(200,180,150,0.4);
-    transform: rotate(-12deg);
-    top: 48%;
-    left: -10%;
+    inset: 40px 60px 50px;
+    background: var(--charcoal);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
   }
 
-  .word-signal {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 4.5rem;
-    letter-spacing: 0.08em;
-    color: #d4c8b0;
-    line-height: 0.85;
-    margin-top: 10px;
-    position: relative;
-    z-index: 3;
-  }
-
-  .word-noise {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    letter-spacing: 0.6em;
-    text-transform: uppercase;
-    color: rgba(180,170,150,0.5);
-    margin-top: 4px;
-    position: relative;
-    z-index: 3;
-  }
-
-  /* Industrial tag */
-  .industrial-tag {
+  .tee-collar-main {
     position: absolute;
-    bottom: 60px;
+    top: 34px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 0.55rem;
-    letter-spacing: 0.25em;
-    color: rgba(180,170,150,0.35);
-    text-transform: uppercase;
-    z-index: 3;
-    border: 1px solid rgba(180,170,150,0.2);
-    padding: 3px 12px;
+    width: 88px;
+    height: 22px;
+    border: 2px solid #3d3832;
+    border-bottom: none;
+    border-radius: 16px 16px 0 0;
+    background: var(--charcoal);
   }
 
-  /* Right — product info */
-  .hero-right {
+  .tee-sleeve-l-main {
+    position: absolute;
+    top: 44px;
+    left: 12px;
+    width: 72px;
+    height: 140px;
+    background: var(--charcoal);
+    transform: rotate(14deg);
+    transform-origin: top right;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .tee-sleeve-r-main {
+    position: absolute;
+    top: 44px;
+    right: 12px;
+    width: 72px;
+    height: 140px;
+    background: var(--charcoal);
+    transform: rotate(-14deg);
+    transform-origin: top left;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+
+  /* Design on tee */
+  .tee-art {
+    position: absolute;
+    inset: 40px 60px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+
+  /* Virgil diagonal */
+  .virgil-strike {
+    position: absolute;
+    width: 130%;
+    height: 2px;
+    background: var(--rose);
+    transform: rotate(-13deg);
+    top: 46%;
+    left: -15%;
+    opacity: 0.7;
+  }
+
+  .virgil-strike-2 {
+    position: absolute;
+    width: 130%;
+    height: 2px;
+    background: var(--saffron);
+    transform: rotate(8deg);
+    top: 56%;
+    left: -15%;
+    opacity: 0.5;
+  }
+
+  /* Pharrell color pop */
+  .color-dot {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: var(--saffron);
+    border-radius: 50%;
+    top: 34%;
+    right: 18%;
+    z-index: 4;
+  }
+  .color-dot-2 {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--rose);
+    border-radius: 50%;
+    top: 62%;
+    left: 16%;
+    z-index: 4;
+  }
+
+  .word-main {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 5rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    line-height: 0.9;
+    position: relative;
+    z-index: 4;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  .word-sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--sand);
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+    position: relative;
+    z-index: 4;
+  }
+
+  .virgil-quote {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    color: rgba(200,180,150,0.4);
+    z-index: 4;
+    border: 1px solid rgba(200,180,150,0.2);
+    padding: 4px 14px;
+  }
+
+  /* Right: Info — Oscar de la Renta elegance */
+  .hero-info {
+    background: var(--lvory);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 60px;
+    padding: 80px 64px;
   }
 
-  .collection-tag {
-    font-size: 0.6rem;
-    letter-spacing: 0.25em;
-    color: var(--earth);
-    text-transform: uppercase;
-    margin-bottom: 8px;
+  .oscar-ornament {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    margin-bottom: 20px;
   }
 
-  .product-title {
-    font-family: 'Inter', sans-serif;
+  .product-name {
+    font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 2.4rem;
-    letter-spacing: -0.02em;
-    color: var(--void);
-    line-height: 1.05;
-    margin-bottom: 4px;
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 6px;
   }
 
-  .product-subtitle {
-    font-size: 0.75rem;
-    color: var(--earth);
-    margin-bottom: 32px;
-    letter-spacing: 0.04em;
-  }
-
-  .price {
+  .product-sub {
     font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--charcoal);
+    margin-bottom: 36px;
+  }
+
+  .price-tag {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
     font-weight: 700;
-    font-size: 1.4rem;
-    color: var(--void);
+    color: var(--ink);
     margin-bottom: 40px;
   }
 
-  .specs {
+  .specs-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 20px;
     margin-bottom: 40px;
   }
-  .spec-item {
-    font-size: 0.65rem;
-    letter-spacing: 0.06em;
-  }
+  .spec-item {}
   .spec-label {
-    color: var(--earth);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    color: var(--rose);
     text-transform: uppercase;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
   }
   .spec-value {
-    color: var(--void);
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink);
   }
 
-  .size-selector {
-    margin-bottom: 32px;
-  }
+  /* Size selector — Virgil industrial */
   .size-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.15em;
-    color: var(--earth);
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    color: var(--rose);
     text-transform: uppercase;
     margin-bottom: 10px;
   }
   .sizes {
     display: flex;
-    gap: 6px;
+    gap: 5px;
+    margin-bottom: 36px;
   }
   .size-btn {
-    width: 44px;
-    height: 44px;
-    border: 1px solid rgba(0,0,0,0.15);
+    width: 46px;
+    height: 46px;
+    border: 1.5px solid rgba(0,0,0,0.12);
     background: transparent;
     font-family: 'Inter', sans-serif;
     font-size: 0.7rem;
     font-weight: 600;
-    color: var(--void);
     cursor: pointer;
-    transition: all 0.15s;
+    transition: all 0.2s;
+  }
+  .size-btn:hover { border-color: var(--ink); }
+  .size-btn.selected { background: var(--ink); color: var(--lvory); border-color: var(--ink); }
+
+  .add-to-cart {
+    width: 100%;
+    padding: 18px 0;
+    background: var(--ink);
+    color: var(--lvory);
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .add-to-cart:hover { background: var(--charcoal); }
+  .add-to-cart::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--saffron);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+  .add-to-cart:hover::after { transform: scaleX(1); }
+
+  /* ── THE EQUATION (Oscar elegance + math) ── */
+  .equation-strip {
+    padding: 120px 60px;
+    text-align: center;
+    background: var(--ink);
+    color: var(--cream);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .eq-frame {
+    display: inline-block;
+    border: 1px solid rgba(212,197,169,0.2);
+    padding: 60px 80px;
+    position: relative;
+  }
+
+  .eq-ornament-tl {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    font-size: 1.4rem;
+    color: var(--gold);
+  }
+  .eq-ornament-br {
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    font-size: 1.4rem;
+    color: var(--gold);
+  }
+
+  .eq-math {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 3rem;
+    color: var(--gold);
+    letter-spacing: 0.06em;
+  }
+
+  .eq-explanation {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--sand);
+    margin-top: 20px;
+    max-width: 480px;
+    line-height: 1.8;
+  }
+
+  /* ── PHARRELL JOY SECTION ── */
+  .joy-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: var(--cream);
+  }
+
+  .joy-block {
+    padding: 80px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.05);
+  }
+  .joy-block:last-child { border-right: none; }
+
+  .joy-emoji {
+    font-size: 3rem;
+    margin-bottom: 24px;
+  }
+
+  .joy-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 12px;
+  }
+
+  .joy-text {
+    font-size: 0.7rem;
+    color: var(--charcoal);
+    line-height: 1.7;
+  }
+
+  .joy-color {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-bottom: 24px;
+  }
+  .joy-color.saffron { background: var(--saffron); }
+  .joy-color.rose { background: var(--rose); }
+  .joy-color.gold { background: var(--gold); }
+
+  /* ── OSCAR CRAFT SECTION ── */
+  .craft-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .craft-image {
+    background: linear-gradient(160deg, #e8dfd2, #f0e8db, #e2d5c0);
+    min-height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .size-btn:hover { border-color: var(--void); }
-  .size-btn.selected { background: var(--void); color: var(--bone); border-color: var(--void); }
-
-  .add-btn {
-    width: 100%;
-    padding: 16px 0;
-    background: var(--void);
-    color: var(--bone);
-    border: none;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .add-btn:hover { background: var(--mud); }
-
-  .estimate {
-    font-size: 0.6rem;
-    color: var(--earth);
-    text-align: center;
-    margin-top: 12px;
-    letter-spacing: 0.04em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-style: italic;
+    font-size: 8rem;
+    color: rgba(0,0,0,0.04);
   }
 
-  /* ── DETAILS ── */
-  .details {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-
-  .detail-panel {
-    padding: 80px 60px;
+  .craft-text {
+    padding: 100px 64px;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .detail-panel:first-child { border-right: 1px solid rgba(0,0,0,0.06); }
 
-  .detail-panel h3 {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: 1rem;
-    letter-spacing: 0.06em;
-    margin-bottom: 24px;
-    color: var(--void);
+  .craft-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 32px;
   }
 
-  .detail-panel p {
+  .craft-text p {
     font-size: 0.8rem;
-    line-height: 1.9;
-    color: var(--mud);
-  }
-
-  .detail-panel .formula {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 1.2rem;
-    color: var(--earth);
-    margin-top: 24px;
-    letter-spacing: 0.1em;
-  }
-
-  /* ── QUOTE STRIP ── */
-  .quote-strip {
-    padding: 100px 60px;
-    text-align: center;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-    background: var(--void);
-    color: var(--bone);
-  }
-
-  .quote-strip .big {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    line-height: 2;
+    color: var(--charcoal);
     margin-bottom: 16px;
   }
 
-  .quote-strip .small {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    color: var(--earth);
-    text-transform: uppercase;
+  .craft-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(0,0,0,0.06);
   }
 
-  /* ── RELATED ── */
-  .related {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-bottom: 1px solid rgba(0,0,0,0.06);
-  }
-  .related-item {
-    padding: 60px 40px;
+  .craft-stat {
     text-align: center;
-    border-right: 1px solid rgba(0,0,0,0.06);
-    cursor: pointer;
-    transition: background 0.3s;
   }
-  .related-item:last-child { border-right: none; }
-  .related-item:hover { background: rgba(0,0,0,0.02); }
-  .related-item .preview {
-    width: 100px;
-    height: 120px;
-    background: #2a2722;
-    margin: 0 auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
+
+  .craft-stat .num {
+    font-family: 'Playfair Display', serif;
     font-size: 2rem;
-    color: rgba(200,190,170,0.3);
+    color: var(--gold);
   }
-  .related-item .name {
-    font-weight: 600;
-    font-size: 0.8rem;
-    color: var(--void);
-    margin-bottom: 4px;
+
+  .craft-stat .lbl {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-top: 4px;
   }
-  .related-item .price {
-    font-size: 0.7rem;
-    color: var(--earth);
-    margin-bottom: 0;
+
+  /* ── QUOTE ── */
+  .quote {
+    padding: 120px 60px;
+    text-align: center;
+    background: var(--lvory);
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  .quote .qt {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 700px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+
+  .quote .qt::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: var(--rose-pale);
+    position: absolute;
+    top: -40px;
+    left: -30px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .quote .attr {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--rose);
   }
 
   /* ── FOOTER ── */
   footer {
-    padding: 60px;
+    padding: 80px 60px;
     text-align: center;
+    background: var(--ink);
+    color: var(--cream);
     font-size: 0.6rem;
-    letter-spacing: 0.1em;
-    color: var(--earth);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
   footer .fw {
+    font-family: 'Playfair Display', serif;
     font-weight: 900;
-    font-size: 0.75rem;
-    color: var(--void);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--gold);
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
   }
 
   @media (max-width: 768px) {
     .hero { grid-template-columns: 1fr; }
-    .hero-left { min-height: 60vh; }
-    .hero-right { padding: 40px 24px; }
-    .details { grid-template-columns: 1fr; }
-    .detail-panel:first-child { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
-    .related { grid-template-columns: 1fr; }
-    .related-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
-    .tee-canvas { width: 300px; height: 400px; }
-    .tee-body { width: 200px; height: 260px; }
-    .tee-sleeve-l { left: -40px; width: 50px; height: 90px; }
-    .tee-sleeve-r { right: -40px; width: 50px; height: 90px; }
-    .tee-hem { width: 200px; }
-    .word-signal { font-size: 3rem; }
-    .backdrop { font-size: 6rem; }
+    .hero-image { min-height: 60vh; }
+    .hero-info { padding: 40px 28px; }
+    .tee-container { width: 320px; height: 420px; }
+    .tee-body-main { inset: 30px 44px 36px; }
+    .tee-sleeve-l-main { left: 6px; width: 50px; height: 100px; }
+    .tee-sleeve-r-main { right: 6px; width: 50px; height: 100px; }
+    .word-main { font-size: 3.2rem; }
+    .equation-strip { padding: 80px 32px; }
+    .eq-frame { padding: 40px 32px; }
+    .eq-math { font-size: 1.8rem; }
+    .joy-section { grid-template-columns: 1fr; }
+    .joy-block { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.05); padding: 48px 32px; }
+    .craft-section { grid-template-columns: 1fr; }
+    .craft-text { padding: 48px 28px; }
+    .product-name { font-size: 2rem; }
   }
 </style>
 </head>
@@ -474,129 +616,145 @@
   <div class="brand">BLACKWELL</div>
   <div class="links">
     <span>SHOP</span>
-    <span>DROPS</span>
-    <span>ABOUT</span>
+    <span>COLLECTIONS</span>
+    <span>HERITAGE</span>
   </div>
   <div class="cart">CART (0)</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-left">
-    <div class="tee-canvas">
-      <div class="backdrop">BW</div>
-      <div class="tee">
-        <div class="tee-body">
-          <div class="tee-collar"></div>
-          <div class="tee-sleeve-l"></div>
-          <div class="tee-sleeve-r"></div>
-          <div class="tee-hem"></div>
-          <div class="tee-design">
-            <div class="diagonal"></div>
-            <div class="word-signal">SIGNAL</div>
-            <div class="word-noise">THROUGH NOISE</div>
-            <div class="industrial-tag">"DROP 002"</div>
-          </div>
+  <div class="hero-image">
+    <div class="diamond-grid"></div>
+    <div class="floral">&#10022;</div>
+
+    <div class="tee-container">
+      <div class="tee-body-main">
+        <div class="tee-collar-main"></div>
+        <div class="tee-sleeve-l-main"></div>
+        <div class="tee-sleeve-r-main"></div>
+
+        <div class="tee-art">
+          <div class="virgil-strike"></div>
+          <div class="virgil-strike-2"></div>
+          <div class="color-dot"></div>
+          <div class="color-dot-2"></div>
+          <div class="word-main">SIGNAL</div>
+          <div class="word-sub">THROUGH NOISE</div>
+          <div class="virgil-quote">"DROP 002"</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="hero-right">
-    <div class="collection-tag">DROP 002 — RENEWAL</div>
-    <div class="product-title">"SIGNAL"</div>
-    <div class="product-subtitle">T-Shirt / Oversized</div>
-    <div class="price">&euro;55</div>
+  <div class="hero-info">
+    <div class="oscar-ornament">&#10022; DROP 002 · RENEWAL</div>
+    <div class="product-name">"SIGNAL"</div>
+    <div class="product-sub">SIGNAL TEE · OVERSIZED FIT</div>
+    <div class="price-tag">&euro;55</div>
 
-    <div class="specs">
+    <div class="specs-grid">
       <div class="spec-item">
-        <div class="spec-label">Material</div>
+        <div class="spec-label">MATERIAL</div>
         <div class="spec-value">220GSM Organic Cotton</div>
       </div>
       <div class="spec-item">
-        <div class="spec-label">Finish</div>
+        <div class="spec-label">FINISH</div>
         <div class="spec-value">Enzyme Washed</div>
       </div>
       <div class="spec-item">
-        <div class="spec-label">Made in</div>
-        <div class="spec-value">Portugal</div>
+        <div class="spec-label">ATELIER</div>
+        <div class="spec-value">Porto, Portugal</div>
       </div>
       <div class="spec-item">
-        <div class="spec-label">Color</div>
-        <div class="spec-value">Charcoal / Titanium</div>
+        <div class="spec-label">PALETTE</div>
+        <div class="spec-value">Charcoal · Saffron · Rose</div>
       </div>
     </div>
 
-    <div class="size-selector">
-      <div class="size-label">Size</div>
-      <div class="sizes">
-        <div class="size-btn" onclick="selectSize(this)">S</div>
-        <div class="size-btn selected" onclick="selectSize(this)">M</div>
-        <div class="size-btn" onclick="selectSize(this)">L</div>
-        <div class="size-btn" onclick="selectSize(this)">XL</div>
-        <div class="size-btn" onclick="selectSize(this)">XXL</div>
-      </div>
+    <div class="size-label">SIZE</div>
+    <div class="sizes">
+      <div class="size-btn" onclick="sel(this)">S</div>
+      <div class="size-btn selected" onclick="sel(this)">M</div>
+      <div class="size-btn" onclick="sel(this)">L</div>
+      <div class="size-btn" onclick="sel(this)">XL</div>
+      <div class="size-btn" onclick="sel(this)">XXL</div>
     </div>
 
-    <button class="add-btn">ADD TO CART — &euro;55</button>
-    <div class="estimate">Free shipping on orders over &euro;150</div>
+    <button class="add-to-cart">ADD TO CART &mdash; &euro;55</button>
   </div>
 </div>
 
-<!-- DETAILS -->
-<div class="details">
-  <div class="detail-panel">
-    <h3>"SIGNAL THROUGH NOISE"</h3>
-    <p>
-      Based on the Blackwell channel coding theorem — the mathematical proof that information survives noise.<br><br>
-      The diagonal strike is an Abloh signature. The oversized fit is Yeezy. The message is Blackwell.
-    </p>
-    <div class="formula">C = max I(X;Y)</div>
+<!-- EQUATION -->
+<div class="equation-strip">
+  <div class="eq-frame">
+    <div class="eq-ornament-tl">&#10022;</div>
+    <div class="eq-ornament-br">&#10022;</div>
+    <div class="eq-math">C = max I(X; Y)</div>
+    <div class="eq-explanation">
+      The Blackwell channel theorem states that information survives any channel with sufficient encoding.
+      Every signal carries meaning. Noise is just unorganized light.
+    </div>
   </div>
-  <div class="detail-panel">
-    <h3>CONSTRUCTION</h3>
-    <p>
-      220GSM heavyweight organic cotton.<br>
-      Enzyme washed for a lived-in hand feel from day one.<br>
-      Ribbed collar that holds its shape.<br>
-      Blind stitched hem — no visible seams.<br>
-      Drop shoulders. Boxy silhouette.
-    </p>
+</div>
+
+<!-- PHARRELL JOY -->
+<div class="joy-section">
+  <div class="joy-block">
+    <div class="joy-color saffron"></div>
+    <div class="joy-title">JOY OF DISCOVERY</div>
+    <div class="joy-text">
+      Pharrell's philosophy: luxury should feel like play.
+      The saffron dot on every garment is a reminder that math is beautiful.
+    </div>
+  </div>
+  <div class="joy-block">
+    <div class="joy-color rose"></div>
+    <div class="joy-title">HUMAN TOUCH</div>
+    <div class="joy-text">
+      Oscar de la Renta believed clothing should celebrate the body.
+      Every stitch, every seam, every enzyme wash is intentional.
+    </div>
+  </div>
+  <div class="joy-block">
+    <div class="joy-color gold"></div>
+    <div class="joy-title">BUILT TO LAST</div>
+    <div class="joy-text">
+      Virgil taught us that streetwear IS luxury.
+      This is not fast fashion. This is forever.
+    </div>
+  </div>
+</div>
+
+<!-- OSCAR CRAFT -->
+<div class="craft-section">
+  <div class="craft-image">S</div>
+  <div class="craft-text">
+    <h3>The Making of "SIGNAL"</h3>
+    <p>Each SIGNAL tee passes through seven hands before reaching yours. Cut in Porto. Stitched by artisans who have made garments for three generations. Enzyme washed for 47 minutes — the exact duration Blackwell proved his renewal theorem.</p>
+    <p>The diagonal strike is hand-screened. The saffron dot is embroidered. The collar is ribbed with 2% elastane so it never loses shape.</p>
+    <div class="craft-detail">
+      <div class="craft-stat"><div class="num">47</div><div class="lbl">Minute Wash</div></div>
+      <div class="craft-stat"><div class="num">220</div><div class="lbl">GSM Weight</div></div>
+      <div class="craft-stat"><div class="num">7</div><div class="lbl">Hands Touch</div></div>
+      <div class="craft-stat"><div class="num">1</div><div class="lbl">Theorem</div></div>
+    </div>
   </div>
 </div>
 
 <!-- QUOTE -->
-<div class="quote-strip">
-  <div class="big">"I'M NOT INTERESTED IN DOING RESEARCH.<br>I'M INTERESTED IN UNDERSTANDING."</div>
-  <div class="small">David Blackwell — 1919&ndash;2010</div>
-</div>
-
-<!-- RELATED -->
-<div class="related">
-  <div class="related-item">
-    <div class="preview">E[&delta;]</div>
-    <div class="name">Neural Tee</div>
-    <div class="price">&euro;49</div>
-  </div>
-  <div class="related-item">
-    <div class="preview">19 10</div>
-    <div class="name">Founder Tee</div>
-    <div class="price">&euro;69</div>
-  </div>
-  <div class="related-item">
-    <div class="preview">I(X;Y)</div>
-    <div class="name">Entropy Tee</div>
-    <div class="price">&euro;59</div>
-  </div>
+<div class="quote">
+  <div class="qt">Basically, I'm not interested in doing research and I never have been. I'm interested in understanding, which is quite a different thing.</div>
+  <div class="attr">DAVID BLACKWELL &mdash; 1919&ndash;2010</div>
 </div>
 
 <footer>
   <span class="fw">BLACKWELL</span>
-  HUMAN &times; MACHINE
+  HUMAN &times; MACHINE &middot; DEDICATED TO THE FUTURE
 </footer>
 
 <script>
-function selectSize(el) {
+function sel(el) {
   document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
   el.classList.add('selected');
 }
