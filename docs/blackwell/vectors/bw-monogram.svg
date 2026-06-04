@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40" width="30mm" height="20mm">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#c8a84e"/>
+      <stop offset="100%" stop-color="#d4b860"/>
+    </linearGradient>
+  </defs>
+
+  <!-- B letterform -->
+  <rect x="2" y="2" width="5" height="36" fill="url(#gold)"/>
+  <rect x="7" y="2" width="14" height="5" fill="url(#gold)"/>
+  <rect x="7" y="17" width="14" height="5" fill="url(#gold)"/>
+  <rect x="7" y="33" width="14" height="5" fill="url(#gold)"/>
+  <rect x="18" y="7" width="5" height="10" fill="url(#gold)"/>
+  <rect x="18" y="22" width="5" height="11" fill="url(#gold)"/>
+
+  <!-- W letterform -->
+  <rect x="30" y="2" width="4" height="36" fill="url(#gold)"/>
+  <rect x="48" y="2" width="4" height="36" fill="url(#gold)"/>
+  <polygon points="34,38 38,20 42,30 46,15 48,38" fill="url(#gold)"/>
+  <rect x="34" y="33" width="4" height="5" fill="url(#gold)"/>
+  <rect x="42" y="33" width="4" height="5" fill="url(#gold)"/>
+</svg>
