@@ -126,6 +126,10 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .nav-cta{background:#d4832b;color:#fff!important;padding:10px 20px;border-radius:8px;font-weight:600!important;font-size:.85rem!important;transition:all .2s}
 .nav-cta:hover{background:#c0731f!important;transform:translateY(-1px)}
 .nav-cta::after{display:none!important}
+.nav-phone-pill{display:flex;align-items:center;gap:6px;text-decoration:none;color:#1a5c3a;font-weight:700;font-size:.9rem;padding:8px 14px;background:#f0f5f0;border-radius:8px;transition:all .2s;margin-right:12px}
+.nav-phone-pill:hover{background:#1a5c3a;color:#fff}
+.nav-phone-pill svg{flex-shrink:0}
+@media(max-width:768px){.nav-phone-pill{display:none}}
 .mobile-toggle{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#333;padding:4px}
 @media(max-width:768px){
   .nav-inner{position:fixed;top:68px;left:0;width:100%;background:#fff;flex-direction:column;padding:20px 24px 28px;border-bottom:1px solid #eee;gap:12px;transform:translateY(-120%);opacity:0;transition:all .3s;pointer-events:none;box-shadow:0 8px 30px rgba(0,0,0,.08)}
@@ -194,6 +198,8 @@ section{padding:80px 0}
 .service-card p{color:#555;font-size:.9rem;line-height:1.7}
 .service-card .btn-link{display:inline-flex;align-items:center;gap:6px;color:#1a5c3a;font-weight:600;font-size:.85rem;text-decoration:none;margin-top:16px;transition:gap .2s}
 .service-card .btn-link:hover{gap:10px}
+.service-price{font-size:.85rem;color:#1a5c3a;margin-top:4px}
+.service-price strong{color:#d4832b;font-size:1.05rem}
 
 /* ─── PROCESS ─── */
 .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;counter-reset:step}
@@ -356,6 +362,10 @@ footer ul a:hover{color:#f0b34b}
 <nav id="nav">
   <div class="container">
     <a href="#" class="logo"><span class="logo-icon">B</span>Benzan<span>Dak</span></a>
+    <a href="tel:+31657079276" class="nav-phone-pill">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      06 57 07 92 76
+    </a>
     <button class="mobile-toggle" onclick="document.getElementById('navMobile').classList.toggle('open')" aria-label="Menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
@@ -437,6 +447,7 @@ footer ul a:hover{color:#f0b34b}
         </div>
         <h3>Dakreparatie</h3>
         <p>Lekkage, kapotte pannen, schoorstenen of dakramen — wij verhelpen het snel en duurzaam. Met spoedservice bij noodgevallen.</p>
+        <p class="service-price">Vanaf <strong>€150</strong></p>
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
@@ -445,6 +456,7 @@ footer ul a:hover{color:#f0b34b}
         </div>
         <h3>Nieuwe daken</h3>
         <p>Volledig nieuw dak voor woning of bedrijfspand. Ruime keuze uit pannen, EPDM, bitumen en zink. Incl. dakisolatie en dakramen.</p>
+        <p class="service-price">Vanaf <strong>€4.500</strong></p>
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
@@ -453,6 +465,7 @@ footer ul a:hover{color:#f0b34b}
         </div>
         <h3>Dakisolatie</h3>
         <p>Bespaar tot 30% op uw energiekosten. Wij isoleren uw dak vakkundig — comfortabel wonen in zomer én winter. Subsidiemogelijkheden.</p>
+        <p class="service-price">Vanaf <strong>€2.500</strong> · Tot 30% subsidie</p>
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
@@ -461,6 +474,7 @@ footer ul a:hover{color:#f0b34b}
         </div>
         <h3>Dakraam & Skylight</h3>
         <p>Meer licht in huis? Wij plaatsen vakkundig dakramen en skylights. Waterdicht, geïsoleerd en professioneel afgewerkt.</p>
+        <p class="service-price">Vanaf <strong>€850</strong> incl. plaatsing</p>
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
     </div>
