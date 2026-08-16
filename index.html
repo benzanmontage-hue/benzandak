@@ -499,6 +499,50 @@ footer ul a:hover{color:#f0b34b}
   </div>
 </section>
 
+<!-- Besparings Calculator -->
+<section id="besparing" style="background:#0f2b1e;color:#fff;">
+  <div class="container" style="max-width:800px;text-align:center;">
+    <div class="section-tag" style="color:#f0b34b;">Bereken uw voordeel</div>
+    <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:700;margin:8px 0 12px;color:#fff;">Hoeveel bespaart u met dakisolatie?</h2>
+    <p style="color:rgba(255,255,255,.75);margin-bottom:32px;line-height:1.7;">Vul uw dak-oppervlakte in en zie direct uw jaarlijkse besparing, terugverdientijd én subsidie.</p>
+    
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;text-align:left;">
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px;">
+        <label style="display:block;font-size:.85rem;font-weight:600;color:#f0b34b;margin-bottom:8px;">Dak-oppervlakte (m²)</label>
+        <input type="range" id="dakM2" min="20" max="150" value="60" step="5" oninput="berekenBesparing()" style="width:100%;accent-color:#f0b34b;">
+        <div id="dakM2Label" style="font-size:1.8rem;font-weight:800;color:#fff;margin-top:8px;">60 m²</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:24px;">
+        <label style="display:block;font-size:.85rem;font-weight:600;color:#f0b34b;margin-bottom:8px;">Woningtype</label>
+        <select id="woningType" onchange="berekenBesparing()" style="width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:#1a3a28;color:#fff;font-size:.95rem;">
+          <option value="tussenwoning">Tussenwoning</option>
+          <option value="hoekwoning">Hoekwoning</option>
+          <option value="vrijstaand" selected>Vrijstaand</option>
+          <option value="appartement">Appartement</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-top:32px;">
+      <div style="background:rgba(212,131,43,.15);border:1px solid rgba(212,131,43,.35);border-radius:14px;padding:20px;">
+        <div style="font-size:.78rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;">Jaarlijkse besparing</div>
+        <div id="besparingJaar" style="font-size:2rem;font-weight:800;color:#f0b34b;">€420</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;">
+        <div style="font-size:.78rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;">Terugverdientijd</div>
+        <div id="terugverdientijd" style="font-size:2rem;font-weight:800;color:#fff;">4-5 jaar</div>
+      </div>
+      <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:20px;">
+        <div style="font-size:.78rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:1px;">ISDE subsidie</div>
+        <div id="subsidie" style="font-size:2rem;font-weight:800;color:#4ade80;">€1.200</div>
+      </div>
+    </div>
+
+    <p style="margin-top:28px;color:rgba(255,255,255,.6);font-size:.82rem;">* Gemiddelde schatting o.b.v. gasprijzen en ISDE-subsidie 2026. Exacte besparing in uw offerte.</p>
+    <a href="#contact" class="btn btn-primary" style="margin-top:20px;">📋 Ontvang uw exacte berekening</a>
+  </div>
+</section>
+
 <!-- Hoe wij werken -->
 <section class="bg-light">
   <div class="container">
@@ -1018,6 +1062,50 @@ async function submitReview(e, form) {
     btn.disabled = false;
   }
 }
+</script>
+
+<script>
+// Besparings Calculator
+function berekenBesparing() {
+  const m2 = parseInt(document.getElementById('dakM2').value) || 60;
+  const type = document.getElementById('woningType').value;
+  
+  document.getElementById('dakM2Label').textContent = m2 + ' m²';
+  
+  // Besparing per m² per jaar (gas) — verschilt per woningtype
+  const besparingPerM2 = {
+    tussenwoning: 6.5,
+    hoekwoning: 7.5,
+    vrijstaand: 9,
+    appartement: 4.5
+  };
+  
+  const besparing = Math.round(m2 * besparingPerM2[type]);
+  document.getElementById('besparingJaar').textContent = '€' + besparing.toLocaleString('nl-NL');
+  
+  // ISDE subsidie (€/m² voor dakisolatie, gemiddeld)
+  const subsidiePerM2 = 20;
+  const subsidie = Math.round(m2 * subsidiePerM2);
+  document.getElementById('subsidie').textContent = '€' + subsidie.toLocaleString('nl-NL');
+  
+  // Terugverdientijd
+  const kostenIsolatie = m2 * 45; // €45/m² gemiddeld
+  const nettoKosten = kostenIsolatie - subsidie;
+  const jaren = nettoKosten / besparing;
+  
+  if (jaren < 3) {
+    document.getElementById('terugverdientijd').textContent = '< 3 jaar';
+  } else if (jaren < 6) {
+    document.getElementById('terugverdientijd').textContent = '3-5 jaar';
+  } else if (jaren < 9) {
+    document.getElementById('terugverdientijd').textContent = '5-8 jaar';
+  } else {
+    document.getElementById('terugverdientijd').textContent = '8+ jaar';
+  }
+}
+
+// Initialiseer op laadtijd
+document.addEventListener('DOMContentLoaded', berekenBesparing);
 </script>
 </body>
 </html>
