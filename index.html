@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dakdekker Arnhem & Gelderland | Dakreparatie, Dakisolatie & Nieuwe Daken | Benzan Dak</title>
 <meta name="description" content="Dakdekker in Arnhem, Nijmegen & Gelderland. ✅ Dakreparatie ✅ Dakisolatie (bespaar 30% energie) ✅ Nieuwe daken ✅ Dakonderhoud. 8+ jaar ervaring, 4.9★. Gratis offerte binnen 24 uur.">
-<meta name="keywords" content="dakdekker arnhem, dakreparatie, dakisolatie, dakbedekking, nieuwe daken, dakrenovatie, plat dak, dakgoot, dakdekker gelderland, dakdekker nijmegen, dakdekker apeldoorn, bitumen dak, epdm dak">
+<meta name="keywords" content="dakdekker arnhem, dakreparatie, dakisolatie, dakbedekking, nieuwe daken, dakrenovatie, plat dak, dakgoot, dakonderhoud, dak schoonmaken, terras, dakdekker gelderland, dakdekker nijmegen, dakdekker apeldoorn, bitumen dak">
 <meta property="og:description" content="Dakdekker in Arnhem, Nijmegen & Gelderland. Dakreparatie, dakisolatie (tot 30% energiebesparing + ISDE subsidie), nieuwe daken en dakonderhoud. 8+ jaar ervaring, 4.9★.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="alternate" hreflang="nl" href="https://benzandak.nl">
@@ -82,6 +82,13 @@
 
 <!-- Meta Pixel — Benzan Dak conversie tracking -->
 <script>
+/* ══════════════════════════════════════════
+   👉 VUL HIER JE META PIXEL ID IN
+   Te vinden in: Meta Business Suite → Events Manager
+   Voorbeeld: 123456789012345
+   ══════════════════════════════════════════ */
+const META_PIXEL_ID = 'PIXEL_ID';
+
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -90,8 +97,16 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window,document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','PIXEL_ID');fbq('track','PageView');
-function trackLead(){fbq('track','Lead',{content_name:'offerte_aanvraag'});}
+
+if(META_PIXEL_ID !== 'PIXEL_ID'){
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+}
+
+// Conversie events — worden automatisch getriggerd
+function trackLead(){ if(META_PIXEL_ID !== 'PIXEL_ID') fbq('track','Lead',{content_name:'offerte_aanvraag'}); }
+function trackContact(){ if(META_PIXEL_ID !== 'PIXEL_ID') fbq('track','Contact',{content_name:'contact_formulier'}); }
+function trackOnderhoud(){ if(META_PIXEL_ID !== 'PIXEL_ID') fbq('track','InitiateCheckout',{content_name:'onderhoudscontract'}); }
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/></noscript>
