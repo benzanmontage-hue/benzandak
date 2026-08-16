@@ -80,6 +80,16 @@ td{padding:10px;border-bottom:1px solid #eee}
     <div class="totaal-rij totaal"><span>TOTAAL</span><span id="t_totaal">€0</span></div>
   </div>
 
+  <h2>🔁 Onderhoudscontract (optioneel)</h2>
+  <p style="font-size:.82rem;color:#888;margin-bottom:10px;">Vink aan wat u jaarlijks wilt — wordt automatisch in de offerte opgenomen.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+    <label style="display:flex;align-items:center;gap:8px;padding:10px;background:#f8f9fb;border-radius:8px;font-size:.85rem;"><input type="checkbox" id="ond_bezoek"> Jaarlijks onderhoudsbezoek (1×/jaar)</label>
+    <label style="display:flex;align-items:center;gap:8px;padding:10px;background:#f8f9fb;border-radius:8px;font-size:.85rem;"><input type="checkbox" id="ond_schoon"> Dak schoonmaken</label>
+    <label style="display:flex;align-items:center;gap:8px;padding:10px;background:#f8f9fb;border-radius:8px;font-size:.85rem;"><input type="checkbox" id="ond_goten"> Goten reinigen</label>
+    <label style="display:flex;align-items:center;gap:8px;padding:10px;background:#f8f9fb;border-radius:8px;font-size:.85rem;"><input type="checkbox" id="ond_inspectie"> Inspectie & controle</label>
+  </div>
+  <div class="field" style="margin-top:12px;"><label>Prijs per jaar (€)</label><input type="text" id="ond_prijs" placeholder="bijv. 150" oninput="berekenTotaal()"></div>
+
   <h2>📝 Extra</h2>
   <div class="field"><label>Opmerkingen / voorwaarden</label><textarea id="notities" placeholder="Bijv. 10 jaar garantie, uitvoeringstermijn..."></textarea></div>
 </div>
@@ -139,6 +149,9 @@ function berekenTotaal(){
     const prijs = parseFloat(r.querySelector('.prijs').value) || 0;
     subtotaal += aantal * prijs;
   });
+  // Onderhoudscontract toevoegen
+  const ondPrijs = parseFloat(document.getElementById('ond_prijs').value) || 0;
+  if(ondPrijs > 0) subtotaal += ondPrijs;
   const btw = subtotaal * 0.21;
   document.getElementById('t_subtotaal').textContent = '€' + subtotaal.toFixed(0);
   document.getElementById('t_btw').textContent = '€' + btw.toFixed(0);
@@ -172,17 +185,35 @@ function genereerOfferte(){
   const btw = subtotaal * 0.21;
   const grand = subtotaal + btw;
   
+  // Onderhoudscontract in offerte
+  const ondPrijs = parseFloat(document.getElementById('ond_prijs').value) || 0;
+  const ondOpties = [];
+  if(document.getElementById('ond_bezoek').checked) ondOpties.push('Jaarlijks onderhoudsbezoek (1×/jaar)');
+  if(document.getElementById('ond_schoon').checked) ondOpties.push('Dak schoonmaken');
+  if(document.getElementById('ond_goten').checked) ondOpties.push('Goten reinigen');
+  if(document.getElementById('ond_inspectie').checked) ondOpties.push('Inspectie & controle');
+  
+  if(ondOpties.length > 0){
+    const trOnd = document.createElement('tr');
+    trOnd.innerHTML = `<td><strong>Onderhoudscontract (jaarlijks):</strong><br><span style="font-size:.8rem;color:#555;">${ondOpties.join(' · ')}</span></td><td class="right">1 jaar</td><td class="right">€${ondPrijs.toFixed(0)}</td><td class="right">€${ondPrijs.toFixed(0)}</td>`;
+    tbody.appendChild(trOnd);
+    subtotaal += ondPrijs;
+  }
+  
+  const btwFinal = subtotaal * 0.21;
+  const grandFinal = subtotaal + btwFinal;
+  
   const trSub = document.createElement('tr');
   trSub.innerHTML = `<td colspan="3"><strong>Subtotaal</strong></td><td class="right"><strong>€${subtotaal.toFixed(0)}</strong></td>`;
   tbody.appendChild(trSub);
   
   const trBtw = document.createElement('tr');
-  trBtw.innerHTML = `<td colspan="3">BTW 21%</td><td class="right">€${btw.toFixed(0)}</td>`;
+  trBtw.innerHTML = `<td colspan="3">BTW 21%</td><td class="right">€${btwFinal.toFixed(0)}</td>`;
   tbody.appendChild(trBtw);
   
   const trGrand = document.createElement('tr');
   trGrand.className = 'grand-total';
-  trGrand.innerHTML = `<td colspan="3"><strong>TOTAAL INCL. BTW</strong></td><td class="right"><strong>€${grand.toFixed(0)}</strong></td>`;
+  trGrand.innerHTML = `<td colspan="3"><strong>TOTAAL INCL. BTW</strong></td><td class="right"><strong>€${grandFinal.toFixed(0)}</strong></td>`;
   tbody.appendChild(trGrand);
   
   const notities = document.getElementById('notities').value;
