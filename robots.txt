@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://benzandak.nl/sitemap.xml
