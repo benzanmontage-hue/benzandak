@@ -3,18 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Benzan Dak — Dakinspectie Rapport</title>
+<title>Benzan Dak — Dakinspectie Rapport Online</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#f5f7fa;padding:20px;line-height:1.5}
-.page{max-width:800px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:40px}
-.header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #1a5c3a;padding-bottom:20px;margin-bottom:24px}
-.logo{font-size:1.5rem;font-weight:800;color:#1a5c3a}
-.logo span{color:#d4832b}
-.header-right{text-align:right;font-size:.8rem;color:#666}
-h1{font-size:1.4rem;color:#1a5c3a;margin-bottom:4px}
-.subtitle{font-size:.85rem;color:#888;margin-bottom:24px}
-h2{font-size:1rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:1px solid #eee;padding-bottom:6px}
+.topbar{max-width:900px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.5rem;font-weight:800;color:#1a5c3a}.logo span{color:#d4832b}
+.topbar-actions{display:flex;gap:10px}
+.btn{padding:12px 22px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;transition:all .2s}
+.btn-green{background:#1a5c3a;color:#fff}.btn-green:hover{background:#146b3a}
+.btn-orange{background:#d4832b;color:#fff}.btn-orange:hover{background:#c0731f}
+.btn-outline{background:#fff;border:2px solid #1a5c3a;color:#1a5c3a}
+.btn-outline:hover{background:#f0f5f0}
+.form-page{max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:36px}
+h2{font-size:1.1rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:2px solid #eee;padding-bottom:8px}
 .field{display:grid;grid-template-columns:1fr 2fr;gap:12px;align-items:center;margin-bottom:10px}
 .field label{font-weight:600;font-size:.85rem}
 .field input,.field select,.field textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:.9rem;font-family:inherit}
@@ -22,126 +24,175 @@ h2{font-size:1rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:1px solid #eee;
 .checklist{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .check-item{display:flex;align-items:center;gap:8px;padding:8px;background:#f8f9fb;border-radius:6px;font-size:.85rem}
 .check-item input{width:auto}
-.status-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700}
-.good{background:#e8f5e9;color:#2e7d32}
-.warning{background:#fff3e0;color:#e65100}
-.bad{background:#ffebee;color:#d32f2f}
-.section-note{font-size:.8rem;color:#888;font-style:italic;margin-top:4px}
-.footer{display:flex;justify-content:space-between;margin-top:32px;padding-top:16px;border-top:2px solid #eee}
-.signature{text-align:center;font-size:.8rem}
-.sign-line{width:200px;border-bottom:1px solid #333;margin:40px auto 4px}
-.print-btn{position:fixed;bottom:20px;right:20px;background:#1a5c3a;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;box-shadow:0 4px 14px rgba(26,92,58,.3)}
-.print-btn:hover{background:#146b3a}
+.report-preview{max-width:900px;margin:20px auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:40px;display:none}
+.report-header{display:flex;justify-content:space-between;border-bottom:3px solid #1a5c3a;padding-bottom:20px;margin-bottom:24px}
+.report-header .logo{font-size:1.5rem}
+.report-title{font-size:1.4rem;color:#1a5c3a;margin-bottom:20px}
+.report-section{margin:16px 0}
+.report-section h3{font-size:.95rem;color:#1a5c3a;margin-bottom:6px}
+.report-box{background:#f8f9fb;border:1px solid #eee;border-radius:8px;padding:12px;font-size:.9rem}
+.report-box ul{list-style:none;padding:0}
+.report-box li{padding:3px 0}
+.report-box li::before{content:'✓';color:#1a5c3a;margin-right:8px;font-weight:bold}
+.signatures{display:flex;justify-content:space-between;margin-top:32px;padding-top:16px;border-top:2px solid #eee}
+.sign{text-align:center;font-size:.8rem}
+.sign-line{width:180px;border-bottom:1px solid #333;margin:36px auto 4px}
+@media(max-width:700px){.field{grid-template-columns:1fr}.checklist{grid-template-columns:1fr}.topbar{flex-direction:column;gap:12px}}
 @media print{
-  .print-btn{display:none}
+  .topbar,.form-page,.btn{display:none}
+  .report-preview{display:block!important;box-shadow:none;border-radius:0;padding:20px}
   body{background:#fff;padding:0}
-  .page{box-shadow:none;border-radius:0;padding:20px}
 }
 </style>
 </head>
 <body>
-<button class="print-btn" onclick="window.print()">🖨️ Print / Opslaan als PDF</button>
 
-<div class="page">
-  <div class="header">
-    <div class="logo">Benzan <span>Dak</span></div>
-    <div class="header-right">
-      <div>Benzan Dak · Dakdekker</div>
-      <div>Leeuwenstein 64, 6824 DA Arnhem</div>
-      <div>06 57 07 92 76 · info@benzandak.nl</div>
-    </div>
-  </div>
-
-  <h1>Dakinspectie Rapport</h1>
-  <div class="subtitle">Professionele dakinspectie · Uitgevoerd door Benzan Dak</div>
-
-  <h2>Klantgegevens</h2>
-  <div class="field"><label>Naam</label><input type="text" placeholder="Volledige naam"></div>
-  <div class="field"><label>Adres</label><input type="text" placeholder="Straat + huisnummer"></div>
-  <div class="field"><label>Postcode / Plaats</label><input type="text" placeholder="1234 AB Arnhem"></div>
-  <div class="field"><label>Telefoon</label><input type="text" placeholder="06..."></div>
-  <div class="field"><label>Email</label><input type="email" placeholder="..."></div>
-
-  <h2>Dakgegevens</h2>
-  <div class="field">
-    <label>Daktype</label>
-    <select>
-      <option>Plat dak (bitumen)</option>
-      <option>Plat dak (EPDM)</option>
-      <option>Hellend dak (pannen)</option>
-      <option>Hellend dak (leien)</option>
-      <option>Plat + hellend (combinatie)</option>
-    </select>
-  </div>
-  <div class="field"><label>Dak-oppervlakte</label><input type="text" placeholder="± m²"></div>
-  <div class="field"><label>Bouwjaar woning</label><input type="text" placeholder="bijv. 1985"></div>
-  <div class="field"><label>Leeftijd dakbedekking</label><input type="text" placeholder="bijv. 20 jaar"></div>
-  <div class="field"><label>Datum inspectie</label><input type="date"></div>
-
-  <h2>Inspectiechecklist</h2>
-  <div class="checklist">
-    <div class="check-item"><input type="checkbox"><span>Dakbedekking (scheuren, blazen, slijtage)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Dakgoten (verstopping, lekkage)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Dakranden / boeidelen</span></div>
-    <div class="check-item"><input type="checkbox"><span>Dakramen (kierend, lekkage)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Schoorsteen / loodwerk</span></div>
-    <div class="check-item"><input type="checkbox"><span>Dakisolatie (aanwezig, conditie)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Ventilatie (dampregulatie)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Mos / algen (hellend dak)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Binnenkant (vochtvlekken, lekkage)</span></div>
-    <div class="check-item"><input type="checkbox"><span>Hemelwaterafvoer</span></div>
-  </div>
-
-  <h2>Bevindingen &amp; Status</h2>
-  <div class="field">
-    <label>Algemene conditie</label>
-    <select>
-      <option>Goed — geen actie nodig</option>
-      <option>Redelijk — onderhoud aanbevolen</option>
-      <option>Matig — reparatie nodig</option>
-      <option>Slecht — vervanging dringend</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>Bevindingen</label>
-    <textarea placeholder="Beschrijf de aangetroffen gebreken en conditie..."></textarea>
-  </div>
-  <div class="field">
-    <label>Aanbevolen werkzaamheden</label>
-    <textarea placeholder="Bijv. dakisolatie aanbrengen, goten reinigen, lekkage repareren..."></textarea>
-  </div>
-  <div class="field">
-    <label>Urgentie</label>
-    <select>
-      <option>Laag — kan wachten</option>
-      <option>Gemiddeld — binnen 3 maanden</option>
-      <option>Hoog — binnen 2 weken</option>
-      <option>Direct — spoed (lekkage)</option>
-    </select>
-  </div>
-  <div class="field">
-    <label>Geschatte kosten (optioneel)</label>
-    <input type="text" placeholder="€ ...">
-  </div>
-
-  <h2>Foto's</h2>
-  <div class="section-note">Voeg foto's van de bevindingen toe (dak, goten, lekkage, isolatie).</div>
-  <div class="field"><label>Foto 1</label><input type="text" placeholder="Bestandsnaam / bijlage"></div>
-  <div class="field"><label>Foto 2</label><input type="text" placeholder="Bestandsnaam / bijlage"></div>
-  <div class="field"><label>Foto 3</label><input type="text" placeholder="Bestandsnaam / bijlage"></div>
-
-  <div class="footer">
-    <div class="signature">
-      <div class="sign-line"></div>
-      <div>Handtekening inspecteur</div>
-      <div>Benzan Dak</div>
-    </div>
-    <div class="signature">
-      <div class="sign-line"></div>
-      <div>Handtekening klant</div>
-      <div>Voor akkoord</div>
-    </div>
+<div class="topbar">
+  <div class="logo">Benzan <span>Dak</span> — Inspectie Rapport</div>
+  <div class="topbar-actions">
+    <button class="btn btn-green" onclick="genereerRapport()">📄 Genereer rapport</button>
+    <button class="btn btn-orange" onclick="verstuurEmail()">📧 Verstuur naar klant</button>
+    <button class="btn btn-outline" onclick="window.print()">🖨️ PDF</button>
   </div>
 </div>
+
+<!-- FORMULIER -->
+<div class="form-page">
+  <h2>👤 Klantgegevens</h2>
+  <div class="field"><label>Naam</label><input type="text" id="naam" placeholder="Volledige naam"></div>
+  <div class="field"><label>Adres</label><input type="text" id="adres" placeholder="Straat + huisnummer"></div>
+  <div class="field"><label>Postcode / Plaats</label><input type="text" id="postcode" placeholder="1234 AB Arnhem"></div>
+  <div class="field"><label>Klant email</label><input type="email" id="klantEmail" placeholder="klant@email.nl"></div>
+
+  <h2>🏠 Dakgegevens</h2>
+  <div class="field"><label>Daktype</label><select id="daktype"><option>Plat dak (bitumen)</option><option>Plat dak (EPDM)</option><option>Hellend dak (pannen)</option><option>Hellend dak (leien)</option><option>Plat + hellend</option></select></div>
+  <div class="field"><label>Oppervlakte</label><input type="text" id="oppervlakte" placeholder="± m²"></div>
+  <div class="field"><label>Bouwjaar woning</label><input type="text" id="bouwjaar" placeholder="bijv. 1985"></div>
+  <div class="field"><label>Datum inspectie</label><input type="date" id="datum"></div>
+
+  <h2>✅ Checklist bevindingen</h2>
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox" id="c1"><label>Dakbedekking scheuren/blazen</label></div>
+    <div class="check-item"><input type="checkbox" id="c2"><label>Dakgoten verstopping/lekkage</label></div>
+    <div class="check-item"><input type="checkbox" id="c3"><label>Dakranden / boeidelen</label></div>
+    <div class="check-item"><input type="checkbox" id="c4"><label>Dakramen kieren/lekkage</label></div>
+    <div class="check-item"><input type="checkbox" id="c5"><label>Schoorsteen / loodwerk</label></div>
+    <div class="check-item"><input type="checkbox" id="c6"><label>Dakisolatie ontbreekt/slecht</label></div>
+    <div class="check-item"><input type="checkbox" id="c7"><label>Ventilatie onvoldoende</label></div>
+    <div class="check-item"><input type="checkbox" id="c8"><label>Mos / algen</label></div>
+    <div class="check-item"><input type="checkbox" id="c9"><label>Binnenkant vochtvlekken</label></div>
+    <div class="check-item"><input type="checkbox" id="c10"><label>Hemelwaterafvoer</label></div>
+  </div>
+
+  <h2>📊 Beoordeling</h2>
+  <div class="field"><label>Conditie</label><select id="conditie"><option>Goed — geen actie</option><option>Redelijk — onderhoud aanbevolen</option><option>Matig — reparatie nodig</option><option>Slecht — vervanging dringend</option></select></div>
+  <div class="field"><label>Bevindingen</label><textarea id="bevindingen" placeholder="Beschrijf de gebreken..."></textarea></div>
+  <div class="field"><label>Aanbevolen werk</label><textarea id="aanbevolen" placeholder="Bijv. dakisolatie, goten reinigen..."></textarea></div>
+  <div class="field"><label>Urgentie</label><select id="urgentie"><option>Laag</option><option>Gemiddeld</option><option>Hoog</option><option>Direct (spoed)</option></select></div>
+  <div class="field"><label>Geschatte kosten</label><input type="text" id="kosten" placeholder="€ ..."></div>
+</div>
+
+<!-- RAPPORT PREVIEW -->
+<div class="report-preview" id="rapport">
+  <div class="report-header">
+    <div class="logo">Benzan <span>Dak</span></div>
+    <div style="text-align:right;font-size:.8rem;color:#666">
+      <div>Leeuwenstein 64, 6824 DA Arnhem</div>
+      <div>06 57 07 92 76 · info@benzandak.nl</div>
+      <div>Datum: <span id="r_datum">—</span></div>
+    </div>
+  </div>
+  <div class="report-title">Dakinspectie Rapport</div>
+  
+  <div class="report-section"><h3>Klant</h3><div class="report-box">
+    <strong id="r_naam">—</strong><br>
+    <span id="r_adres">—</span><br>
+    <span id="r_postcode">—</span>
+  </div></div>
+  
+  <div class="report-section"><h3>Dakgegevens</h3><div class="report-box">
+    Type: <span id="r_daktype">—</span> · Oppervlakte: <span id="r_oppervlakte">—</span> · Bouwjaar: <span id="r_bouwjaar">—</span>
+  </div></div>
+  
+  <div class="report-section"><h3>Geconstateerde punten</h3><div class="report-box"><ul id="r_checklist"></ul></div></div>
+  
+  <div class="report-section"><h3>Conditie &amp; bevindingen</h3><div class="report-box">
+    <strong id="r_conditie">—</strong><br><br>
+    <strong>Bevindingen:</strong> <span id="r_bevindingen">—</span><br><br>
+    <strong>Aanbevolen werk:</strong> <span id="r_aanbevolen">—</span>
+  </div></div>
+  
+  <div class="report-section"><h3>Urgentie &amp; kosten</h3><div class="report-box">
+    Urgentie: <strong id="r_urgentie">—</strong> · Geschatte kosten: <strong id="r_kosten">—</strong>
+  </div></div>
+  
+  <div class="signatures">
+    <div class="sign"><div class="sign-line"></div>Benzan Dak (inspecteur)</div>
+    <div class="sign"><div class="sign-line"></div>Klant (voor akkoord)</div>
+  </div>
+</div>
+
+<script>
+function genereerRapport(){
+  document.getElementById('r_naam').textContent = document.getElementById('naam').value || '—';
+  document.getElementById('r_adres').textContent = document.getElementById('adres').value || '—';
+  document.getElementById('r_postcode').textContent = document.getElementById('postcode').value || '—';
+  document.getElementById('r_daktype').textContent = document.getElementById('daktype').value;
+  document.getElementById('r_oppervlakte').textContent = document.getElementById('oppervlakte').value || '—';
+  document.getElementById('r_bouwjaar').textContent = document.getElementById('bouwjaar').value || '—';
+  document.getElementById('r_datum').textContent = document.getElementById('datum').value || new Date().toLocaleDateString('nl-NL');
+  document.getElementById('r_conditie').textContent = document.getElementById('conditie').value;
+  document.getElementById('r_bevindingen').textContent = document.getElementById('bevindingen').value || 'Geen bijzonderheden';
+  document.getElementById('r_aanbevolen').textContent = document.getElementById('aanbevolen').value || '—';
+  document.getElementById('r_urgentie').textContent = document.getElementById('urgentie').value;
+  document.getElementById('r_kosten').textContent = document.getElementById('kosten').value || '—';
+  
+  // Checklist
+  const labels = ['Dakbedekking scheuren/blazen','Dakgoten verstopping/lekkage','Dakranden/boeidelen','Dakramen kieren/lekkage','Schoorsteen/loodwerk','Dakisolatie ontbreekt/slecht','Ventilatie onvoldoende','Mos/algen','Binnenkant vochtvlekken','Hemelwaterafvoer'];
+  const ul = document.getElementById('r_checklist');
+  ul.innerHTML = '';
+  let found = false;
+  for(let i=1;i<=10;i++){
+    if(document.getElementById('c'+i).checked){
+      const li = document.createElement('li');
+      li.textContent = labels[i-1];
+      ul.appendChild(li);
+      found = true;
+    }
+  }
+  if(!found){ ul.innerHTML = '<li>Geen gebreken geconstateerd — dak in goede staat</li>'; }
+  
+  document.getElementById('rapport').style.display = 'block';
+  document.getElementById('rapport').scrollIntoView({behavior:'smooth'});
+}
+
+function verstuurEmail(){
+  genereerRapport();
+  const naam = document.getElementById('naam').value || 'Klant';
+  const email = document.getElementById('klantEmail').value || '';
+  const adres = document.getElementById('adres').value || '';
+  const daktype = document.getElementById('daktype').value;
+  const conditie = document.getElementById('conditie').value;
+  const bevindingen = document.getElementById('bevindingen').value || 'Geen bijzonderheden';
+  const aanbevolen = document.getElementById('aanbevolen').value || '—';
+  const kosten = document.getElementById('kosten').value || '—';
+  const urgentie = document.getElementById('urgentie').value;
+  
+  const subject = encodeURIComponent('Dakinspectie Rapport — ' + naam);
+  const body = encodeURIComponent(
+    'Beste ' + naam + ',\n\n' +
+    'Bedankt voor uw vertrouwen in Benzan Dak. Hierbij het dakinspectie rapport voor ' + adres + '.\n\n' +
+    'Daktype: ' + daktype + '\n' +
+    'Conditie: ' + conditie + '\n' +
+    'Urgentie: ' + urgentie + '\n\n' +
+    'Bevindingen:\n' + bevindingen + '\n\n' +
+    'Aanbevolen werk:\n' + aanbevolen + '\n\n' +
+    'Geschatte kosten: ' + kosten + '\n\n' +
+    'Met vriendelijke groet,\nBenzan Dak\n06 57 07 92 76 · info@benzandak.nl'
+  );
+  
+  window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+}
+</script>
 </body>
 </html>
