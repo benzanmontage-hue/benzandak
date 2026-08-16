@@ -373,8 +373,7 @@ footer ul a:hover{color:#f0b34b}
     <div class="nav-inner" id="navMobile">
       <ul class="nav-links">
         <li><a href="#diensten" onclick="closeNav()">Diensten</a></li>
-        <li><a href="#portfolio" onclick="closeNav()">Portfolio</a></li>
-        <li><a href="#gebied" onclick="closeNav()">Gebied</a></li>
+        <li><a href="#gebied" onclick="closeNav()">Werkgebied</a></li>
         <li><a href="#reviews" onclick="closeNav()">Reviews</a></li>
         <li><a href="#faq" onclick="closeNav()">FAQ</a></li>
       </ul>
@@ -592,61 +591,6 @@ footer ul a:hover{color:#f0b34b}
       </div>
     </div>
   </div>
-</section>
-
-<!-- Portfolio -->
-<section id="portfolio" style="padding:0;overflow:hidden;background:#0f2b1e;position:relative;height:70vh;min-height:400px">
-  <div id="portfolioSlider" style="width:100%;height:100%;position:relative"></div>
-  <div style="position:absolute;top:24px;left:50%;transform:translateX(-50%);z-index:5">
-    <span style="display:inline-block;background:rgba(0,0,0,.4);backdrop-filter:blur(6px);padding:6px 18px;border-radius:20px;color:#fff;font-size:.78rem;font-weight:600;letter-spacing:1.5px">ONS WERK</span>
-  </div>
-  <div id="slideDots" style="position:absolute;bottom:24px;right:24px;z-index:5;display:flex;gap:8px"></div>
-  <!-- ════════════════════════════════════════════════════════ -->
-  <!-- ⚡ FOTO'S TOEVOEGEN:                                -->
-  <!-- Voeg een nieuwe regel toe in het array hieronder:     -->
-  <!--   { file: "jouw-foto.jpg", label: "📍 Stad · Project" } -->
-  <!-- Zet de foto in de map:  images/portfolio/             -->
-  <!-- ════════════════════════════════════════════════════════ -->
-  <script>
-  const portfolioPhotos = [
-    { file: "nieuw-dak-velp.jpg",       label: "📍 Velp · Nieuw plat dak" },
-    { file: "dakraam.jpg",             label: "📍 Arnhem · Dakraam geplaatst" },
-    { file: "dak-project.jpg",         label: "📍 Nijmegen · Dak met skylight" },
-    { file: "isolerend-dak.jpg",       label: "📍 Arnhem · Dakisolatie (InSus)" },
-    { file: "dakbedekking.jpg",        label: "📍 Gelderland · Nieuwe dakbedekking" },
-    { file: "dak-met-zonnepanelen.jpg", label: "📍 Nijmegen · Dak + zonnepanelen" },
-    // ⬇️ VOEG NIEUWE FOTO'S HIERONDER TOE, bijv:
-    // { file: "mijn-nieuwe-klus.jpg", label: "📍 Arnhem · Dakrenovatie" },
-  ];
-
-  // Bouw de slider
-  const slider = document.getElementById('portfolioSlider');
-  const dots = document.getElementById('slideDots');
-  portfolioPhotos.forEach((p, i) => {
-    const div = document.createElement('div');
-    div.className = 'slide';
-    div.style.cssText = 'position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease';
-    div.innerHTML = `<img src="images/${p.file}" alt="${p.label}" style="width:100%;height:100%;object-fit:cover">
-      <div style="position:absolute;bottom:24px;left:24px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);padding:8px 16px;border-radius:8px;color:#fff;font-size:.85rem;font-weight:500">${p.label}</div>`;
-    slider.appendChild(div);
-    const dot = document.createElement('span');
-    dot.style.cssText = 'width:10px;height:10px;border-radius:50%;cursor:pointer';
-    dot.onclick = () => goSlide(i);
-    dots.appendChild(dot);
-  });
-
-  let current = 0, timer;
-  function goSlide(n) {
-    document.querySelectorAll('.slide').forEach((s,i) => { s.style.opacity = i === n ? '1' : '0' });
-    dots.querySelectorAll('span').forEach((d,i) => { d.style.background = i === n ? '#fff' : 'rgba(255,255,255,.4)' });
-    current = n;
-    clearInterval(timer);
-    timer = setInterval(autoSlide, 4500);
-  }
-  function autoSlide() { goSlide((current + 1) % portfolioPhotos.length) }
-  current = Math.floor(Math.random() * portfolioPhotos.length);
-  goSlide(current);
-  </script>
 </section>
 
 <!-- Werkgebied + Map -->
