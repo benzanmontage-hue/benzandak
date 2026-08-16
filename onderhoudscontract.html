@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Benzan Dak — Onderhoudscontract Aanvragen</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#f5f7fa;padding:20px;line-height:1.5}
+.page{max-width:700px;margin:0 auto;background:#fff;border-radius:14px;box-shadow:0 2px 20px rgba(0,0,0,.08);overflow:hidden}
+.header{background:#0f2b1e;color:#fff;padding:32px;text-align:center}
+.header .logo{font-size:1.6rem;font-weight:800}.header .logo span{color:#f0b34b}
+.header h1{font-size:1.4rem;margin-top:12px}
+.header p{color:rgba(255,255,255,.75);font-size:.9rem;margin-top:6px}
+.form{padding:32px}
+h2{font-size:1.05rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:2px solid #eee;padding-bottom:8px}
+h2:first-child{margin-top:0}
+.field{display:grid;grid-template-columns:1fr 2fr;gap:12px;align-items:center;margin-bottom:10px}
+.field label{font-weight:600;font-size:.85rem}
+.field input,.field select,.field textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:8px;font-size:.9rem;font-family:inherit}
+.field textarea{min-height:60px}
+.diensten{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dienst{display:flex;align-items:center;gap:8px;padding:12px;background:#f8f9fb;border-radius:8px;font-size:.85rem;cursor:pointer;border:1px solid transparent;transition:all .2s}
+.dienst:hover{border-color:#1a5c3a}
+.dienst input{width:auto}
+.dienst .prijs{margin-left:auto;font-weight:700;color:#1a5c3a;font-size:.78rem}
+.pakketten{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.pakket{padding:16px;border:2px solid #eee;border-radius:10px;text-align:center;cursor:pointer;transition:all .2s}
+.pakket:hover{border-color:#d4832b}
+.pakket.active{border-color:#d4832b;background:#fff8f0}
+.pakket h3{font-size:.95rem;color:#1a5c3a}
+.pakket .prijs{font-size:1.3rem;font-weight:800;color:#d4832b;margin:8px 0}
+.pakket p{font-size:.72rem;color:#888;line-height:1.4}
+.submit{width:100%;padding:16px;background:#d4832b;color:#fff;border:none;border-radius:10px;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:24px;transition:all .2s}
+.submit:hover{background:#c0731f;transform:translateY(-1px)}
+.success{display:none;background:#e8f5e9;border:1px solid #4ade80;color:#2e7d32;padding:16px;border-radius:10px;margin-top:16px;text-align:center;font-weight:600}
+@media(max-width:600px){.field{grid-template-columns:1fr}.diensten{grid-template-columns:1fr}.pakketten{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="header">
+    <div class="logo">Benzan <span>Dak</span></div>
+    <h1>Onderhoudscontract Aanvragen</h1>
+    <p>1× per jaar onderhoud · Gemoedsrust · Geen lekkage-verrassingen</p>
+  </div>
+
+  <div class="form">
+    <h2>👤 Uw gegevens</h2>
+    <div class="field"><label>Naam</label><input type="text" id="naam" placeholder="Volledige naam" required></div>
+    <div class="field"><label>Adres</label><input type="text" id="adres" placeholder="Straat + huisnummer" required></div>
+    <div class="field"><label>Postcode / Plaats</label><input type="text" id="postcode" placeholder="1234 AB Arnhem"></div>
+    <div class="field"><label>Telefoon</label><input type="tel" id="telefoon" placeholder="06..."></div>
+    <div class="field"><label>Email</label><input type="email" id="email" placeholder="uw@email.nl" required></div>
+
+    <h2>🏠 Uw dak</h2>
+    <div class="field"><label>Daktype</label><select id="daktype"><option>Plat dak (bitumen)</option><option>Plat dak (EPDM)</option><option>Hellend dak (pannen)</option><option>Anders / weet niet</option></select></div>
+    <div class="field"><label>± Oppervlakte</label><input type="text" id="oppervlakte" placeholder="bijv. 60 m²"></div>
+
+    <h2>🔧 Welke onderhoud wilt u?</h2>
+    <div class="diensten">
+      <label class="dienst"><input type="checkbox" value="Dakinspectie"> Dakinspectie <span class="prijs">€95</span></label>
+      <label class="dienst"><input type="checkbox" value="Dak schoonmaken"> Dak schoonmaken <span class="prijs">€75</span></label>
+      <label class="dienst"><input type="checkbox" value="Goten reinigen"> Goten reinigen <span class="prijs">€45</span></label>
+      <label class="dienst"><input type="checkbox" value="Kleine reparaties"> Kleine reparaties <span class="prijs">€150</span></label>
+    </div>
+
+    <h2>📦 Of kies een pakket</h2>
+    <div class="pakketten">
+      <div class="pakket active" onclick="kiesPakket(this,'Basis')"><h3>Basis</h3><div class="prijs">€150/jr</div><p>Inspectie + goten</p></div>
+      <div class="pakket" onclick="kiesPakket(this,'Comfort')"><h3>Comfort</h3><div class="prijs">€250/jr</div><p>Inspectie + schoon + goten</p></div>
+      <div class="pakket" onclick="kiesPakket(this,'Premium')"><h3>Premium</h3><div class="prijs">€350/jr</div><p>Alles + reparaties</p></div>
+    </div>
+    <input type="hidden" id="pakket" value="Basis">
+
+    <h2>📝 Opmerkingen</h2>
+    <div class="field"><textarea id="opmerkingen" placeholder="Bijzonderheden, vragen..."></textarea></div>
+
+    <button class="submit" onclick="verstuur()">📋 Aanvraag versturen</button>
+    <div class="success" id="success">✅ Bedankt! Wij nemen binnen 24 uur contact met u op.</div>
+  </div>
+</div>
+
+<script>
+function kiesPakket(el, naam){
+  document.querySelectorAll('.pakket').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('pakket').value = naam;
+}
+
+function verstuur(){
+  const naam = document.getElementById('naam').value;
+  const email = document.getElementById('email').value;
+  if(!naam || !email){
+    alert('Vul minimaal uw naam en email in.');
+    return;
+  }
+  
+  const adres = document.getElementById('adres').value;
+  const postcode = document.getElementById('postcode').value;
+  const telefoon = document.getElementById('telefoon').value;
+  const daktype = document.getElementById('daktype').value;
+  const oppervlakte = document.getElementById('oppervlakte').value;
+  const pakket = document.getElementById('pakket').value;
+  const opmerkingen = document.getElementById('opmerkingen').value;
+  
+  // Geselecteerde diensten
+  const diensten = [];
+  document.querySelectorAll('.dienst input:checked').forEach(c => diensten.push(c.value));
+  
+  const subject = encodeURIComponent('Onderhoudscontract aanvraag — ' + naam);
+  const body = encodeURIComponent(
+    'Nieuwe onderhoudscontract aanvraag:\n\n' +
+    'Naam: ' + naam + '\n' +
+    'Adres: ' + adres + ' ' + postcode + '\n' +
+    'Telefoon: ' + telefoon + '\n' +
+    'Email: ' + email + '\n\n' +
+    'Daktype: ' + daktype + '\n' +
+    'Oppervlakte: ' + oppervlakte + '\n\n' +
+    'Pakket: ' + pakket + '\n' +
+    'Diensten: ' + (diensten.join(', ') || 'volgens pakket') + '\n\n' +
+    'Opmerkingen: ' + opmerkingen
+  );
+  
+  window.location.href = 'mailto:info@benzandak.nl?subject=' + subject + '&body=' + body;
+  
+  document.getElementById('success').style.display = 'block';
+  document.getElementById('success').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
