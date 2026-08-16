@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Benzan Dak — Offerte Generator</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#f5f7fa;padding:20px;line-height:1.5}
+.topbar{max-width:900px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.logo{font-size:1.5rem;font-weight:800;color:#1a5c3a}.logo span{color:#d4832b}
+.topbar-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:12px 22px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
+.btn-green{background:#1a5c3a;color:#fff}.btn-green:hover{background:#146b3a}
+.btn-orange{background:#d4832b;color:#fff}.btn-orange:hover{background:#c0731f}
+.btn-outline{background:#fff;border:2px solid #1a5c3a;color:#1a5c3a}
+.form-page{max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:36px}
+h2{font-size:1.1rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:2px solid #eee;padding-bottom:8px}
+.field{display:grid;grid-template-columns:1fr 2fr;gap:12px;align-items:center;margin-bottom:10px}
+.field label{font-weight:600;font-size:.85rem}
+.field input,.field select,.field textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:.9rem;font-family:inherit}
+.field textarea{min-height:60px}
+.regel{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;margin-bottom:8px;align-items:center}
+.regel input{width:100%;padding:9px;border:1px solid #ddd;border-radius:6px;font-size:.85rem}
+.regel .verwijder{background:#ffebee;color:#d32f2f;border:none;border-radius:6px;width:32px;height:32px;font-weight:700;cursor:pointer;font-size:1rem}
+.add-regel{background:#e8f5e9;color:#2e7d32;border:2px dashed #2e7d32;border-radius:8px;padding:10px;width:100%;font-weight:700;cursor:pointer;margin-top:8px}
+.totaal-box{background:#f8f9fb;border-radius:10px;padding:20px;margin-top:16px;font-size:.9rem}
+.totaal-rij{display:flex;justify-content:space-between;padding:6px 0}
+.totaal-rij.totaal{font-size:1.2rem;font-weight:800;color:#1a5c3a;border-top:2px solid #ddd;margin-top:8px;padding-top:12px}
+.report-preview{max-width:900px;margin:20px auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:40px;display:none}
+.report-header{display:flex;justify-content:space-between;border-bottom:3px solid #1a5c3a;padding-bottom:20px;margin-bottom:24px}
+.report-title{font-size:1.4rem;color:#1a5c3a;margin-bottom:20px}
+.info-box{background:#f8f9fb;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-size:.85rem}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85rem}
+th{background:#1a5c3a;color:#fff;padding:10px;text-align:left}
+td{padding:10px;border-bottom:1px solid #eee}
+.right{text-align:right}
+.grand-total{background:#1a5c3a;color:#fff;font-size:1.15rem}
+.grand-total td{padding:14px;border:none}
+.sign{margin-top:40px;text-align:center;font-size:.8rem}
+.sign-line{width:220px;border-bottom:1px solid #333;margin:50px auto 6px}
+@media(max-width:700px){.field{grid-template-columns:1fr}.regel{grid-template-columns:1fr 1fr}.regel .verwijder{width:100%}}
+@media print{.topbar,.form-page,.btn{display:none}.report-preview{display:block!important;box-shadow:none;border-radius:0;padding:20px}body{background:#fff;padding:0}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Benzan <span>Dak</span> — Offerte Generator</div>
+  <div class="topbar-actions">
+    <button class="btn btn-green" onclick="genereerOfferte()">📄 Genereer offerte</button>
+    <button class="btn btn-orange" onclick="verstuurEmail()">📧 Verstuur naar klant</button>
+    <button class="btn btn-outline" onclick="window.print()">🖨️ PDF</button>
+  </div>
+</div>
+
+<!-- FORMULIER -->
+<div class="form-page">
+  <h2>👤 Klantgegevens</h2>
+  <div class="field"><label>Naam</label><input type="text" id="naam" placeholder="Volledige naam"></div>
+  <div class="field"><label>Adres</label><input type="text" id="adres" placeholder="Straat + huisnummer"></div>
+  <div class="field"><label>Postcode / Plaats</label><input type="text" id="postcode" placeholder="1234 AB Arnhem"></div>
+  <div class="field"><label>Klant email</label><input type="email" id="klantEmail" placeholder="klant@email.nl"></div>
+
+  <h2>🔧 Werkzaamheden</h2>
+  <div id="regels">
+    <div class="regel">
+      <input type="text" class="oms" placeholder="Omschrijving (bv. Bitumen 2-laags)">
+      <input type="text" class="aantal" placeholder="Aantal (bv. 15)">
+      <input type="text" class="eenheid" placeholder="m² / stuks">
+      <input type="text" class="prijs" placeholder="€ per stuk" oninput="berekenTotaal()">
+      <button class="verwijder" onclick="verwijderRegel(this)">✕</button>
+    </div>
+  </div>
+  <button class="add-regel" onclick="voegRegelToe()">+ Regel toevoegen</button>
+
+  <div class="totaal-box">
+    <div class="totaal-rij"><span>Subtotaal</span><span id="t_subtotaal">€0</span></div>
+    <div class="totaal-rij"><span>BTW 21%</span><span id="t_btw">€0</span></div>
+    <div class="totaal-rij totaal"><span>TOTAAL</span><span id="t_totaal">€0</span></div>
+  </div>
+
+  <h2>📝 Extra</h2>
+  <div class="field"><label>Opmerkingen / voorwaarden</label><textarea id="notities" placeholder="Bijv. 10 jaar garantie, uitvoeringstermijn..."></textarea></div>
+</div>
+
+<!-- OFFERTE PREVIEW -->
+<div class="report-preview" id="offerte">
+  <div class="report-header">
+    <div class="logo">Benzan <span>Dak</span></div>
+    <div style="text-align:right;font-size:.8rem;color:#666">
+      <div>Leeuwenstein 64, 6824 DA Arnhem</div>
+      <div>06 57 07 92 76 · info@benzandak.nl</div>
+      <div>KVK 90090330</div>
+    </div>
+  </div>
+  <div class="report-title">Offerte — <span id="r_titel">Dakwerkzaamheden</span></div>
+  <div class="info-box">
+    <strong>Klant:</strong> <span id="r_naam">—</span><br>
+    <span id="r_adres">—</span><br>
+    <span id="r_postcode">—</span>
+  </div>
+  <table>
+    <thead><tr><th>Omschrijving</th><th class="right">Aantal</th><th class="right">Prijs</th><th class="right">Totaal</th></tr></thead>
+    <tbody id="r_regels"></tbody>
+  </table>
+  <div id="r_notities" style="font-size:.8rem;color:#555;background:#f8f9fb;padding:16px;border-radius:8px;margin:16px 0;"></div>
+  <div class="sign">
+    <div class="sign-line"></div>
+    <div>Benzan Dak — Voor akkoord</div>
+  </div>
+</div>
+
+<script>
+function voegRegelToe(){
+  const container = document.getElementById('regels');
+  const div = document.createElement('div');
+  div.className = 'regel';
+  div.innerHTML = `
+    <input type="text" class="oms" placeholder="Omschrijving">
+    <input type="text" class="aantal" placeholder="Aantal">
+    <input type="text" class="eenheid" placeholder="m² / stuks">
+    <input type="text" class="prijs" placeholder="€ per stuk" oninput="berekenTotaal()">
+    <button class="verwijder" onclick="verwijderRegel(this)">✕</button>
+  `;
+  container.appendChild(div);
+}
+
+function verwijderRegel(btn){
+  btn.parentElement.remove();
+  berekenTotaal();
+}
+
+function berekenTotaal(){
+  const regels = document.querySelectorAll('.regel');
+  let subtotaal = 0;
+  regels.forEach(r => {
+    const aantal = parseFloat(r.querySelector('.aantal').value) || 0;
+    const prijs = parseFloat(r.querySelector('.prijs').value) || 0;
+    subtotaal += aantal * prijs;
+  });
+  const btw = subtotaal * 0.21;
+  document.getElementById('t_subtotaal').textContent = '€' + subtotaal.toFixed(0);
+  document.getElementById('t_btw').textContent = '€' + btw.toFixed(0);
+  document.getElementById('t_totaal').textContent = '€' + (subtotaal + btw).toFixed(0);
+}
+
+function genereerOfferte(){
+  document.getElementById('r_naam').textContent = document.getElementById('naam').value || '—';
+  document.getElementById('r_adres').textContent = document.getElementById('adres').value || '—';
+  document.getElementById('r_postcode').textContent = document.getElementById('postcode').value || '—';
+  
+  const tbody = document.getElementById('r_regels');
+  tbody.innerHTML = '';
+  let subtotaal = 0;
+  
+  document.querySelectorAll('.regel').forEach(r => {
+    const oms = r.querySelector('.oms').value;
+    const aantal = r.querySelector('.aantal').value;
+    const eenheid = r.querySelector('.eenheid').value;
+    const prijs = parseFloat(r.querySelector('.prijs').value) || 0;
+    const totaal = (parseFloat(aantal)||0) * prijs;
+    subtotaal += totaal;
+    
+    if(oms){
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${oms}</td><td class="right">${aantal} ${eenheid}</td><td class="right">€${prijs.toFixed(0)}</td><td class="right">€${totaal.toFixed(0)}</td>`;
+      tbody.appendChild(tr);
+    }
+  });
+  
+  const btw = subtotaal * 0.21;
+  const grand = subtotaal + btw;
+  
+  const trSub = document.createElement('tr');
+  trSub.innerHTML = `<td colspan="3"><strong>Subtotaal</strong></td><td class="right"><strong>€${subtotaal.toFixed(0)}</strong></td>`;
+  tbody.appendChild(trSub);
+  
+  const trBtw = document.createElement('tr');
+  trBtw.innerHTML = `<td colspan="3">BTW 21%</td><td class="right">€${btw.toFixed(0)}</td>`;
+  tbody.appendChild(trBtw);
+  
+  const trGrand = document.createElement('tr');
+  trGrand.className = 'grand-total';
+  trGrand.innerHTML = `<td colspan="3"><strong>TOTAAL INCL. BTW</strong></td><td class="right"><strong>€${grand.toFixed(0)}</strong></td>`;
+  tbody.appendChild(trGrand);
+  
+  const notities = document.getElementById('notities').value;
+  document.getElementById('r_notities').innerHTML = notities ? notities.replace(/\n/g,'<br>') : '';
+  
+  document.getElementById('offerte').style.display = 'block';
+  document.getElementById('offerte').scrollIntoView({behavior:'smooth'});
+}
+
+function verstuurEmail(){
+  genereerOfferte();
+  const naam = document.getElementById('naam').value || 'Klant';
+  const email = document.getElementById('klantEmail').value || '';
+  
+  // Bouw offerte tekst
+  let regelsTekst = '';
+  let subtotaal = 0;
+  document.querySelectorAll('.regel').forEach(r => {
+    const oms = r.querySelector('.oms').value;
+    const aantal = r.querySelector('.aantal').value;
+    const eenheid = r.querySelector('.eenheid').value;
+    const prijs = parseFloat(r.querySelector('.prijs').value) || 0;
+    const totaal = (parseFloat(aantal)||0) * prijs;
+    subtotaal += totaal;
+    if(oms) regelsTekst += '• ' + oms + ' — ' + aantal + ' ' + eenheid + ' = €' + totaal.toFixed(0) + '\n';
+  });
+  const btw = subtotaal * 0.21;
+  const grand = subtotaal + btw;
+  
+  const subject = encodeURIComponent('Offerte Benzan Dak');
+  const body = encodeURIComponent(
+    'Beste ' + naam + ',\n\n' +
+    'Hierbij de offerte:\n\n' +
+    regelsTekst + '\n' +
+    'Subtotaal: €' + subtotaal.toFixed(0) + '\n' +
+    'BTW 21%: €' + btw.toFixed(0) + '\n' +
+    'TOTAAL: €' + grand.toFixed(0) + '\n\n' +
+    'Met vriendelijke groet,\nBenzan Dak\n06 57 07 92 76'
+  );
+  
+  window.location.href = 'mailto:' + email + '?subject=' + subject + '&body=' + body;
+}
+
+// Init: 3 standaard regels
+voegRegelToe();
+voegRegelToe();
+</script>
+</body>
+</html>
