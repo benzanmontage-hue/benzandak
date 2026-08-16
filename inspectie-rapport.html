@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Benzan Dak — Dakinspectie Rapport</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#f5f7fa;padding:20px;line-height:1.5}
+.page{max-width:800px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:40px}
+.header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #1a5c3a;padding-bottom:20px;margin-bottom:24px}
+.logo{font-size:1.5rem;font-weight:800;color:#1a5c3a}
+.logo span{color:#d4832b}
+.header-right{text-align:right;font-size:.8rem;color:#666}
+h1{font-size:1.4rem;color:#1a5c3a;margin-bottom:4px}
+.subtitle{font-size:.85rem;color:#888;margin-bottom:24px}
+h2{font-size:1rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:1px solid #eee;padding-bottom:6px}
+.field{display:grid;grid-template-columns:1fr 2fr;gap:12px;align-items:center;margin-bottom:10px}
+.field label{font-weight:600;font-size:.85rem}
+.field input,.field select,.field textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:.9rem;font-family:inherit}
+.field textarea{min-height:70px}
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.check-item{display:flex;align-items:center;gap:8px;padding:8px;background:#f8f9fb;border-radius:6px;font-size:.85rem}
+.check-item input{width:auto}
+.status-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:700}
+.good{background:#e8f5e9;color:#2e7d32}
+.warning{background:#fff3e0;color:#e65100}
+.bad{background:#ffebee;color:#d32f2f}
+.section-note{font-size:.8rem;color:#888;font-style:italic;margin-top:4px}
+.footer{display:flex;justify-content:space-between;margin-top:32px;padding-top:16px;border-top:2px solid #eee}
+.signature{text-align:center;font-size:.8rem}
+.sign-line{width:200px;border-bottom:1px solid #333;margin:40px auto 4px}
+.print-btn{position:fixed;bottom:20px;right:20px;background:#1a5c3a;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem;box-shadow:0 4px 14px rgba(26,92,58,.3)}
+.print-btn:hover{background:#146b3a}
+@media print{
+  .print-btn{display:none}
+  body{background:#fff;padding:0}
+  .page{box-shadow:none;border-radius:0;padding:20px}
+}
+</style>
+</head>
+<body>
+<button class="print-btn" onclick="window.print()">🖨️ Print / Opslaan als PDF</button>
+
+<div class="page">
+  <div class="header">
+    <div class="logo">Benzan <span>Dak</span></div>
+    <div class="header-right">
+      <div>Benzan Dak · Dakdekker</div>
+      <div>Leeuwenstein 64, 6824 DA Arnhem</div>
+      <div>06 57 07 92 76 · info@benzandak.nl</div>
+    </div>
+  </div>
+
+  <h1>Dakinspectie Rapport</h1>
+  <div class="subtitle">Professionele dakinspectie · Uitgevoerd door Benzan Dak</div>
+
+  <h2>Klantgegevens</h2>
+  <div class="field"><label>Naam</label><input type="text" placeholder="Volledige naam"></div>
+  <div class="field"><label>Adres</label><input type="text" placeholder="Straat + huisnummer"></div>
+  <div class="field"><label>Postcode / Plaats</label><input type="text" placeholder="1234 AB Arnhem"></div>
+  <div class="field"><label>Telefoon</label><input type="text" placeholder="06..."></div>
+  <div class="field"><label>Email</label><input type="email" placeholder="..."></div>
+
+  <h2>Dakgegevens</h2>
+  <div class="field">
+    <label>Daktype</label>
+    <select>
+      <option>Plat dak (bitumen)</option>
+      <option>Plat dak (EPDM)</option>
+      <option>Hellend dak (pannen)</option>
+      <option>Hellend dak (leien)</option>
+      <option>Plat + hellend (combinatie)</option>
+    </select>
+  </div>
+  <div class="field"><label>Dak-oppervlakte</label><input type="text" placeholder="± m²"></div>
+  <div class="field"><label>Bouwjaar woning</label><input type="text" placeholder="bijv. 1985"></div>
+  <div class="field"><label>Leeftijd dakbedekking</label><input type="text" placeholder="bijv. 20 jaar"></div>
+  <div class="field"><label>Datum inspectie</label><input type="date"></div>
+
+  <h2>Inspectiechecklist</h2>
+  <div class="checklist">
+    <div class="check-item"><input type="checkbox"><span>Dakbedekking (scheuren, blazen, slijtage)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Dakgoten (verstopping, lekkage)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Dakranden / boeidelen</span></div>
+    <div class="check-item"><input type="checkbox"><span>Dakramen (kierend, lekkage)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Schoorsteen / loodwerk</span></div>
+    <div class="check-item"><input type="checkbox"><span>Dakisolatie (aanwezig, conditie)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Ventilatie (dampregulatie)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Mos / algen (hellend dak)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Binnenkant (vochtvlekken, lekkage)</span></div>
+    <div class="check-item"><input type="checkbox"><span>Hemelwaterafvoer</span></div>
+  </div>
+
+  <h2>Bevindingen &amp; Status</h2>
+  <div class="field">
+    <label>Algemene conditie</label>
+    <select>
+      <option>Goed — geen actie nodig</option>
+      <option>Redelijk — onderhoud aanbevolen</option>
+      <option>Matig — reparatie nodig</option>
+      <option>Slecht — vervanging dringend</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Bevindingen</label>
+    <textarea placeholder="Beschrijf de aangetroffen gebreken en conditie..."></textarea>
+  </div>
+  <div class="field">
+    <label>Aanbevolen werkzaamheden</label>
+    <textarea placeholder="Bijv. dakisolatie aanbrengen, goten reinigen, lekkage repareren..."></textarea>
+  </div>
+  <div class="field">
+    <label>Urgentie</label>
+    <select>
+      <option>Laag — kan wachten</option>
+      <option>Gemiddeld — binnen 3 maanden</option>
+      <option>Hoog — binnen 2 weken</option>
+      <option>Direct — spoed (lekkage)</option>
+    </select>
+  </div>
+  <div class="field">
+    <label>Geschatte kosten (optioneel)</label>
+    <input type="text" placeholder="€ ...">
+  </div>
+
+  <h2>Foto's</h2>
+  <div class="section-note">Voeg foto's van de bevindingen toe (dak, goten, lekkage, isolatie).</div>
+  <div class="field"><label>Foto 1</label><input type="text" placeholder="Bestandsnaam / bijlage"></div>
+  <div class="field"><label>Foto 2</label><input type="text" placeholder="Bestandsnaam / bijlage"></div>
+  <div class="field"><label>Foto 3</label><input type="text" placeholder="Bestandsnaam / bijlage"></div>
+
+  <div class="footer">
+    <div class="signature">
+      <div class="sign-line"></div>
+      <div>Handtekening inspecteur</div>
+      <div>Benzan Dak</div>
+    </div>
+    <div class="signature">
+      <div class="sign-line"></div>
+      <div>Handtekening klant</div>
+      <div>Voor akkoord</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
