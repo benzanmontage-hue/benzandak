@@ -362,6 +362,27 @@ footer ul a:hover{color:#f0b34b}
 @keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-8px)}60%{transform:translateX(-50%) translateY(-4px)}}
 @keyframes bounce-arrow{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
 @media(max-width:768px){.scroll-indicator{display:none}}
+
+/* ═══ REACT BITS PORTS (vanilla JS/CSS) ═══ */
+
+/* 1. Shiny Text — subtiele metaalglans op geaccentueerde woorden */
+.shiny-text{position:relative;display:inline-block;background:linear-gradient(110deg,#f0b34b 25%,#fff3d6 45%,#f0b34b 65%,#d4832b 85%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shiny-move 5s linear infinite}
+@keyframes shiny-move{to{background-position:-220% center}}
+@media (prefers-reduced-motion:reduce){.shiny-text{animation:none;-webkit-text-fill-color:#f0b34b}}
+
+/* 2. Magnet — CTA's bewegen subtiel mee met de cursor */
+.magnet{position:relative;transition:transform .18s ease-out,box-shadow .25s,background-color .25s,color .25s,border-color .25s;will-change:transform}
+
+/* 3. Reflective Card — glansveeg over service-kaarten bij hover */
+.service-card{position:relative}
+.service-card::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.42),transparent);transform:skewX(-20deg);transition:left .7s ease;pointer-events:none;z-index:1}
+.service-card:hover::after{left:135%}
+@media (prefers-reduced-motion:reduce){.service-card::after{display:none}}
+
+/* 4. Click Spark — sprankels bij klik op primaire CTA's */
+.click-spark-btn{position:relative;overflow:hidden}
+.click-spark{position:absolute;pointer-events:none;width:8px;height:8px;border-radius:50%;background:#fff3d6;box-shadow:0 0 6px rgba(240,179,75,.9);z-index:3;animation:spark-fly .6s ease-out forwards}
+@keyframes spark-fly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}}
 </style>
 </head>
 <body>
@@ -408,7 +429,7 @@ footer ul a:hover{color:#f0b34b}
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-badge">✅ Dakdekker · Specialist in dakisolatie & dakrenovatie</div>
-    <h1>Bespaar tot 30% op<br>uw energiekosten met <span>dakisolatie</span></h1>
+    <h1>Bespaar tot 30% op<br>uw energiekosten met <span class="shiny-text">dakisolatie</span></h1>
     <p>Uw dak lekt warmte — en geld. Benzan Dak repareert, renoveert én isoleert uw dak vakkundig. Van lekkage tot compleet nieuw dak: wij zorgen dat uw huis weer warm, droog en energiezuinig is. Gratis dakinspectie + offerte binnen 24 uur.</p>
     <div class="hero-btns">
       <a href="#contact" class="btn btn-primary">📋 Gratis offerte aanvragen</a>
@@ -416,10 +437,10 @@ footer ul a:hover{color:#f0b34b}
       <a href="#diensten" class="btn btn-outline">💡 Bekijk isolatie-mogelijkheden</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num">8+</div><div class="hero-stat-label">Jaar ervaring</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">100+</div><div class="hero-stat-label">Daken gerealiseerd</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">4.9</div><div class="hero-stat-label">★ Gemiddelde score</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">24u</div><div class="hero-stat-label">Spoedservice</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="8" data-suffix="+">8+</div><div class="hero-stat-label">Jaar ervaring</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="100" data-suffix="+">100+</div><div class="hero-stat-label">Daken gerealiseerd</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="4.9" data-decimals="1">4.9</div><div class="hero-stat-label">★ Gemiddelde score</div></div>
+      <div class="hero-stat"><div class="hero-stat-num" data-count="24" data-suffix="u">24u</div><div class="hero-stat-label">Spoedservice</div></div>
     </div>
   </div>
   <div class="scroll-indicator">
@@ -1118,6 +1139,76 @@ function cookieKeuze(keuze){
 if(!localStorage.getItem('cookieConsent')){
   document.getElementById('cookieBanner').style.display = 'block';
 }
+</script>
+
+<script>
+/* ═══ REACT BITS PORTS — vanilla JS ═══ */
+
+// 1. Count Up — hero statistieken tellen op zodra ze in beeld komen
+(function(){
+  var els = document.querySelectorAll('.hero-stat-num[data-count]');
+  if(!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting || entry.target.dataset.done) return;
+      entry.target.dataset.done = '1';
+      var el = entry.target;
+      var target = parseFloat(el.dataset.count);
+      var decimals = parseInt(el.dataset.decimals || '0', 10);
+      var suffix = el.dataset.suffix || '';
+      var dur = 1400;
+      var t0 = performance.now();
+      function tick(now){
+        var p = Math.min((now - t0) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = target * eased;
+        el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val).toString()) + suffix;
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, {threshold:.4});
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+// 2. Magnet — primaire CTA's bewegen mee met de cursor (alleen muis/trackpad)
+(function(){
+  if(!window.matchMedia || !window.matchMedia('(pointer:fine)').matches) return;
+  document.querySelectorAll('.btn-primary').forEach(function(btn){
+    btn.classList.add('magnet');
+    btn.addEventListener('mousemove', function(e){
+      var r = btn.getBoundingClientRect();
+      var x = (e.clientX - r.left - r.width/2) / (r.width/2);
+      var y = (e.clientY - r.top - r.height/2) / (r.height/2);
+      btn.style.transform = 'translate(' + (x*7).toFixed(1) + 'px,' + (y*7).toFixed(1) + 'px)';
+    });
+    btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+  });
+})();
+
+// 3. Click Spark — sprankels bij klik op primaire CTA's
+(function(){
+  document.querySelectorAll('.btn-primary, .btn-submit').forEach(function(btn){
+    btn.classList.add('click-spark-btn');
+    btn.addEventListener('click', function(e){
+      var r = btn.getBoundingClientRect();
+      var x = e.clientX - r.left;
+      var y = e.clientY - r.top;
+      for(var i=0;i<9;i++){
+        var s = document.createElement('span');
+        s.className = 'click-spark';
+        s.style.left = x + 'px';
+        s.style.top = y + 'px';
+        var a = (Math.PI*2*i)/9;
+        var d = 14 + Math.random()*22;
+        s.style.setProperty('--dx', (Math.cos(a)*d).toFixed(1) + 'px');
+        s.style.setProperty('--dy', (Math.sin(a)*d).toFixed(1) + 'px');
+        btn.appendChild(s);
+        (function(node){ setTimeout(function(){ node.remove(); }, 650); })(s);
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>
