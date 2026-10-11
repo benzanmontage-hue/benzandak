@@ -154,6 +154,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 /* ─── HERO ─── */
 .hero{min-height:92vh;display:flex;align-items:center;position:relative;overflow:hidden;background:#0f2b1e}
 .hero-bg{position:absolute;inset:0;background:url('images/hero-ai.webp')center/cover;opacity:.4}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:0}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,43,30,.92)40%,rgba(15,43,30,.6)70%,transparent)}
 .hero .container{position:relative;z-index:2;padding:120px 24px 80px}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,131,43,.15);border:1px solid rgba(212,131,43,.3);padding:8px 16px;border-radius:50px;font-size:.8rem;color:#f0b34b;font-weight:600;margin-bottom:24px}
@@ -426,6 +427,11 @@ footer ul a:hover{color:#f0b34b}
 /* 6. Subtiele schaduw-diepte op cards + secties */
 .service-card:hover{box-shadow:0 18px 50px rgba(15,43,30,.12);border-color:transparent}
 .review-card:hover,.area-item:hover{transform:translateY(-2px);transition:all .25s}
+
+/* 7. Service-afbeeldingen (AI-gegenereerd) */
+.service-img{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:18px;display:block}
+.service-card{padding:24px 24px 28px}
+.service-icon{margin-bottom:14px}
 </style>
 </head>
 <body>
@@ -460,6 +466,9 @@ footer ul a:hover{color:#f0b34b}
 <!-- Hero -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <video class="hero-video" autoplay muted loop playsinline poster="images/hero-ai.webp">
+    <source src="images/hero-video.mp4" type="video/mp4">
+  </video>
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-badge">✅ Dakdekker · Specialist in dakisolatie & dakrenovatie</div>
@@ -526,6 +535,7 @@ footer ul a:hover{color:#f0b34b}
     <p class="section-sub center">Wij staan voor u klaar — van spoedreparatie tot compleet nieuw dak.</p>
     <div class="services-grid">
       <div class="service-card">
+        <img src="images/dakreparatie.webp" alt="Dakreparatie" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6M9 15h6"/></svg>
         </div>
@@ -535,6 +545,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/nieuw-dak.webp" alt="Nieuwe daken" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M2 20L12 4l10 16H2z"/><path d="M7 15h10M9 11h6"/></svg>
         </div>
@@ -544,6 +555,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/dakisolatie.webp" alt="Dakisolatie" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><path d="M6 10v10M10 10v4a2 2 0 004 0v-4M18 10v10"/></svg>
         </div>
@@ -553,6 +565,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/dakraam.webp" alt="Dakraam & Skylight" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M2 12h20M12 2v20"/><path d="M7 8l-5 4 5 4M17 16l5-4-5-4"/></svg>
         </div>
@@ -562,6 +575,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/dakinspectie.webp" alt="Dakinspectie & Onderhoud" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
         </div>
@@ -571,6 +585,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/dakgoot.webp" alt="Dakgoot Reiniging" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
         </div>
@@ -580,6 +595,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/dak-schoonmaken.webp" alt="Dak schoonmaken" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M12 3c3 2 5 5 5 8a5 5 0 01-10 0c0-3 2-6 5-8z"/><path d="M9 14a3 3 0 003 3"/></svg>
         </div>
@@ -589,6 +605,7 @@ footer ul a:hover{color:#f0b34b}
         <a href="#contact" class="btn-link">Offerte aanvragen →</a>
       </div>
       <div class="service-card">
+        <img src="images/dakterras.webp" alt="Dakterras" class="service-img" loading="lazy">
         <div class="service-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a5c3a" stroke-width="2"><path d="M2 20L12 4l10 16H2z"/><path d="M7 20v-4M12 20v-6M17 20v-4"/></svg>
         </div>
