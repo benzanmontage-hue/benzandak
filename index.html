@@ -114,6 +114,19 @@ src="https://www.facebook.com/tr?id=PIXEL_ID&ev=PageView&noscript=1"/></noscript
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1a5c3a;
+  --green-dark:#0f2b1e;
+  --green-deeper:#0a1f14;
+  --orange:#d4832b;
+  --orange-dark:#c0731f;
+  --gold:#f0b34b;
+  --ink:#1a1a2e;
+  --muted:#666;
+  --border:#e8e8e8;
+  --bg-light:#f8f9fa;
+  --white:#fff;
+}
 html{scroll-behavior:smooth}
 body{font-family:Inter,system-ui,-apple-system,sans-serif;color:#1a1a2e;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 img{max-width:100%;height:auto;display:block}
@@ -454,12 +467,12 @@ footer ul a:hover{color:#f0b34b}
   </video>
   <div class="hero-overlay"></div>
   <div class="container">
-    <div class="hero-badge">✅ Dakdekker · Specialist in dakisolatie & dakrenovatie</div>
+    <div class="hero-badge">Dakdekker · Specialist in dakisolatie & dakrenovatie</div>
     <h1>Bespaar tot 30% op<br>uw energiekosten met <span class="shiny-text">dakisolatie</span></h1>
     <p>Uw dak lekt warmte — en geld. Benzan Dak repareert, renoveert én isoleert uw dak vakkundig. Van lekkage tot compleet nieuw dak: wij zorgen dat uw huis weer warm, droog en energiezuinig is. Gratis dakinspectie + offerte binnen 24 uur.</p>
     <div class="hero-btns">
-      <a href="#contact" class="btn btn-primary">📋 Gratis offerte binnen 24u</a>
-      <a href="https://wa.me/31657079276" target="_blank" rel="noopener" class="btn btn-outline">📞 Bel nu: 06 57 07 92 76</a>
+      <a href="#contact" class="btn btn-primary">Gratis offerte binnen 24u</a>
+      <a href="https://wa.me/31657079276" target="_blank" rel="noopener" class="btn btn-outline">Bel nu: 06 57 07 92 76</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-num" data-count="8" data-suffix="+">8+</div><div class="hero-stat-label">Jaar ervaring</div></div>
@@ -641,7 +654,7 @@ footer ul a:hover{color:#f0b34b}
     </div>
 
     <p style="margin-top:28px;color:rgba(255,255,255,.6);font-size:.82rem;">* Gemiddelde schatting o.b.v. gasprijzen en ISDE-subsidie 2026. Exacte besparing in uw offerte.</p>
-    <a href="#contact" class="btn btn-primary" style="margin-top:20px;" onclick="koppelCalculator()">📋 Ontvang uw berekening per e-mail</a>
+    <a href="#contact" class="btn btn-primary" style="margin-top:20px;" onclick="koppelCalculator()">Ontvang uw berekening per e-mail</a>
   </div>
 </section>
 
@@ -653,27 +666,22 @@ footer ul a:hover{color:#f0b34b}
     <p class="section-sub center">Van aanvraag tot oplevering — u weet precies waar u aan toe bent.</p>
     <div class="process-grid">
       <div class="process-card">
-        <div class="icon">📞</div>
         <h4>Aanvraag</h4>
         <p>U neemt contact op voor een vrijblijvende offerte. Bel, WhatsApp of mail — wat u het beste uitkomt.</p>
       </div>
       <div class="process-card">
-        <div class="icon">🔍</div>
         <h4>Inspectie</h4>
         <p>Wij komen langs voor een grondige inspectie van uw dak. Geen verplichtingen.</p>
       </div>
       <div class="process-card">
-        <div class="icon">📋</div>
         <h4>Offerte</h4>
         <p>U ontvangt een duidelijke offerte met prijs, materialen en planning.</p>
       </div>
       <div class="process-card">
-        <div class="icon">🔨</div>
         <h4>Uitvoering</h4>
         <p>Wij gaan aan de slag. Netjes, vakkundig en binnen de afgesproken tijd.</p>
       </div>
       <div class="process-card">
-        <div class="icon">✅</div>
         <h4>Oplevering</h4>
         <p>Uw dak is klaar. Wij ruimen op en lopen alles met u na. Tevredenheidsgarantie.</p>
       </div>
@@ -768,7 +776,7 @@ footer ul a:hover{color:#f0b34b}
       </div>
     </div>
     <div class="review-write">
-      <button class="btn-review-write" onclick="document.getElementById('reviewForm').classList.toggle('open')">✍️ Laat een review achter</button>
+      <button class="btn-review-write" onclick="document.getElementById('reviewForm').classList.toggle('open')">Laat een review achter</button>
       <div id="reviewForm" class="review-form-wrap">
         <form onsubmit="submitReview(event,this)">
           <input type="hidden" name="type" value="Nieuwe review">
@@ -789,8 +797,7 @@ footer ul a:hover{color:#f0b34b}
           <p class="form-note">Uw review wordt na controle geplaatst. Wij delen nooit uw e-mail.</p>
         </form>
         <div class="review-success" style="display:none">
-          <div style="font-size:2.5rem;margin-bottom:8px">⭐</div>
-          <strong style="color:#1a5c3a">Bedankt voor uw review!</strong>
+          <div style="font-size:1rem;font-weight:700;color:#1a5c3a;margin-bottom:8px">Bedankt voor uw review!</div>
           <p style="color:#555;font-size:.85rem;margin-top:4px">Na goedkeuring plaatsen wij hem op deze pagina.</p>
         </div>
       </div>
@@ -826,7 +833,7 @@ footer ul a:hover{color:#f0b34b}
         </button>
         <div class="faq-a">Ja! De overheid geeft subsidie voor dakisolatie via de ISDE-regeling. Wij helpen u met de aanvraag. U kunt tot 30% van de kosten terugkrijgen.
           <div class="subsidie-form">
-            <p style="margin-top:14px;font-weight:600;color:#1a5c3a">✅ Check gratis of u in aanmerking komt:</p>
+            <p style="margin-top:14px;font-weight:600;color:#1a5c3a">Check gratis of u in aanmerking komt:</p>
             <form class="faq-form" onsubmit="submitFaqForm(event, this)">
               <input type="hidden" name="type" value="Subsidiecheck">
               <div class="faq-form-row">
@@ -834,7 +841,7 @@ footer ul a:hover{color:#f0b34b}
                 <input type="tel" name="telefoon" placeholder="Telefoonnummer" required>
                 <button type="submit">Checken →</button>
               </div>
-              <div class="faq-form-msg" style="display:none;font-size:.82rem;color:#1a5c3a;font-weight:500;margin-top:8px">✅ Ontvangen! We nemen binnen 24 uur contact op.</div>
+              <div class="faq-form-msg" style="display:none;font-size:.82rem;color:#1a5c3a;font-weight:500;margin-top:8px">Ontvangen! We nemen binnen 24 uur contact op.</div>
             </form>
           </div></div>
       </div>
@@ -908,8 +915,8 @@ footer ul a:hover{color:#f0b34b}
     <h2>Klaar voor een veilig dak?</h2>
     <p>Vraag nu uw vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
     <div class="cta-banner-btns">
-      <a href="#contact" class="btn btn-primary">📋 Offerte aanvragen</a>
-      <a href="https://wa.me/31657079276" target="_blank" rel="noopener" class="btn btn-outline">📞 06 57 07 92 76</a>
+      <a href="#contact" class="btn btn-primary">Offerte aanvragen</a>
+      <a href="https://wa.me/31657079276" target="_blank" rel="noopener" class="btn btn-outline">06 57 07 92 76</a>
     </div>
   </div>
 </div>
@@ -972,12 +979,12 @@ footer ul a:hover{color:#f0b34b}
       <div>
         <form id="benzandak-form">
           <div data-fs-success style="display:none;background:#1a5c3a;color:#fff;padding:20px;border-radius:10px;text-align:center;margin-bottom:16px">
-            <strong>✅ Bedankt voor uw aanvraag!</strong><br>
+            <strong>Bedankt voor uw aanvraag!</strong><br>
             <span style="font-size:.85rem;opacity:.9">We nemen binnen 24 uur contact met u op.</span>
           </div>
           <div data-fs-error style="display:none;background:#d4832b;color:#fff;padding:14px;border-radius:8px;margin-bottom:14px;font-size:.85rem"></div>
           <div id="calc-summary" style="display:none;background:#f0f5f0;border:1px solid #cfe0d2;border-radius:10px;padding:14px 16px;margin-bottom:16px;font-size:.88rem;color:#1a5c3a;">
-            <strong>✅ Uw berekening is toegevoegd:</strong>
+            <strong>Uw berekening is toegevoegd:</strong>
             <div id="calc-summary-text"></div>
           </div>
           <input type="hidden" name="dak_m2" id="calc_m2">
@@ -1016,9 +1023,9 @@ footer ul a:hover{color:#f0b34b}
             <label for="bericht">Uw bericht</label>
             <textarea id="bericht" name="bericht" placeholder="Vertel ons wat u nodig heeft... Bijv. 'Ik heb een lekkage bij mijn voordak'" data-fs-field></textarea>
           </div>
-          <button type="submit" class="btn-submit" data-fs-submit-btn>📨 Offerte aanvragen</button>
-          <p class="form-note">🔒 Uw gegevens zijn veilig. Wij bellen u binnen 24 uur — geen verkoopgesprek.</p>
-          <a href="https://wa.me/31657079276?text=Hallo%20Benzan%20Dak%2C%20ik%20wil%20graag%20een%20offerte%20voor%20mijn%20dak." target="_blank" rel="noopener" class="btn-whatsapp">💬 Liever WhatsApp? Stuur direct een bericht</a>
+          <button type="submit" class="btn-submit" data-fs-submit-btn>Offerte aanvragen</button>
+          <p class="form-note">Uw gegevens zijn veilig. Wij bellen u binnen 24 uur — geen verkoopgesprek.</p>
+          <a href="https://wa.me/31657079276?text=Hallo%20Benzan%20Dak%2C%20ik%20wil%20graag%20een%20offerte%20voor%20mijn%20dak." target="_blank" rel="noopener" class="btn-whatsapp">Liever WhatsApp? Stuur direct een bericht</a>
         </form>
       </div>
     </div>
@@ -1054,11 +1061,11 @@ footer ul a:hover{color:#f0b34b}
       <div>
         <h4>Contact</h4>
         <ul>
-          <li><a href="https://wa.me/31657079276" target="_blank" rel="noopener">📞 06 57 07 92 76</a></li>
-          <li><a href="mailto:info@benzandak.nl">✉️ info@benzandak.nl</a></li>
-          <li><a href="https://wa.me/31657079276">💬 WhatsApp</a></li>
-          <li><a href="#contact">📋 Offerte</a></li>
-          <li><a href="onderhoudscontract.html">🔁 Onderhoudscontract</a></li>
+          <li><a href="https://wa.me/31657079276" target="_blank" rel="noopener">06 57 07 92 76</a></li>
+          <li><a href="mailto:info@benzandak.nl">info@benzandak.nl</a></li>
+          <li><a href="https://wa.me/31657079276">WhatsApp</a></li>
+          <li><a href="#contact">Offerte</a></li>
+          <li><a href="onderhoudscontract.html">Onderhoudscontract</a></li>
         </ul>
       </div>
     </div>
@@ -1072,9 +1079,9 @@ footer ul a:hover{color:#f0b34b}
 
 <!-- Mobile Bottom Bar -->
 <div class="mobile-bar">
-  <a href="https://wa.me/31657079276" target="_blank" rel="noopener" class="mb-call">📞 Bel nu</a>
-  <a href="https://wa.me/31657079276" class="mb-offerte">💬 WhatsApp</a>
-  <a href="#contact" class="mb-offerte">📋 Offerte</a>
+  <a href="https://wa.me/31657079276" target="_blank" rel="noopener" class="mb-call">Bel nu</a>
+  <a href="https://wa.me/31657079276" class="mb-offerte">WhatsApp</a>
+  <a href="#contact" class="mb-offerte">Offerte</a>
 </div>
 
 <!-- WhatsApp Float -->
@@ -1273,7 +1280,7 @@ document.addEventListener('DOMContentLoaded', berekenBesparing);
 <!-- Cookie Banner -->
 <div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#0a1f14;color:#fff;padding:16px 20px;z-index:9999;display:none;box-shadow:0 -2px 20px rgba(0,0,0,.25);">
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-    <p style="font-size:.82rem;color:rgba(255,255,255,.8);margin:0;flex:1;min-width:200px;">🍪 Wij gebruiken cookies om de website te verbeteren. <a href="privacy.html" style="color:#f0b34b;">Lees onze privacyverklaring</a>.</p>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.8);margin:0;flex:1;min-width:200px;">Wij gebruiken cookies om de website te verbeteren. <a href="privacy.html" style="color:#f0b34b;">Lees onze privacyverklaring</a>.</p>
     <div style="display:flex;gap:8px;">
       <button onclick="cookieKeuze('accept')" style="background:#d4832b;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;">Accepteren</button>
       <button onclick="cookieKeuze('weiger')" style="background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;">Weigeren</button>
