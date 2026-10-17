@@ -2,17 +2,18 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Benzan Dak — Offerte Generator</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;color:#1a1a2e;background:#f5f7fa;padding:20px;line-height:1.5}
 .topbar{max-width:900px;margin:0 auto 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.logo{font-size:1.5rem;font-weight:800;color:#1a5c3a}.logo span{color:#d4832b}
+.logo{font-size:1.5rem;font-weight:800;color:#1a5c3a}.logo span{color:#a85d14}
 .topbar-actions{display:flex;gap:10px;flex-wrap:wrap}
 .btn{padding:12px 22px;border:none;border-radius:8px;font-weight:700;cursor:pointer;font-size:.9rem}
 .btn-green{background:#1a5c3a;color:#fff}.btn-green:hover{background:#146b3a}
-.btn-orange{background:#d4832b;color:#fff}.btn-orange:hover{background:#c0731f}
+.btn-orange{background:#a85d14;color:#fff}.btn-orange:hover{background:#8f4e10}
 .btn-outline{background:#fff;border:2px solid #1a5c3a;color:#1a5c3a}
 .form-page{max-width:900px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);padding:36px}
 h2{font-size:1.1rem;color:#1a5c3a;margin:24px 0 12px;border-bottom:2px solid #eee;padding-bottom:8px}
@@ -264,9 +265,9 @@ voegRegelToe();
 <!-- Cookie Banner -->
 <div id="cookieBanner" style="position:fixed;bottom:0;left:0;right:0;background:#0a1f14;color:#fff;padding:16px 20px;z-index:9999;display:none;box-shadow:0 -2px 20px rgba(0,0,0,.25);">
   <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
-    <p style="font-size:.82rem;color:rgba(255,255,255,.8);margin:0;flex:1;min-width:200px;">🍪 Wij gebruiken cookies om de website te verbeteren. <a href="privacy.html" style="color:#f0b34b;">Lees onze privacyverklaring</a>.</p>
+    <p style="font-size:.82rem;color:rgba(255,255,255,.8);margin:0;flex:1;min-width:200px;">🍪 Wij gebruiken cookies om de website te verbeteren. <a href="/privacy" style="color:#f0b34b;">Lees onze privacyverklaring</a>.</p>
     <div style="display:flex;gap:8px;">
-      <button onclick="cookieKeuze('accept')" style="background:#d4832b;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;">Accepteren</button>
+      <button onclick="cookieKeuze('accept')" style="background:#a85d14;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;">Accepteren</button>
       <button onclick="cookieKeuze('weiger')" style="background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff;padding:10px 20px;border-radius:8px;font-weight:700;cursor:pointer;">Weigeren</button>
     </div>
   </div>
@@ -274,12 +275,13 @@ voegRegelToe();
 
 <script>
 function cookieKeuze(keuze){
-  localStorage.setItem('cookieConsent', keuze);
+  try{localStorage.setItem('cookieConsent', keuze);}catch(e){}
   document.getElementById('cookieBanner').style.display = 'none';
 }
 
 // Toon banner als nog geen keuze gemaakt
-if(!localStorage.getItem('cookieConsent')){
+var _cc=null;try{_cc=localStorage.getItem('cookieConsent');}catch(e){}
+if(!_cc){
   document.getElementById('cookieBanner').style.display = 'block';
 }
 </script>
