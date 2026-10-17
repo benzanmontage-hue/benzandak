@@ -413,6 +413,34 @@ footer a:hover{color:var(--gold);text-decoration:underline}
   html{scroll-behavior:auto}
   .work-grid img,.btn{transition:none}
 }
+
+/* ─── SCROLL-EFFECT: foto's schuiven open en zoomen licht uit terwijl ze in beeld komen ───
+   Puur CSS, gekoppeld aan de scrollpositie (geen script). Alleen in browsers die dit
+   ondersteunen en alleen als de bezoeker geen "minder beweging" heeft ingesteld.
+   Overal anders staan de foto's gewoon stil en volledig zichtbaar. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .work-grid figure,.ba-photos figure,.service-photo{
+      animation:foto-open linear both;
+      animation-timeline:view();
+      animation-range:entry 5% entry 95%;
+    }
+    .work-grid img,.ba-photos img,.service-photo img{
+      animation:foto-zoom linear both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 50%;
+    }
+    .ba-photos figure:nth-child(2){animation-range:entry 25% cover 45%}
+  }
+}
+@keyframes foto-open{
+  from{clip-path:inset(28% 0 0 0 round 18px);translate:0 40px}
+  to{clip-path:inset(0 0 0 0 round 0);translate:0 0}
+}
+@keyframes foto-zoom{
+  from{scale:1.18}
+  to{scale:1}
+}
 </style>
 </head>
 <body>
