@@ -391,12 +391,9 @@ footer a:hover{color:var(--gold);text-decoration:underline}
   #cookieBanner{bottom:calc(66px + env(safe-area-inset-bottom))!important}
 }
 
-/* ─── BEWEGING: één rustige binnenkomst, nooit verborgen zonder script ─── */
-.js .rise{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.js .rise.in{opacity:1;transform:none}
+/* ─── BEWEGING: geen verberg-effecten; foto's en tekst altijd zichtbaar ─── */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .js .rise{opacity:1;transform:none;transition:none}
   .work-grid img,.btn{transition:none}
 }
 </style>
@@ -461,12 +458,12 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="diensten" class="section" aria-labelledby="diensten-titel">
   <div class="wrap">
-    <div class="services-head rise">
+    <div class="services-head">
       <h2 id="diensten-titel">Waar wij u mee helpen</h2>
       <p class="lead">Wij werken vooral aan platte daken met bitumen: repareren, vernieuwen en isoleren. Voor elk werk krijgt u eerst een gratis inspectie en een vrijblijvende offerte.</p>
     </div>
 
-    <article class="service-row rise">
+    <article class="service-row">
       <figure class="service-photo tall"><img src="images/werk-bitumen-720.webp" srcset="images/werk-bitumen-480.webp 480w, images/werk-bitumen-720.webp 720w" sizes="(max-width:820px) 100vw, 50vw" width="720" height="1274" loading="lazy" decoding="async" alt="Nieuwe bitumen dakbedekking op een plat dak tijdens de werkzaamheden"></figure>
       <div class="service-body">
         <h3>Lekkage en dakreparatie</h3>
@@ -481,7 +478,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
       </div>
     </article>
 
-    <article class="service-row rise">
+    <article class="service-row">
       <figure class="service-photo"><img src="images/werk-woonwijk-1100.webp" srcset="images/werk-woonwijk-640.webp 640w, images/werk-woonwijk-1100.webp 1100w" sizes="(max-width:820px) 100vw, 50vw" width="1100" height="821" loading="lazy" decoding="async" alt="Nieuw gelegde bitumen dakbedekking op een plat dak in een woonwijk"></figure>
       <div class="service-body">
         <h3>Nieuw plat dak</h3>
@@ -496,7 +493,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
       </div>
     </article>
 
-    <article class="service-row rise">
+    <article class="service-row">
       <figure class="service-photo"><img src="images/werk-isolatie-1100.webp" srcset="images/werk-isolatie-640.webp 640w, images/werk-isolatie-1100.webp 1100w" sizes="(max-width:820px) 100vw, 50vw" width="1100" height="821" loading="lazy" decoding="async" alt="Isolatieplaten op een plat dak, vóór het aanbrengen van de dakbedekking"></figure>
       <div class="service-body">
         <h3>Dakisolatie</h3>
@@ -515,12 +512,12 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="prijzen" class="section toned" aria-labelledby="prijzen-titel">
   <div class="wrap pricecard">
-    <div class="pricecard-intro rise">
+    <div class="pricecard-intro">
       <h2 id="prijzen-titel">Onze prijzen, gewoon op een rij</h2>
       <p class="lead">Zo weet u vooraf waar u ongeveer aan toe bent. De exacte prijs voor uw dak staat in de offerte, die u altijd vrijblijvend ontvangt.</p>
       <div><a href="#contact" class="btn btn-action">Prijs voor mijn dak aanvragen</a></div>
     </div>
-    <div class="price-list rise">
+    <div class="price-list">
       <table>
         <caption>Indicatieve prijzen. De inspectie is gratis als u een offerte aanvraagt.</caption>
         <thead class="sr-only"><tr><th scope="col">Werk</th><th scope="col">Prijs</th></tr></thead>
@@ -544,11 +541,11 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="werk" class="section" aria-labelledby="werk-titel">
   <div class="wrap">
-    <div class="work-head rise">
+    <div class="work-head">
       <h2 id="werk-titel">Ons werk</h2>
       <p class="lead" style="max-width:28em">Platte daken in de regio Arnhem: van de ondergrond tot de afwerking rond de lichtkoepel.</p>
     </div>
-    <div class="work-grid rise">
+    <div class="work-grid">
       <figure class="w1"><img src="images/werk-dakraam-1100.webp" srcset="images/werk-dakraam-640.webp 640w, images/werk-dakraam-1100.webp 1100w" sizes="(max-width:820px) 100vw, 58vw" width="1100" height="821" loading="lazy" decoding="async" alt="Plat dak met dakraam en nieuwe bitumen dakbedekking achter een rijwoning"><figcaption>Bitumen dak met dakraam</figcaption></figure>
       <figure class="w2"><img src="images/werk-ondergrond-720.webp" srcset="images/werk-ondergrond-480.webp 480w, images/werk-ondergrond-720.webp 720w" sizes="(max-width:820px) 50vw, 42vw" width="720" height="1274" loading="lazy" decoding="async" alt="Nieuwe houten ondergrond voor een plat dak in aanbouw"><figcaption>Nieuwe ondergrond</figcaption></figure>
       <figure class="w3"><img src="images/werk-isolatie-640.webp" width="640" height="478" loading="lazy" decoding="async" alt="Isolatieplaten op een plat dak"><figcaption>Isolatie</figcaption></figure>
@@ -560,7 +557,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="besparing" class="section dark" aria-labelledby="besparing-titel">
   <div class="wrap calc">
-    <div class="calc-intro rise">
+    <div class="calc-intro">
       <h2 id="besparing-titel">Wat levert dakisolatie u op?</h2>
       <p class="lead">Kies uw dakoppervlakte en woningtype. U ziet direct een indicatie van de besparing per jaar en de ISDE-subsidie.</p>
       <div class="calc-note">
@@ -568,7 +565,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
         <p style="margin-top:8px">De besparing is een grove indicatie op basis van gasverbruik. Bedragen onder voorbehoud; aan deze berekening kunt u geen rechten ontlenen.</p>
       </div>
     </div>
-    <div class="calc-panel rise">
+    <div class="calc-panel">
       <div class="calc-field">
         <label for="dakM2">Dakoppervlakte</label>
         <div id="dakM2Label" class="val" aria-hidden="true">60 m²</div>
@@ -595,8 +592,8 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section class="section" aria-labelledby="werkwijze-titel">
   <div class="wrap">
-    <h2 id="werkwijze-titel" class="rise">Zo pakken wij het aan</h2>
-    <ol class="steps rise">
+    <h2 id="werkwijze-titel">Zo pakken wij het aan</h2>
+    <ol class="steps">
       <li><h3>Aanvraag</h3><p>U belt, appt of vult het formulier in. Wij reageren binnen 24 uur.</p></li>
       <li><h3>Inspectie</h3><p>Wij komen langs en bekijken uw dak. Gratis bij een offerteaanvraag.</p></li>
       <li><h3>Offerte</h3><p>U krijgt een duidelijke offerte met prijs, materialen en planning.</p></li>
@@ -608,14 +605,14 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="reviews" class="section toned" aria-labelledby="reviews-titel">
   <div class="wrap">
-    <h2 id="reviews-titel" class="rise" style="margin-bottom:clamp(32px,5vw,56px)">Wat klanten zeggen</h2>
+    <h2 id="reviews-titel" style="margin-bottom:clamp(32px,5vw,56px)">Wat klanten zeggen</h2>
     <div class="reviews-grid">
-      <figure class="review-feature rise">
+      <figure class="review-feature">
         <div class="stars" role="img" aria-label="5 van 5 sterren">★★★★★</div>
         <blockquote>"Binnen een dag langsgekomen voor een lekkage. Snel en vakkundig gerepareerd, en nog een goede prijs ook. Echt een aanrader!"</blockquote>
         <figcaption>Marco van den Berg, Arnhem</figcaption>
       </figure>
-      <div class="review-list rise">
+      <div class="review-list">
         <figure><div class="stars" role="img" aria-label="5 van 5 sterren">★★★★★</div><blockquote>"Nieuw dak gelegd op ons huis in Nijmegen. Perfect geïsoleerd, ziet er prachtig uit. Netjes gewerkt en alles opgeruimd."</blockquote><figcaption>Linda de Wit <span>· Nijmegen</span></figcaption></figure>
         <figure><div class="stars" role="img" aria-label="5 van 5 sterren">★★★★★</div><blockquote>"Professioneel en betrouwbaar. Kwamen op tijd, goed advies gekregen over isolatie. Het resultaat is top. Prijs-kwaliteit uitstekend."</blockquote><figcaption>Peter Jansen <span>· Velp</span></figcaption></figure>
         <figure><div class="stars" role="img" aria-label="5 van 5 sterren">★★★★★</div><blockquote>"Dakisolatie laten aanbrengen. Wat een verschil! Meteen merkbaar warmte binnen. Ook nog subsidie geregeld."</blockquote><figcaption>Fatima El Amrani <span>· Arnhem</span></figcaption></figure>
@@ -658,11 +655,11 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="onderhoud" class="section dark" aria-labelledby="onderhoud-titel">
   <div class="wrap">
-    <div class="rise" style="display:grid;gap:18px;max-width:46em">
+    <div style="display:grid;gap:18px;max-width:46em">
       <h2 id="onderhoud-titel">Onderhoudscontract: zekerheid voor uw dak</h2>
       <p class="lead">Eén vast bedrag per jaar. Wij controleren uw dak op vaste momenten en verhelpen kleine gebreken voordat ze een lekkage worden.</p>
     </div>
-    <div class="plans rise">
+    <div class="plans">
       <div class="plan">
         <h3>Basis</h3>
         <p class="price">€150<span> per jaar</span></p>
@@ -704,14 +701,14 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="gebied" class="section" aria-labelledby="gebied-titel">
   <div class="wrap area">
-    <div class="rise">
+    <div>
       <h2 id="gebied-titel">Vanuit Arnhem door heel Gelderland</h2>
       <p class="lead" style="margin-top:18px">Voor <a href="daklekkage/" class="text-link">lekkage</a>, <a href="plat-dak/" class="text-link">een nieuw plat dak</a> of <a href="dakisolatie/" class="text-link">dakisolatie</a> komen wij naar u toe.</p>
       <ul class="towns">
         <li class="home">Arnhem</li><li>Nijmegen</li><li>Apeldoorn</li><li>Ede</li><li>Wageningen</li><li>Velp</li><li>Duiven</li><li>Heel Gelderland</li>
       </ul>
     </div>
-    <div class="area-map rise" id="areaMap">
+    <div class="area-map" id="areaMap">
       <div class="map-placeholder">
         <p>De kaart wordt geladen via Google Maps. Google kan daarbij cookies plaatsen.</p>
         <button type="button" class="btn btn-green" onclick="laadKaart()">Kaart laden</button>
@@ -722,11 +719,11 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="faq" class="section toned" aria-labelledby="faq-titel">
   <div class="wrap faq">
-    <div class="rise" style="display:grid;gap:18px">
+    <div style="display:grid;gap:18px">
       <h2 id="faq-titel">Veelgestelde vragen</h2>
       <p class="lead">Staat uw vraag er niet bij? Bel <a href="tel:+31657079276" class="text-link">06 57 07 92 76</a> of stuur een WhatsApp-bericht.</p>
     </div>
-    <div class="faq-list rise">
+    <div class="faq-list">
       <div class="faq-item">
         <h3 style="font-size:inherit"><button type="button" class="faq-q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1"><span>Hoe snel kunnen jullie bij een lekkage langskomen?</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></button></h3>
         <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-q1">Bij lekkage proberen wij binnen 24 uur bij u te zijn. Bel ons direct op <a href="tel:+31657079276">06 57 07 92 76</a> of stuur een <a href="https://wa.me/31657079276" target="_blank" rel="noopener">WhatsApp-bericht<span class="sr-only"> (opent in nieuw venster)</span></a> met foto's van de lekkage. Lees ook <a href="daklekkage/">wat u bij een daklekkage zelf alvast kunt doen</a>.</div>
@@ -771,7 +768,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <section id="contact" class="section dark" aria-labelledby="contact-titel">
   <div class="wrap contact">
-    <div class="contact-info rise">
+    <div class="contact-info">
       <h2 id="contact-titel">Vraag uw gratis offerte aan</h2>
       <p class="lead">Bel, stuur een WhatsApp-bericht of vul het formulier in. Wij reageren binnen 24 uur.</p>
       <div class="contact-lines">
@@ -786,7 +783,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
         <dt>Zondag</dt><dd>Alleen bij spoed, bel ons</dd>
       </dl>
     </div>
-    <div class="form-card rise">
+    <div class="form-card">
       <form id="benzandak-form" action="https://formspree.io/f/xgoqnzqn" method="POST" novalidate>
         <div class="form-msg ok" id="form-ok" role="status" tabindex="-1">
           <strong>Bedankt, uw aanvraag is binnen.</strong><br>
@@ -1077,19 +1074,6 @@ function toonCookieBanner(){
 if(!opslag('cookieConsent')) cookieBanner.style.display = 'block';
 pasToestemmingToe();
 
-// ─── Rustige binnenkomst van secties (inhoud blijft zichtbaar zonder script) ───
-(function(){
-  var els = document.querySelectorAll('.rise');
-  if(reduceMotion || !('IntersectionObserver' in window)) return;
-  document.documentElement.classList.add('js');
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {rootMargin:'0px 0px -8% 0px', threshold:.08});
-  els.forEach(function(el){
-    var r = el.getBoundingClientRect();
-    if(r.top < window.innerHeight){ el.classList.add('in'); } else { io.observe(el); }
-  });
-})();
 </script>
 </body>
 </html>
