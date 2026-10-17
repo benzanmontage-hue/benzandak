@@ -24,6 +24,7 @@
 <link rel="preload" as="image" href="images/werk-lichtkoepel-1400.webp" imagesrcset="images/werk-lichtkoepel-720.webp 720w, images/werk-lichtkoepel-1400.webp 1400w" imagesizes="(max-width:900px) 100vw, 50vw" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,7 +38,7 @@
       "telephone": "+31657079276",
       "email": "info@benzandak.nl",
       "image": "https://benzandak.nl/images/og-benzandak.jpg",
-      "logo": "https://benzandak.nl/favicon.svg",
+      "logo": "https://benzandak.nl/images/logo/app-icoon-512.png",
       "priceRange": "€€",
       "areaServed": ["Arnhem","Nijmegen","Apeldoorn","Ede","Wageningen","Velp","Duiven","Gelderland"],
       "address": {"@type":"PostalAddress","streetAddress":"Leeuwenstein 64","postalCode":"6824 DA","addressLocality":"Arnhem","addressRegion":"Gelderland","addressCountry":"NL"},
@@ -129,20 +130,24 @@ h3{font-size:var(--s-h3);font-weight:700;line-height:1.2}
 .text-link:hover{color:var(--green-deep)}
 
 /* ─── NAV ─── */
-nav#nav{position:sticky;top:0;z-index:100;background:#fff}
-nav#nav.scrolled{box-shadow:0 2px 18px rgba(10,31,20,.08)}
+nav#nav{position:sticky;top:0;z-index:100;background:var(--green-deep)}
+nav#nav.scrolled{box-shadow:0 2px 18px rgba(0,0,0,.25)}
 nav#nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:72px}
-.logo{font-size:1.4rem;font-weight:800;color:var(--green);text-decoration:none;display:flex;align-items:center;gap:8px;letter-spacing:-.02em}
-.logo span{color:var(--action)}
+.logo{display:flex;align-items:center;text-decoration:none;padding:6px 0}
+.logo img{height:38px;width:auto}
+@media(max-width:900px){.logo img{height:32px}}
 .nav-inner{display:flex;align-items:center;gap:28px}
 .nav-links{display:flex;gap:24px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--ink);font-weight:600;font-size:.95rem}
-.nav-links a:hover{color:var(--green);text-decoration:underline;text-underline-offset:6px}
+.nav-links a{text-decoration:none;color:#fff;font-weight:600;font-size:.95rem}
+.nav-links a:hover{color:var(--gold);text-decoration:underline;text-underline-offset:6px}
 .nav-actions{display:flex;gap:10px}
 .nav-actions .btn{min-height:44px;padding:10px 18px;font-size:.92rem;white-space:nowrap}
-.mobile-toggle{display:none;background:none;border:0;color:var(--ink);padding:8px;cursor:pointer}
+.mobile-toggle{display:none;background:none;border:0;color:#fff;padding:8px;cursor:pointer}
+#nav :focus-visible{outline-color:var(--gold)}
+#nav .btn-quiet{background:rgba(255,255,255,.12);color:#fff}
+#nav .btn-quiet:hover{background:rgba(255,255,255,.2)}
 @media(max-width:900px){
-  .nav-inner{position:fixed;top:72px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;padding:20px var(--gutter) 28px;gap:16px;transform:translateY(-120%);opacity:0;visibility:hidden;transition:transform .3s,opacity .3s;box-shadow:0 18px 30px rgba(10,31,20,.12)}
+  .nav-inner{position:fixed;top:72px;left:0;right:0;background:var(--green-deep);flex-direction:column;align-items:stretch;padding:20px var(--gutter) 28px;gap:16px;transform:translateY(-120%);opacity:0;visibility:hidden;transition:transform .3s,opacity .3s;box-shadow:0 18px 30px rgba(0,0,0,.3)}
   .nav-inner.open{transform:none;opacity:1;visibility:visible}
   .nav-links{flex-direction:column;gap:4px}
   .nav-links a{display:block;padding:10px 0;font-size:1.05rem}
@@ -367,8 +372,7 @@ nav#nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:
 /* ─── FOOTER ─── */
 footer{background:var(--green-ink);color:var(--on-dark-soft);font-size:.95rem}
 .footer-top{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:32px;padding-block:72px 48px}
-.footer-brand{font-size:clamp(2rem,4vw,3rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1}
-.footer-brand span{color:var(--gold)}
+.footer-brand img{height:clamp(44px,5vw,60px);width:auto}
 .footer-title{color:#fff;font-weight:700;margin-bottom:12px}
 footer ul{list-style:none;display:grid;gap:8px}
 footer a{color:var(--on-dark-soft);text-decoration:none}
@@ -413,7 +417,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 
 <nav id="nav" aria-label="Hoofdmenu">
   <div class="wrap">
-    <a href="/" class="logo" aria-label="Benzan Dak – home"><svg aria-hidden="true" viewBox="0 0 64 64" width="34" height="34"><path d="M 10 44 L 32 18 L 46 40" stroke="#1a5c3a" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/><rect x="37" y="22" width="7" height="13" rx="1.5" fill="#1a5c3a"/></svg>Benzan<span>Dak</span></a>
+    <a href="/" class="logo" aria-label="Benzan Dak – home"><img src="images/logo/logo-benzandak-donker.svg" alt="" width="125" height="34"></a>
     <button type="button" class="mobile-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="navMobile">
       <svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
@@ -851,7 +855,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
 <footer>
   <div class="wrap footer-top">
     <div>
-      <p class="footer-brand">Benzan<span>Dak</span></p>
+      <p class="footer-brand"><img src="images/logo/logo-benzandak-donker.svg" alt="Benzan Dak" width="220" height="60"></p>
       <p style="margin-top:14px;max-width:24em">Uw dakdekker in Arnhem en Gelderland. Leeuwenstein 64, 6824 DA Arnhem.</p>
     </div>
     <nav aria-label="Diensten">
