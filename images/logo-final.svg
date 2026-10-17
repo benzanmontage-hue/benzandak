@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 150" width="720" height="300">
-  <!-- Roofline (open lijn, groen) -->
-  <path d="M 62 78 L 180 32 L 264 74" stroke="#1a5c3a" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <!-- Schoorsteen -->
-  <rect x="220" y="36" width="14" height="22" rx="2" fill="#1a5c3a"/>
-
-  <!-- Wordmark -->
-  <text x="180" y="124" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800" fill="#1a5c3a" text-anchor="middle">Benzan<tspan fill="#d4832b">DAK</tspan></text>
-</svg>
