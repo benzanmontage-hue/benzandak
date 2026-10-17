@@ -92,7 +92,7 @@ legend{font-size:1.05rem;font-weight:700;color:var(--green);margin-bottom:12px;p
 .choice input{margin-top:4px;width:18px;height:18px;accent-color:var(--green);flex-shrink:0}
 .choice:has(input:checked){border-color:var(--green);background:#f0f5f0;box-shadow:0 0 0 1px var(--green)}
 .choice .c-title{font-weight:700;display:block}
-.choice .c-price{font-weight:800;color:var(--orange);display:block;margin:2px 0}
+.choice .c-price{font-weight:800;color:var(--orange-dark);display:block;margin:2px 0}
 .choice .c-desc{font-size:.85rem;color:var(--muted);display:block}
 .choice .c-check{display:none;font-size:.78rem;font-weight:700;color:var(--green)}
 .choice:has(input:checked) .c-check{display:block}

@@ -104,3 +104,10 @@ R28 netlify.toml: security headers (HSTS, nosniff, Referrer-Policy, Permissions-
 9. Is het zonnepanelen-abonnement (abonnement-contract.txt) een actief product?
 10. Echte projectfoto's (met plaats) en een foto/naam van uzelf voor een "Over ons"-blok?
 11. Wilt u een pagina "Dakdekker Nijmegen" (alleen met echt werk daar)?
+12. Klopt de review-werkwijze op de site (controle of u bij de schrijver gewerkt heeft, positieve en kritische reviews gelijk behandeld)?
+13. Bewaartermijn in de privacyverklaring: aanvragen zonder opdracht na 1 jaar verwijderen — akkoord?
+14. Isoleert u hellende daken ook aan de binnenkant (zoals op /dakisolatie/ staat)?
+
+## Verificatie (onafhankelijke controle, 17 okt 2026)
+25 van 28 eisen PASS bij eerste controle; R2 (onder voorbehoud), R15 (ongebruikte afbeelding) en R21 (contrast interne tools, c-price) zijn daarna opgelost, plus: dienstkaarten 1 kolom op mobiel, focus in mobiel menu, label videoknop, dode CSS.
+Niet lokaal te testen: Netlify-404/headers, geslaagde Formspree-verzending, video-afspelen, iOS/Safari.
