@@ -228,15 +228,27 @@ nav#nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:
 .work-grid figcaption{position:absolute;left:12px;bottom:12px;right:12px;max-width:max-content;background:rgba(10,31,20,.8);color:#fff;font-size:.82rem;padding:6px 12px;border-radius:999px}
 .w1{grid-column:span 7;grid-row:span 2}
 .w2{grid-column:span 5;grid-row:span 2}
-.w3{grid-column:span 4}
-.w4{grid-column:span 4}
-.w5{grid-column:span 4}
+.w3,.w4,.w5,.w6{grid-column:span 3}
 @media(max-width:820px){
   .work-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:180px}
   .w1{grid-column:span 2;grid-row:span 1}
   .w2{grid-column:span 1;grid-row:span 2}
-  .w3,.w4,.w5{grid-column:span 1}
+  .w3,.w4,.w5,.w6{grid-column:span 1}
 }
+
+/* ─── VOOR EN NA ─── */
+.beforeafter{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,64px);align-items:center;margin-bottom:clamp(48px,7vw,96px);background:var(--tone);border-radius:28px;padding:clamp(20px,3vw,40px)}
+.ba-text{display:flex;flex-direction:column;gap:16px}
+.ba-text h3{font-size:clamp(1.5rem,2.6vw,2.1rem);letter-spacing:-.025em;line-height:1.1}
+.ba-text ul{list-style:none;display:grid;gap:10px}
+.ba-text li{padding-left:28px;position:relative}
+.ba-text li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:8px;border-left:3px solid var(--green);border-bottom:3px solid var(--green);transform:rotate(-45deg)}
+.ba-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ba-photos figure{position:relative;margin:0;border-radius:18px;overflow:hidden;aspect-ratio:3/4;background:var(--tone-2)}
+.ba-photos img{width:100%;height:100%;object-fit:cover}
+.ba-label{position:absolute;top:12px;left:12px;padding:6px 14px;border-radius:999px;font-weight:800;font-size:.9rem;color:#fff;background:var(--green-deep)}
+.ba-label.na{background:var(--action)}
+@media(max-width:820px){.beforeafter{grid-template-columns:1fr}.ba-photos{order:-1}}
 
 /* ─── CALCULATOR ─── */
 .calc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,6vw,88px);align-items:start}
@@ -549,12 +561,29 @@ footer a:hover{color:var(--gold);text-decoration:underline}
       <h2 id="werk-titel">Ons werk</h2>
       <p class="lead" style="max-width:28em">Platte daken in de regio Arnhem: van de ondergrond tot de afwerking rond de lichtkoepel.</p>
     </div>
+<article class="beforeafter" aria-labelledby="ba-titel">
+      <div class="ba-text">
+        <h3 id="ba-titel">Voor en na: plat dak met lichtkoepel</h3>
+        <p>Op deze uitbouw hebben wij het platte dak opnieuw opgebouwd, met ruimte voor een grote lichtkoepel.</p>
+        <ul>
+          <li>Nieuwe houten balklaag met sparing voor de lichtkoepel</li>
+          <li>Dichte ondergrond en bitumen dakbedekking</li>
+          <li>Lichtkoepel waterdicht ingewerkt en afgewerkt</li>
+        </ul>
+        <div><a href="#contact" class="btn btn-green" data-dienst="Nieuw dak of renovatie">Ook zo'n dak? Vraag een offerte aan</a></div>
+      </div>
+      <div class="ba-photos">
+        <figure><img src="images/project-lichtkoepel-voor-900.webp" srcset="images/project-lichtkoepel-voor-540.webp 540w, images/project-lichtkoepel-voor-900.webp 900w" sizes="(max-width:820px) 50vw, 30vw" width="900" height="1200" loading="lazy" decoding="async" alt="Voor: nieuwe houten balklaag op de uitbouw, met een open sparing voor de lichtkoepel"><span class="ba-label">Voor</span></figure>
+        <figure><img src="images/project-lichtkoepel-na-900.webp" srcset="images/project-lichtkoepel-na-540.webp 540w, images/project-lichtkoepel-na-900.webp 900w" sizes="(max-width:820px) 50vw, 30vw" width="900" height="1600" loading="lazy" decoding="async" alt="Na: afgewerkt plat dak met bitumen dakbedekking en een grote glazen lichtkoepel"><span class="ba-label na">Na</span></figure>
+      </div>
+    </article>
     <div class="work-grid">
       <figure class="w1"><img src="images/werk-dakraam-1100.webp" srcset="images/werk-dakraam-640.webp 640w, images/werk-dakraam-1100.webp 1100w" sizes="(max-width:820px) 100vw, 58vw" width="1100" height="821" loading="lazy" decoding="async" alt="Plat dak met dakraam en nieuwe bitumen dakbedekking achter een rijwoning"><figcaption>Bitumen dak met dakraam</figcaption></figure>
       <figure class="w2"><img src="images/werk-ondergrond-720.webp" srcset="images/werk-ondergrond-480.webp 480w, images/werk-ondergrond-720.webp 720w" sizes="(max-width:820px) 50vw, 42vw" width="720" height="1274" loading="lazy" decoding="async" alt="Nieuwe houten ondergrond voor een plat dak in aanbouw"><figcaption>Nieuwe ondergrond</figcaption></figure>
       <figure class="w3"><img src="images/werk-isolatie-640.webp" width="640" height="478" loading="lazy" decoding="async" alt="Isolatieplaten op een plat dak"><figcaption>Isolatie</figcaption></figure>
       <figure class="w4"><img src="images/werk-lichtkoepel-720.webp" width="720" height="537" loading="lazy" decoding="async" alt="Afgewerkt plat dak met lichtkoepel"><figcaption>Lichtkoepel afgewerkt</figcaption></figure>
       <figure class="w5"><img src="images/werk-woonwijk-640.webp" width="640" height="478" loading="lazy" decoding="async" alt="Nieuwe dakbedekking op een plat dak in een woonwijk"><figcaption>Nieuw plat dak</figcaption></figure>
+      <figure class="w6"><img src="images/werk-uitbouw-bitumen-540.webp" srcset="images/werk-uitbouw-bitumen-540.webp 540w, images/werk-uitbouw-bitumen-900.webp 900w" sizes="(max-width:820px) 50vw, 25vw" width="540" height="721" loading="lazy" decoding="async" style="object-position:center 60%" alt="Nieuw gelegde bitumen dakbedekking op het platte dak van een uitbouw, met afgewerkte dakrand"><figcaption>Bitumen op een uitbouw</figcaption></figure>
     </div>
   </div>
 </section>
