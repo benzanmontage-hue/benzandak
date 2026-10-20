@@ -120,3 +120,12 @@ legend{font-size:1.05rem;font-weight:700;color:var(--green);margin-bottom:12px;p
 @media(max-width:768px){.mobile-bar{display:flex}body{padding-bottom:calc(76px + env(safe-area-inset-bottom))}}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Werkfoto's op dienstpagina's */
+.page-photo{margin:28px 0 8px}
+.page-photo img{width:100%;border-radius:14px;background:var(--bg-light)}
+.page-photo figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+.photo-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0 8px}
+.photo-pair figure{margin:0;position:relative}
+.photo-pair img{width:100%;height:auto;object-fit:cover;border-radius:14px;aspect-ratio:3/4}
+.photo-pair figcaption{font-size:.85rem;color:var(--muted);margin-top:6px}

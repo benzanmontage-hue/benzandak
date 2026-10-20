@@ -46,7 +46,19 @@
       "openingHoursSpecification": [
         {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"},
         {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}
-      ]
+      ],
+      "hasOfferCatalog": {
+        "@type":"OfferCatalog",
+        "name":"Dakwerk",
+        "itemListElement":[
+          {"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://benzandak.nl/daklekkage/#dienst","name":"Daklekkage opsporen en repareren","url":"https://benzandak.nl/daklekkage/"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://benzandak.nl/plat-dak/#dienst","name":"Plat dak vernieuwen of overlagen","url":"https://benzandak.nl/plat-dak/"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://benzandak.nl/dakisolatie/#dienst","name":"Dakisolatie plat en hellend dak","url":"https://benzandak.nl/dakisolatie/"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://benzandak.nl/lichtkoepel/#dienst","name":"Lichtkoepel of dakraam plaatsen en vervangen","url":"https://benzandak.nl/lichtkoepel/"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://benzandak.nl/dakgoot/#dienst","name":"Dakgoot reinigen","url":"https://benzandak.nl/dakgoot/"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakonderhoudscontract","url":"https://benzandak.nl/onderhoudscontract"}}
+        ]
+      }
     },
     {
       "@type":"WebSite",
@@ -207,6 +219,8 @@ nav#nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:
 .pricecard-intro{position:sticky;top:110px;display:flex;flex-direction:column;gap:20px}
 .price-list{background:#fff;border-radius:24px;padding:clamp(8px,2vw,16px) clamp(20px,3vw,36px)}
 .price-list table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.price-list th a{color:inherit;text-decoration:underline;text-decoration-color:rgba(26,92,58,.45);text-underline-offset:3px}
+.price-list th a:hover{text-decoration-color:currentColor}
 .price-list th,.price-list td{text-align:left;padding:16px 0;vertical-align:baseline}
 .price-list tbody tr+tr th,.price-list tbody tr+tr td{border-top:2px solid var(--tone)}
 .price-list th{font-weight:600;color:var(--ink);padding-right:16px}
@@ -567,15 +581,15 @@ footer a:hover{color:var(--gold);text-decoration:underline}
         <caption>Indicatieve prijzen. De inspectie is gratis als u een offerte aanvraagt.</caption>
         <thead class="sr-only"><tr><th scope="col">Werk</th><th scope="col">Prijs</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Reparatie van een lekkage<small>meestal</small></th><td>€150 – €500</td></tr>
-          <tr><th scope="row">Overlagen plat dak</th><td>€45 – €65 per m²</td></tr>
-          <tr><th scope="row">Nieuw plat dak met isolatie</th><td>€90 – €140 per m²</td></tr>
+          <tr><th scope="row"><a href="daklekkage/">Reparatie van een lekkage</a><small>meestal</small></th><td>€150 – €500</td></tr>
+          <tr><th scope="row"><a href="plat-dak/">Overlagen plat dak</a></th><td>€45 – €65 per m²</td></tr>
+          <tr><th scope="row"><a href="plat-dak/">Nieuw plat dak met isolatie</a></th><td>€90 – €140 per m²</td></tr>
           <tr><th scope="row">Nieuw hellend dak</th><td>€120 – €180 per m²</td></tr>
-          <tr><th scope="row">Dakisolatie<small>ISDE-subsidie €16,25 per m²</small></th><td>€35 – €55 per m²</td></tr>
-          <tr><th scope="row">Dakraam of lichtkoepel<small>inclusief plaatsing</small></th><td>€750 – €1.200 per stuk</td></tr>
+          <tr><th scope="row"><a href="dakisolatie/">Dakisolatie</a><small>ISDE-subsidie €16,25 per m²</small></th><td>€35 – €55 per m²</td></tr>
+          <tr><th scope="row"><a href="lichtkoepel/">Dakraam of lichtkoepel</a><small>inclusief plaatsing</small></th><td>€750 – €1.200 per stuk</td></tr>
           <tr><th scope="row">Losse dakinspectie<small>gratis bij een offerteaanvraag</small></th><td>€95</td></tr>
-          <tr><th scope="row">Preventief onderhoud</th><td>€150 – €400</td></tr>
-          <tr><th scope="row">Dakgoot reinigen</th><td>vanaf €45 per woning</td></tr>
+          <tr><th scope="row"><a href="/onderhoudscontract">Preventief onderhoud</a></th><td>€150 – €400</td></tr>
+          <tr><th scope="row"><a href="dakgoot/">Dakgoot reinigen</a></th><td>vanaf €45 per woning</td></tr>
           <tr><th scope="row">Dak schoonmaken<small>inclusief controle</small></th><td>€4 – €8 per m²</td></tr>
           <tr><th scope="row">Dakterras op plat dak<small>opbouw</small></th><td>€120 – €200 per m²</td></tr>
         </tbody>
@@ -765,7 +779,7 @@ footer a:hover{color:var(--gold);text-decoration:underline}
   <div class="wrap area">
     <div>
       <h2 id="gebied-titel">Vanuit Arnhem door heel Gelderland</h2>
-      <p class="lead" style="margin-top:18px">Voor <a href="daklekkage/" class="text-link">lekkage</a>, <a href="plat-dak/" class="text-link">een nieuw plat dak</a> of <a href="dakisolatie/" class="text-link">dakisolatie</a> komen wij naar u toe.</p>
+      <p class="lead" style="margin-top:18px">Voor <a href="daklekkage/" class="text-link">lekkage</a>, <a href="plat-dak/" class="text-link">een nieuw plat dak</a> of <a href="dakisolatie/" class="text-link">dakisolatie</a> komen wij naar u toe. Ook voor <a href="lichtkoepel/" class="text-link">een lichtkoepel of dakraam</a> en <a href="dakgoot/" class="text-link">het reinigen van uw dakgoot</a>.</p>
       <ul class="towns">
         <li class="home">Arnhem</li><li>Nijmegen</li><li>Apeldoorn</li><li>Ede</li><li>Wageningen</li><li>Velp</li><li>Duiven</li><li>Heel Gelderland</li>
       </ul>
@@ -922,6 +936,8 @@ footer a:hover{color:var(--gold);text-decoration:underline}
         <li><a href="daklekkage/">Daklekkage en reparatie</a></li>
         <li><a href="plat-dak/">Plat dak vernieuwen</a></li>
         <li><a href="dakisolatie/">Dakisolatie</a></li>
+        <li><a href="lichtkoepel/">Lichtkoepel en dakraam</a></li>
+        <li><a href="dakgoot/">Dakgoot reinigen</a></li>
         <li><a href="/onderhoudscontract">Onderhoudscontract</a></li>
         <li><a href="#prijzen">Alle prijzen</a></li>
       </ul>
