@@ -38,9 +38,36 @@
   "priceRange": "€€",
   "areaServed": ["Arnhem","Nijmegen","Apeldoorn","Ede","Wageningen","Velp","Duiven","Gelderland"],
   "address": {"@type":"PostalAddress","streetAddress":"Leeuwenstein 64","postalCode":"6824 DA","addressLocality":"Arnhem","addressRegion":"Gelderland","addressCountry":"NL"},
+  "geo": {"@type":"GeoCoordinates","latitude":51.9892047,"longitude":5.9276463},
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Leeuwenstein+64,+6824+DA+Arnhem",
   "openingHoursSpecification": [
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"},
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"09:00","closes":"13:00"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Dakwerk",
+    "itemListElement": [
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Daklekkage verhelpen","description":"Binnen 24 uur ter plaatse, direct dichten."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakreparatie","description":"Kleine en grotere reparaties, snel gefixt."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakinspectie","description":"Lekkage opsporen, met helder rapport."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakgoot reinigen","description":"Voorkomt lekkage en waterschade."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dak schoonmaken","description":"Mos en vuil verwijderen."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakonderhoud","description":"Jaarlijkse check, voorkom problemen."}}
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://benzandak.nl/#faq",
+  "mainEntity": [
+    {"@type":"Question","name":"Hoe snel verhelpen jullie een daklekkage?","acceptedAnswer":{"@type":"Answer","text":"Binnen 24 uur, vaak dezelfde dag. Bij spoed belt u ons direct op 06 57 07 92 76."}},
+    {"@type":"Question","name":"Werken jullie ook buiten Arnhem?","acceptedAnswer":{"@type":"Answer","text":"Ja, vanuit Arnhem werken wij door heel Gelderland, waaronder Nijmegen, Apeldoorn, Ede, Wageningen, Velp en Duiven."}},
+    {"@type":"Question","name":"Wat kan ik doen als mijn dak nu lekt?","acceptedAnswer":{"@type":"Answer","text":"Bel ons direct of stuur een foto via WhatsApp. Leg een emmer neer en dek het lek tijdelijk af. Wij komen zo snel mogelijk."}},
+    {"@type":"Question","name":"Zijn jullie verzekerd?","acceptedAnswer":{"@type":"Answer","text":"Ja, wij zijn verzekerd en staan ingeschreven bij de KVK onder nummer 90090330."}}
   ]
 }
 </script>
@@ -114,6 +141,16 @@ header{position:sticky;top:0;z-index:100;background:var(--green-deep)}
 .ba.na{background:var(--green);color:#fff}
 @media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:460px){.gallery{grid-template-columns:1fr}}
+
+/* ─── FAQ ─── */
+.faq{padding:64px 20px;background:var(--tone)}
+.faq-list{display:grid;gap:12px;max-width:820px}
+.faq-list details{background:var(--paper);border-radius:12px;border:1px solid var(--tone-2)}
+.faq-list summary{font-weight:700;color:var(--ink);cursor:pointer;padding:16px 20px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-list summary::after{content:"+";font-size:1.4rem;color:var(--green);font-weight:600;flex-shrink:0}
+.faq-list details[open] summary::after{content:"\2212"}
+.faq-list p{padding:0 20px 18px;color:var(--muted)}
 
 /* ─── Contact / form ─── */
 .contact{background:var(--tone);padding:64px 20px}
@@ -246,6 +283,32 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
           <img src="images/werk-woonwijk-640.webp" srcset="images/werk-woonwijk-640.webp 640w, images/werk-woonwijk-1100.webp 1100w" sizes="(max-width:760px) 100vw, 33vw" width="1100" height="821" loading="lazy" decoding="async" alt="Nieuw gelegde bitumen dakbedekking op een plat dak in een woonwijk">
           <figcaption>Nieuw plat dak in de woonwijk</figcaption>
         </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-titel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="faq-titel">Veelgestelde vragen</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Hoe snel verhelpen jullie een daklekkage?</summary>
+          <p>Binnen 24 uur, vaak dezelfde dag. Bij spoed belt u ons direct op 06 57 07 92 76.</p>
+        </details>
+        <details>
+          <summary>Werken jullie ook buiten Arnhem?</summary>
+          <p>Ja, vanuit Arnhem werken wij door heel Gelderland, waaronder Nijmegen, Apeldoorn, Ede, Wageningen, Velp en Duiven.</p>
+        </details>
+        <details>
+          <summary>Wat kan ik doen als mijn dak nu lekt?</summary>
+          <p>Bel ons direct of stuur een foto via WhatsApp. Leg een emmer neer en dek het lek tijdelijk af. Wij komen zo snel mogelijk.</p>
+        </details>
+        <details>
+          <summary>Zijn jullie verzekerd?</summary>
+          <p>Ja, wij zijn verzekerd en staan ingeschreven bij de KVK onder nummer 90090330.</p>
+        </details>
       </div>
     </div>
   </section>
