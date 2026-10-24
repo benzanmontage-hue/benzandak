@@ -103,6 +103,18 @@ header{position:sticky;top:0;z-index:100;background:var(--green-deep)}
 .card.primary h3{color:#fff}
 .card.primary p{color:var(--tone-2)}
 
+/* ─── Ons werk (galerij) ─── */
+.werk{padding:64px 20px}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gallery figure{position:relative;margin:0;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:var(--tone)}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
+.gallery figure:hover img{transform:scale(1.04)}
+.gallery figcaption{position:absolute;left:10px;bottom:10px;max-width:calc(100% - 20px);background:rgba(10,31,20,.82);color:#fff;font-size:.8rem;padding:6px 12px;border-radius:999px}
+.ba{position:absolute;top:10px;left:10px;background:var(--gold);color:var(--green-ink);font-weight:700;font-size:.75rem;padding:4px 10px;border-radius:999px}
+.ba.na{background:var(--green);color:#fff}
+@media(max-width:760px){.gallery{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.gallery{grid-template-columns:1fr}}
+
 /* ─── Contact / form ─── */
 .contact{background:var(--tone);padding:64px 20px}
 .contact-grid{display:grid;grid-template-columns:1fr;gap:32px}
@@ -197,6 +209,43 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
         <div class="card"><h3>Dakgoot reinigen</h3><p>Voorkomt lekkage en waterschade.</p></div>
         <div class="card"><h3>Dak schoonmaken</h3><p>Mos en vuil verwijderen.</p></div>
         <div class="card"><h3>Dakonderhoud</h3><p>Jaarlijkse check, voorkom problemen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="werk" id="werk" aria-labelledby="werk-titel">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="werk-titel">Ons werk</h2>
+        <p>Echte projecten uit Arnhem en Gelderland.</p>
+      </div>
+      <div class="gallery">
+        <figure>
+          <img src="images/werk-lichtkoepel-720.webp" srcset="images/werk-lichtkoepel-720.webp 720w, images/werk-lichtkoepel-1400.webp 1400w" sizes="(max-width:760px) 100vw, 33vw" width="1400" height="1045" loading="lazy" decoding="async" alt="Afgewerkt plat dak met bitumen dakbedekking en lichtkoepel achter een rijwoning">
+          <figcaption>Plat dak met lichtkoepel, afgewerkt in bitumen</figcaption>
+        </figure>
+        <figure>
+          <img src="images/project-lichtkoepel-voor-540.webp" srcset="images/project-lichtkoepel-voor-540.webp 540w, images/project-lichtkoepel-voor-900.webp 900w" sizes="(max-width:760px) 100vw, 33vw" width="900" height="1200" loading="lazy" decoding="async" alt="Voor: nieuwe houten balklaag op de uitbouw, met een open sparing voor de lichtkoepel">
+          <span class="ba">Voor</span>
+          <figcaption>Uitbouw vóór de lichtkoepel</figcaption>
+        </figure>
+        <figure>
+          <img src="images/project-lichtkoepel-na-540.webp" srcset="images/project-lichtkoepel-na-540.webp 540w, images/project-lichtkoepel-na-900.webp 900w" sizes="(max-width:760px) 100vw, 33vw" width="900" height="1600" loading="lazy" decoding="async" alt="Na: afgewerkt plat dak met bitumen dakbedekking en een grote glazen lichtkoepel">
+          <span class="ba na">Na</span>
+          <figcaption>Afgewerkt met glazen lichtkoepel</figcaption>
+        </figure>
+        <figure>
+          <img src="images/werk-bitumen-480.webp" srcset="images/werk-bitumen-480.webp 480w, images/werk-bitumen-720.webp 720w" sizes="(max-width:760px) 100vw, 33vw" width="720" height="1274" loading="lazy" decoding="async" alt="Nieuwe bitumen dakbedekking op een plat dak tijdens de werkzaamheden">
+          <figcaption>Nieuwe bitumen dakbedekking</figcaption>
+        </figure>
+        <figure>
+          <img src="images/werk-dakraam-640.webp" srcset="images/werk-dakraam-640.webp 640w, images/werk-dakraam-1100.webp 1100w" sizes="(max-width:760px) 100vw, 33vw" width="1100" height="821" loading="lazy" decoding="async" alt="Plat dak met dakraam en nieuwe bitumen dakbedekking achter een rijwoning">
+          <figcaption>Bitumen dak met dakraam</figcaption>
+        </figure>
+        <figure>
+          <img src="images/werk-woonwijk-640.webp" srcset="images/werk-woonwijk-640.webp 640w, images/werk-woonwijk-1100.webp 1100w" sizes="(max-width:760px) 100vw, 33vw" width="1100" height="821" loading="lazy" decoding="async" alt="Nieuw gelegde bitumen dakbedekking op een plat dak in een woonwijk">
+          <figcaption>Nieuw plat dak in de woonwijk</figcaption>
+        </figure>
       </div>
     </div>
   </section>
