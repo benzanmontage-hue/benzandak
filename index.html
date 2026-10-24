@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Dakdekker Arnhem | Benzan Dak — Offerte aanvragen</title>
-<meta name="description" content="Dakdekker in Arnhem en Gelderland. Lekkage, plat dak, dakisolatie of onderhoud? Vraag direct een vrijblijvende offerte aan — wij reageren binnen 24 uur.">
+<title>Daklekkage verhelpen Arnhem | Binnen 24 uur | Benzan Dak</title>
+<meta name="description" content="Daklekkage in Arnhem of Gelderland? Benzan Dak is er binnen 24 uur — vaak dezelfde dag — en dicht uw lek direct. Bel of stuur een foto via WhatsApp.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="https://benzandak.nl/">
-<meta property="og:title" content="Benzan Dak — Dakdekker Arnhem &amp; Gelderland">
-<meta property="og:description" content="Dakreparatie, lekkage, plat dak, dakisolatie en onderhoud in Arnhem en Gelderland. Vraag een vrijblijvende offerte aan.">
+<meta property="og:title" content="Benzan Dak — Daklekkage snel verholpen in Arnhem">
+<meta property="og:description" content="Lekt uw dak? Binnen 24 uur ter plaatse, vaak dezelfde dag. Daklekkage, dakreparatie en dakonderhoud in Arnhem en Gelderland.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://benzandak.nl/">
 <meta property="og:image" content="https://benzandak.nl/images/og-benzandak.jpg">
@@ -29,7 +29,7 @@
   "@type": "RoofingContractor",
   "@id": "https://benzandak.nl/#business",
   "name": "Benzan Dak",
-  "description": "Dakdekkersbedrijf in Arnhem en Gelderland voor dakreparatie, lekkage, plat dak, dakisolatie, dakgoten en dakonderhoud.",
+  "description": "Daklekkage specialist in Arnhem en Gelderland. Lekkages binnen 24 uur verholpen, dakreparatie, dakinspectie, dakgoten en dakonderhoud.",
   "url": "https://benzandak.nl/",
   "telephone": "+31657079276",
   "email": "info@benzandak.nl",
@@ -40,7 +40,7 @@
   "address": {"@type":"PostalAddress","streetAddress":"Leeuwenstein 64","postalCode":"6824 DA","addressLocality":"Arnhem","addressRegion":"Gelderland","addressCountry":"NL"},
   "openingHoursSpecification": [
     {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"},
-    {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"09:00","closes":"13:00"}
+    {"@type":"OpeningHoursSpecification","dayOfWeek":["Saturday"],"opens":"09:00","closes":"13:00"}
   ]
 }
 </script>
@@ -79,12 +79,14 @@ header{position:sticky;top:0;z-index:100;background:var(--green-deep)}
 
 /* ─── Hero ─── */
 .hero{background:var(--green-deep);color:var(--on-dark);padding:64px 20px 72px}
-.hero-inner{max-width:var(--max);margin:0 auto;display:grid;gap:28px}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;gap:26px}
 .hero .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:700;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
-.hero h1{color:#fff;font-size:clamp(2.2rem,5.5vw,3.6rem);max-width:16ch}
-.hero .lead{color:var(--on-dark-soft);font-size:clamp(1.05rem,2vw,1.25rem);max-width:44ch}
-.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
-.hero-trust{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--on-dark-soft);font-size:.9rem;margin-top:6px}
+.hero h1{color:#fff;font-size:clamp(2.2rem,5.5vw,3.4rem);max-width:14ch}
+.hero .lead{color:var(--on-dark-soft);font-size:clamp(1.05rem,2vw,1.22rem);max-width:46ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.hero-hint{color:var(--on-dark-soft);font-size:.9rem}
+.hero-hint a{color:var(--gold);font-weight:600}
+.hero-trust{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--on-dark-soft);font-size:.9rem;margin-top:4px}
 .hero-trust strong{color:#fff;font-weight:700}
 
 /* ─── Services ─── */
@@ -97,6 +99,9 @@ header{position:sticky;top:0;z-index:100;background:var(--green-deep)}
 .card{background:var(--tone);border-radius:var(--radius);padding:18px 20px}
 .card h3{font-size:1.02rem;font-weight:700;margin-bottom:4px}
 .card p{color:var(--muted);font-size:.9rem}
+.card.primary{background:var(--green);color:#fff}
+.card.primary h3{color:#fff}
+.card.primary p{color:var(--tone-2)}
 
 /* ─── Contact / form ─── */
 .contact{background:var(--tone);padding:64px 20px}
@@ -105,6 +110,8 @@ header{position:sticky;top:0;z-index:100;background:var(--green-deep)}
 .form-card{background:var(--paper);border-radius:20px;padding:28px;box-shadow:0 12px 40px rgba(15,43,30,.08)}
 .form-card h2{font-size:1.5rem;margin-bottom:6px}
 .form-card .lead{color:var(--muted);font-size:.95rem;margin-bottom:22px}
+.spoed-strip{background:#fdf3e3;border:1px solid #f3d9b0;color:#7a4a12;border-radius:10px;padding:10px 14px;font-size:.88rem;margin-bottom:18px;font-weight:500}
+.spoed-strip a{color:#7a4a12;font-weight:700}
 .field{margin-bottom:16px}
 .field label{display:block;font-weight:600;font-size:.9rem;color:var(--ink);margin-bottom:6px}
 .field label .req{color:var(--green);font-weight:700}
@@ -153,7 +160,7 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
 </style>
 </head>
 <body>
-<a class="skip-link" href="#contact">Naar het offerteformulier</a>
+<a class="skip-link" href="#contact">Naar het formulier</a>
 
 <header>
   <div class="nav">
@@ -165,33 +172,31 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
 <main>
   <section class="hero">
     <div class="hero-inner">
-      <p class="kicker">Dakdekker · Arnhem &amp; Gelderland</p>
-      <h1>Dakdekker in Arnhem</h1>
-      <p class="lead">Lekkage, plat dak, dakisolatie of onderhoud? Vraag direct een vrijblijvende offerte aan — wij reageren binnen 24 uur.</p>
+      <p class="kicker">Daklekkage specialist · Arnhem &amp; Gelderland</p>
+      <h1>Daklekkage? Snel verholpen.</h1>
+      <p class="lead">Lekt uw dak? Wij zijn er binnen 24 uur — vaak dezelfde dag — en dichten het direct. Snel, netjes en zonder gedoe.</p>
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-gold">Offerte aanvragen</a>
-        <a href="https://wa.me/31657079276?text=Hallo%20Benzan%20Dak%2C%20ik%20wil%20graag%20een%20offerte%20voor%20mijn%20dak." target="_blank" rel="noopener" class="btn btn-outline">WhatsApp</a>
+        <a href="tel:+31657079276" class="btn btn-gold">Bel nu: 06 57 07 92 76</a>
+        <a href="https://wa.me/31657079276?text=Hallo%20Benzan%20Dak%2C%20ik%20heb%20een%20daklekkage%20en%20stuur%20hier%20foto%27s." target="_blank" rel="noopener" class="btn btn-outline">Stuur foto via WhatsApp</a>
       </div>
-      <p class="hero-trust"><span><strong>8+ jaar</strong> vakervaring</span><span><strong>100+</strong> daken</span><span><strong>Verzekerd</strong> · KVK 90090330</span></p>
+      <p class="hero-hint">Of <a href="#contact">vul het formulier hieronder in</a> — wij reageren binnen 24 uur.</p>
+      <p class="hero-trust"><span><strong>Spoed binnen 24 uur</strong></span><span><strong>Verzekerd</strong> · KVK 90090330</span></p>
     </div>
   </section>
 
   <section class="services" id="diensten" aria-labelledby="diensten-titel">
     <div class="wrap">
       <div class="section-head">
-        <h2 id="diensten-titel">Wat wij doen</h2>
-        <p>Plat dak en bitumen, in de hele regio Arnhem en Gelderland.</p>
+        <h2 id="diensten-titel">Lekkage en reparatie</h2>
+        <p>Van kleine lekkage tot dakreparatie — wij pakken het direct aan.</p>
       </div>
       <div class="grid">
-        <div class="card"><h3>Daklekkage &amp; reparatie</h3><p>Bij spoed binnen 24 uur ter plaatse.</p></div>
-        <div class="card"><h3>Plat dak vernieuwen</h3><p>Nieuw bitumen of overlagen.</p></div>
-        <div class="card"><h3>Dakisolatie</h3><p>Direct lagere energierekening.</p></div>
-        <div class="card"><h3>Lichtkoepel &amp; dakraam</h3><p>Plaatsen en vervangen.</p></div>
-        <div class="card"><h3>Dakgoot reinigen</h3><p>Voorkom lekkage en waterschade.</p></div>
+        <div class="card primary"><h3>Daklekkage</h3><p>Binnen 24 uur ter plaatse, direct dichten.</p></div>
+        <div class="card"><h3>Dakreparatie</h3><p>Kleine en grotere reparaties, snel gefixt.</p></div>
+        <div class="card"><h3>Dakinspectie</h3><p>Lekkage opsporen, met helder rapport.</p></div>
+        <div class="card"><h3>Dakgoot reinigen</h3><p>Voorkomt lekkage en waterschade.</p></div>
         <div class="card"><h3>Dak schoonmaken</h3><p>Mos en vuil verwijderen.</p></div>
-        <div class="card"><h3>Dakinspectie</h3><p>Met helder rapport.</p></div>
-        <div class="card"><h3>Dakterras</h3><p>Bitumen dakterras aanleggen.</p></div>
-        <div class="card"><h3>Onderhoudscontract</h3><p>Jaarlijks onderhoud, geen zorgen.</p></div>
+        <div class="card"><h3>Dakonderhoud</h3><p>Jaarlijkse check, voorkom problemen.</p></div>
       </div>
     </div>
   </section>
@@ -199,8 +204,8 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
   <section class="contact" id="contact" aria-labelledby="contact-titel">
     <div class="wrap contact-grid">
       <div class="contact-info">
-        <h2 id="contact-titel">Vraag uw gratis offerte aan</h2>
-        <p class="lead">Bel, stuur een WhatsApp-bericht of vul het formulier in. Wij reageren binnen 24 uur.</p>
+        <h2 id="contact-titel">Lekkage? Bel direct</h2>
+        <p class="lead">Bel, stuur een WhatsApp-bericht of vul het formulier in. Wij reageren binnen 24 uur — bij spoed eerder.</p>
         <div class="info-line"><span>Telefoon</span><a href="tel:+31657079276">06 57 07 92 76</a></div>
         <div class="info-line"><span>WhatsApp</span><a href="https://wa.me/31657079276" target="_blank" rel="noopener">Stuur een WhatsApp-bericht</a></div>
         <div class="info-line"><span>E-mail</span><a href="mailto:info@benzandak.nl">info@benzandak.nl</a></div>
@@ -213,14 +218,15 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
       </div>
 
       <div class="form-card">
-        <h2>Offerte aanvragen</h2>
+        <h2>Offerte of lekkage melden</h2>
         <p class="lead">Vul uw gegevens in, dan nemen wij contact op.</p>
+        <p class="spoed-strip">Lekt uw dak <strong>nu</strong>? Bel dan direct <a href="tel:+31657079276">06 57 07 92 76</a> — dat is sneller dan het formulier.</p>
         <form id="benzandak-form" action="https://formspree.io/f/xgoqnzqn" method="POST" novalidate>
           <div class="form-msg ok" id="form-ok" role="status" tabindex="-1">
             <strong>Bedankt, uw aanvraag is binnen.</strong> Wij nemen binnen 24 uur contact met u op. Lekt uw dak nu? Bel dan direct <a href="tel:+31657079276">06 57 07 92 76</a>.
           </div>
           <div class="form-msg err" id="form-err" role="alert"></div>
-          <input type="hidden" name="_subject" value="Nieuwe offerteaanvraag via benzandak.nl">
+          <input type="hidden" name="_subject" value="Nieuwe aanvraag via benzandak.nl">
           <div class="field">
             <label for="naam">Naam <span class="req">*</span></label>
             <input type="text" id="naam" name="naam" required autocomplete="name" placeholder="Uw volledige naam">
@@ -228,7 +234,7 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
           <div class="field">
             <label for="telefoon">Telefoonnummer <span class="req">*</span></label>
             <input type="tel" id="telefoon" name="telefoon" required autocomplete="tel" placeholder="06 12 34 56 78">
-            <p class="hint">Zodat wij u direct kunnen bereiken over uw dak.</p>
+            <p class="hint">Zodat wij u direct kunnen bereiken over uw lekkage.</p>
           </div>
           <div class="field">
             <label for="email">E-mailadres</label>
@@ -237,17 +243,15 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
           <div class="field">
             <label for="dienst">Waar kunnen wij u mee helpen?</label>
             <select id="dienst" name="dienst">
-              <option value="">— Kies een dienst (optioneel) —</option>
+              <option value="">— Kies een onderwerp (optioneel) —</option>
               <option>Lekkage / spoed</option>
               <option>Dakreparatie</option>
-              <option>Nieuw dak of renovatie</option>
-              <option>Dakisolatie</option>
-              <option>Dakraam of lichtkoepel</option>
               <option>Dakinspectie</option>
               <option>Dakgoot reinigen</option>
               <option>Dak schoonmaken</option>
-              <option>Dakterras</option>
-              <option>Onderhoudscontract</option>
+              <option>Dakraam of lichtkoepel</option>
+              <option>Dakisolatie</option>
+              <option>Onderhoud</option>
               <option>Weet ik nog niet</option>
             </select>
           </div>
@@ -262,7 +266,7 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
           <button type="submit" class="btn-submit">Aanvraag versturen</button>
           <p class="form-note">Wij gebruiken uw gegevens alleen voor deze aanvraag. Zie onze <a href="/privacy">privacyverklaring</a>.</p>
         </form>
-        <a href="https://wa.me/31657079276?text=Hallo%20Benzan%20Dak%2C%20ik%20wil%20graag%20een%20offerte%20voor%20mijn%20dak." target="_blank" rel="noopener" class="btn-wa">Liever WhatsApp? Stuur direct een bericht</a>
+        <a href="https://wa.me/31657079276?text=Hallo%20Benzan%20Dak%2C%20ik%20heb%20een%20daklekkage%20en%20stuur%20hier%20foto%27s." target="_blank" rel="noopener" class="btn-wa">Liever WhatsApp? Stuur direct een bericht</a>
       </div>
     </div>
   </section>
