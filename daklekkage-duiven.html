@@ -29,49 +29,36 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "RoofingContractor",
-      "@id": "https://benzandak.nl/daklekkage-duiven#business",
-      "name": "Benzan Dak",
-      "description": "Daklekkage specialist in Duiven en omgeving. Lekkages binnen 24 uur verholpen, dakreparatie, dakgoten, dak schoonmaken en dakonderhoud.",
-      "url": "https://benzandak.nl/daklekkage-duiven",
-      "telephone": "+31657079276",
-      "email": "info@benzandak.nl",
-      "priceRange": "€€",
-      "areaServed": [
-        "Duiven",
-        "Liemers",
-        "Gelderland"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Leeuwenstein 64",
-        "postalCode": "6824 DA",
-        "addressLocality": "Arnhem",
-        "addressRegion": "Gelderland",
-        "addressCountry": "NL"
-      },
-      "openingHoursSpecification": [
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:00",
-          "closes": "17:00"
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://benzandak.nl/"
         },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Saturday"
-          ],
-          "opens": "09:00",
-          "closes": "13:00"
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Daklekkage Duiven",
+          "item": "https://benzandak.nl/daklekkage-duiven"
         }
       ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://benzandak.nl/daklekkage-duiven#dienst",
+      "name": "Daklekkage verhelpen in Duiven",
+      "serviceType": "Dakreparatie",
+      "description": "Daklekkage specialist in Duiven en omgeving. Lekkages binnen 24 uur verholpen, dakreparatie, dakgoten, dak schoonmaken en dakonderhoud.",
+      "url": "https://benzandak.nl/daklekkage-duiven",
+      "provider": {
+        "@id": "https://benzandak.nl/#business"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Duiven"
+      }
     },
     {
       "@type": "FAQPage",
@@ -139,7 +126,7 @@
 
   <h2>Dakdekker in Duiven: binnen 24 uur ter plaatse</h2>
   <p>Lekt uw dak in Duiven? Wacht dan niet tot de waterschade groter wordt. Benzan Dak is de snelle dakdekker voor Duiven en omgeving (Groessen, Loo en de A12). Wij dichten uw lek direct, netjes en met een vaste prijs vooraf — zonder gedoe en zonder verrassingen achteraf.</p>
-  <p>Vanuit Arnhem werken wij dagelijks in Duiven en heel Liemers. Omdat we dichtbij zitten, zijn we er bij spoed vaak dezelfde dag. Bel 06 57 07 92 76 of stuur een foto via WhatsApp, dan beoordelen we uw situatie direct.</p>
+  <p>Vanuit Arnhem werken wij in Duiven en heel Liemers. Omdat we dichtbij zitten, zijn we er bij spoed vaak dezelfde dag. Bel 06 57 07 92 76 of stuur een foto via WhatsApp, dan beoordelen we uw situatie direct.</p>
 
   <h2>Onze diensten in Duiven</h2>
   <ul>
@@ -158,12 +145,12 @@
     <li><strong>Spoed binnen 24 uur</strong> — vaak dezelfde dag ter plaatse.</li>
     <li><strong>Verzekerd</strong> en ingeschreven bij de KVK onder nummer 90090330.</li>
     <li><strong>Vaste prijs vooraf</strong> — na een korte inspectie weet u waar u aan toe bent.</li>
-    <li><strong>Lokale dakdekker</strong> — vanuit Arnhem werken we dagelijks in Duiven en omgeving.</li>
+    <li><strong>Lokale dakdekker</strong> — vanuit Arnhem werken we in Duiven en omgeving.</li>
     <li><strong>Bewijs voor uw verzekeraar</strong> — foto's en een helder rapport bij elke lekkage.</li>
   </ul>
 
   <h2>Werkgebied rondom Duiven</h2>
-  <p>Wij werken door heel Gelderland. Bekijk ook onze pagina's voor de omliggende plaatsen:</p>
+  <p>Duiven ligt hemelsbreed ongeveer 8 km van onze vestiging aan de Leeuwenstein in Arnhem. Wij werken door heel Gelderland. Bekijk ook onze pagina's voor de omliggende plaatsen:</p>
   <div class="related">
       <a href="/daklekkage-westervoort">Westervoort<span>Daklekkage &amp; reparatie in Westervoort</span></a>
       <a href="/daklekkage-zevenaar">Zevenaar<span>Daklekkage &amp; reparatie in Zevenaar</span></a>
