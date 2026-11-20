@@ -29,49 +29,36 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "RoofingContractor",
-      "@id": "https://benzandak.nl/daklekkage-velp#business",
-      "name": "Benzan Dak",
-      "description": "Daklekkage specialist in Velp en omgeving. Lekkages binnen 24 uur verholpen, dakreparatie, dakgoten, dak schoonmaken en dakonderhoud.",
-      "url": "https://benzandak.nl/daklekkage-velp",
-      "telephone": "+31657079276",
-      "email": "info@benzandak.nl",
-      "priceRange": "€€",
-      "areaServed": [
-        "Velp",
-        "gemeente Rheden / Veluwezoom",
-        "Gelderland"
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Leeuwenstein 64",
-        "postalCode": "6824 DA",
-        "addressLocality": "Arnhem",
-        "addressRegion": "Gelderland",
-        "addressCountry": "NL"
-      },
-      "openingHoursSpecification": [
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Monday",
-            "Tuesday",
-            "Wednesday",
-            "Thursday",
-            "Friday"
-          ],
-          "opens": "08:00",
-          "closes": "17:00"
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://benzandak.nl/"
         },
         {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": [
-            "Saturday"
-          ],
-          "opens": "09:00",
-          "closes": "13:00"
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Daklekkage Velp",
+          "item": "https://benzandak.nl/daklekkage-velp"
         }
       ]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://benzandak.nl/daklekkage-velp#dienst",
+      "name": "Daklekkage verhelpen in Velp",
+      "serviceType": "Dakreparatie",
+      "description": "Daklekkage specialist in Velp en omgeving. Lekkages binnen 24 uur verholpen, dakreparatie, dakgoten, dak schoonmaken en dakonderhoud.",
+      "url": "https://benzandak.nl/daklekkage-velp",
+      "provider": {
+        "@id": "https://benzandak.nl/#business"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Velp"
+      }
     },
     {
       "@type": "FAQPage",
@@ -139,7 +126,7 @@
 
   <h2>Dakdekker in Velp: binnen 24 uur ter plaatse</h2>
   <p>Lekt uw dak in Velp? Wacht dan niet tot de waterschade groter wordt. Benzan Dak is de snelle dakdekker voor Velp en omgeving (Waterstraat, Beekhuizenseweg en Rozendaal). Wij dichten uw lek direct, netjes en met een vaste prijs vooraf — zonder gedoe en zonder verrassingen achteraf.</p>
-  <p>Vanuit Arnhem werken wij dagelijks in Velp en heel gemeente Rheden / Veluwezoom. Omdat we dichtbij zitten, zijn we er bij spoed vaak dezelfde dag. Bel 06 57 07 92 76 of stuur een foto via WhatsApp, dan beoordelen we uw situatie direct.</p>
+  <p>Vanuit Arnhem werken wij in Velp en heel gemeente Rheden / Veluwezoom. Omdat we dichtbij zitten, zijn we er bij spoed vaak dezelfde dag. Bel 06 57 07 92 76 of stuur een foto via WhatsApp, dan beoordelen we uw situatie direct.</p>
 
   <h2>Onze diensten in Velp</h2>
   <ul>
@@ -158,12 +145,12 @@
     <li><strong>Spoed binnen 24 uur</strong> — vaak dezelfde dag ter plaatse.</li>
     <li><strong>Verzekerd</strong> en ingeschreven bij de KVK onder nummer 90090330.</li>
     <li><strong>Vaste prijs vooraf</strong> — na een korte inspectie weet u waar u aan toe bent.</li>
-    <li><strong>Lokale dakdekker</strong> — vanuit Arnhem werken we dagelijks in Velp en omgeving.</li>
+    <li><strong>Lokale dakdekker</strong> — vanuit Arnhem werken we in Velp en omgeving.</li>
     <li><strong>Bewijs voor uw verzekeraar</strong> — foto's en een helder rapport bij elke lekkage.</li>
   </ul>
 
   <h2>Werkgebied rondom Velp</h2>
-  <p>Wij werken door heel Gelderland. Bekijk ook onze pagina's voor de omliggende plaatsen:</p>
+  <p>Velp ligt hemelsbreed ongeveer 3 km van onze vestiging aan de Leeuwenstein in Arnhem. Wij werken door heel Gelderland. Bekijk ook onze pagina's voor de omliggende plaatsen:</p>
   <div class="related">
       <a href="/daklekkage-rheden">Rheden<span>Daklekkage &amp; reparatie in Rheden</span></a>
       <a href="/daklekkage-dieren">Dieren<span>Daklekkage &amp; reparatie in Dieren</span></a>
