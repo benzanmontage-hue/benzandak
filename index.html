@@ -53,7 +53,8 @@
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakinspectie","description":"Lekkage opsporen, met helder rapport."}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakgoot reinigen","description":"Voorkomt lekkage en waterschade."}},
       {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dak schoonmaken","description":"Mos en vuil verwijderen."}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakonderhoud","description":"Jaarlijkse check, voorkom problemen."}}
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Dakonderhoud","description":"Jaarlijkse check, voorkom problemen."}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","@id":"https://benzandak.nl/dak-coaten#dienst","name":"Dak coaten","url":"https://benzandak.nl/dak-coaten","description":"Dakpannen reinigen en coaten, en platte daken coaten."}}
     ]
   }
 }
@@ -124,6 +125,7 @@ header{position:sticky;top:0;z-index:100;background:var(--green-deep)}
 .section-head p{color:var(--muted);max-width:52ch}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .card{background:var(--tone);border-radius:var(--radius);padding:18px 20px}
+.card h3 a{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .card h3{font-size:1.02rem;font-weight:700;margin-bottom:4px}
 .card p{color:var(--muted);font-size:.9rem}
 .card.primary{background:var(--green);color:#fff}
@@ -253,6 +255,7 @@ footer{background:var(--green-deep);color:var(--on-dark-soft);padding:40px 20px 
         <div class="card"><h3>Dakgoot reinigen</h3><p>Voorkomt lekkage en waterschade.</p></div>
         <div class="card"><h3>Dak schoonmaken</h3><p>Mos en vuil verwijderen.</p></div>
         <div class="card"><h3>Dakonderhoud</h3><p>Jaarlijkse check, voorkom problemen.</p></div>
+        <div class="card"><h3><a href="/dak-coaten">Dak coaten</a></h3><p>Dakpannen en platte daken, na een eerlijke inspectie.</p></div>
       </div>
     </div>
   </section>
