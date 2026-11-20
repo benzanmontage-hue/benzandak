@@ -13,9 +13,9 @@ Daklekkage, dakreparatie, dakinspectie, dakgoten reinigen, dak schoonmaken en da
 - **Dak schoonmaken** — mos en vuil verwijderen.
 - **Dakonderhoud** — jaarlijkse check, voorkom problemen.
 
-## Werkgebied (locatiepagina's)
+## Werkgebied
 
-[Nijmegen](https://benzandak.nl/daklekkage-nijmegen), [Apeldoorn](https://benzandak.nl/daklekkage-apeldoorn), [Ede](https://benzandak.nl/daklekkage-ede), [Wageningen](https://benzandak.nl/daklekkage-wageningen), [Velp](https://benzandak.nl/daklekkage-velp), [Rheden](https://benzandak.nl/daklekkage-rheden), [Dieren](https://benzandak.nl/daklekkage-dieren), [Doesburg](https://benzandak.nl/daklekkage-doesburg), [Huissen](https://benzandak.nl/daklekkage-huissen), [Elst](https://benzandak.nl/daklekkage-elst), [Bemmel](https://benzandak.nl/daklekkage-bemmel), [Duiven](https://benzandak.nl/daklekkage-duiven), [Westervoort](https://benzandak.nl/daklekkage-westervoort), [Zevenaar](https://benzandak.nl/daklekkage-zevenaar), [Oosterbeek](https://benzandak.nl/daklekkage-oosterbeek), [Renkum](https://benzandak.nl/daklekkage-renkum), [Heteren](https://benzandak.nl/daklekkage-heteren), [Doetinchem](https://benzandak.nl/daklekkage-doetinchem), [Zutphen](https://benzandak.nl/daklekkage-zutphen), [Doorwerth](https://benzandak.nl/daklekkage-doorwerth)
+Vanuit Arnhem in: Velp, Westervoort, Oosterbeek, Huissen, Rheden, Duiven, Doorwerth, Elst, Bemmel, Zevenaar, Heteren, Renkum, Dieren, Doesburg, Nijmegen, Wageningen, Ede, Apeldoorn, Doetinchem, Zutphen. Overzicht met afstanden: https://benzandak.nl/werkgebied
 
 ## Contact
 
@@ -29,4 +29,5 @@ Daklekkage, dakreparatie, dakinspectie, dakgoten reinigen, dak schoonmaken en da
 ## Website
 
 - Home: https://benzandak.nl/
+- Werkgebied: https://benzandak.nl/werkgebied
 - Privacyverklaring: https://benzandak.nl/privacy
